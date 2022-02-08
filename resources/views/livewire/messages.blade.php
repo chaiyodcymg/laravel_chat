@@ -1,5 +1,5 @@
 <div>
-    
+    @php \Carbon\Carbon::setLocale('th'); @endphp
 	<div class="container-fluid">
     <div class="row  row-in-container ">
       
@@ -13,9 +13,10 @@
          @foreach($users as $user)
          @if($user->id !== Auth::user()->id)
           @php
-          \Carbon\Carbon::setLocale('th');
-           $not_seen= App\Models\Message::where('user_id',$user->id)->where('receiver_id',Auth::user()->id)->where('is_seen',false)->get()
+          
+           $not_seen= App\Models\Message::where('user_id',$user->id)->where('receiver_id',Auth::user()->id)->get()
            
+          
             @endphp
               
             <div class="card card_img_profile" wire:click="getUser({{$user->id}})" >
@@ -30,20 +31,37 @@
 
                     @php
                  $mes= App\Models\Message::where('user_id',$user->id)->where('receiver_id',Auth::user()->id)->orderBy('id', 'desc')->first();     
-        
+               
                  @endphp
                 
                         <div class="message-card-profile  text-truncate">
                             
-                        @if(filled($not_seen))
-                            <span class="msg-card-profile ">{{$mes->message}} : </span>
-                         @endif 
-                         @if($user->is_online==true)
-                            <span class="status-text-card-profile"> กำลังใช้งาน</span>
+                        @if(filled($mes))
                         
+                                @if( $mes->is_seen == 1)
+                                
+                                    @if($user->is_online==true)
+                                    <span class="status-text-card-profile"> กำลังใช้งาน</span>
+                                   
+                                   
+                                    @else 
+                                            <span class="status-text-card-profile">{{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
+                                    @endif   
+                                @else   
+                                 <span class="msg-card-profile ">{{$mes->message}} : </span>
+                                        @if($user->is_online==true)
+                                        <span class="status-text-card-profile">{{\Carbon\Carbon::parse($mes->created_at)->diffForHumans()}}</span> 
+                                        @else 
+                                        <span class="status-text-card-profile">{{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
+                                        @endif
+                                @endif
                         @else
-                         <span class="status-text-card-profile">{{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
-                            @endif
+                            @if($user->is_online==true)
+                                <span class="status-text-card-profile"> กำลังใช้งาน</span>
+                            @else 
+                                <span class="status-text-card-profile">{{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
+                             @endif                        
+                        @endif
                         </div>
                     
                      
@@ -131,7 +149,7 @@
                      
                      <div class="box_img_left">
                             <div class="box_img_in_chat">
-                                <img class="img_in_chat" data-toggle="tooltip" data-placement="left" title="{{$mgs->name}}" src="https://scontent.fkkc3-1.fna.fbcdn.net/v/t39.30808-6/265037037_4583606948423513_6845078172086085211_n.jpg?_nc_cat=109&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeFnJMFayYs-lTj0LeL1-vEmgXLU6bpkhRuBctTpumSFG9qq3aIGeq5SvvL3cIwfb3YPPtjfyTfdKhXMJ9l1PgIu&_nc_ohc=x7xGYsvKr6cAX_GVzDK&_nc_ht=scontent.fkkc3-1.fna&oh=00_AT96U0KaLWH2qngc5X1_XtUKdc9KWrNi3V5Z3RgXtIs_-g&oe=6206F38E" alt="">
+                                <img class="img_in_chat" data-toggle="tooltip" data-placement="left" title="{{$mgs->user->name}}" src="https://scontent.fkkc3-1.fna.fbcdn.net/v/t39.30808-6/265037037_4583606948423513_6845078172086085211_n.jpg?_nc_cat=109&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeFnJMFayYs-lTj0LeL1-vEmgXLU6bpkhRuBctTpumSFG9qq3aIGeq5SvvL3cIwfb3YPPtjfyTfdKhXMJ9l1PgIu&_nc_ohc=x7xGYsvKr6cAX_GVzDK&_nc_ht=scontent.fkkc3-1.fna&oh=00_AT96U0KaLWH2qngc5X1_XtUKdc9KWrNi3V5Z3RgXtIs_-g&oe=6206F38E" alt="">
                           </div>
                          <div class="single-message received" data-toggle="tooltip" data-placement="left" title="{{\Carbon\Carbon::parse($mgs->created_at)->diffForHumans()}}">
                              
