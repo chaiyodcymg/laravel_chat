@@ -11,10 +11,15 @@
     overflow-y: scroll;
 }
 .message-box {
-    height: 70vh !important;
-    overflow-y: scroll;display:flex; flex-direction:column-reverse;
+   
+    height: 72vh !important;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display:flex;
+     flex-direction:column-reverse;
 }
 .single-message {
+    max-width: 90%;
     background: #f1f0f0;
     border-radius: 12px;
     padding: 10px;
@@ -38,4 +43,31 @@
 }
 .online-icon {
     font-size: 11px !important;
+}
+.container-fluid{
+    padding: 0 !important;
+    margin:0  !important;
+}
+.img_in_chat{
+    width: 40px;
+    border-radius: 50%;
+}
+.box_img_left{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: flex-start; */
+}
+.box_img_right{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-self: flex-end; */
+}
+.box_img_in_chat{
+    width: 50px;
+}
+.seen{
+    display: flex;
+    justify-content: flex-end;
 }

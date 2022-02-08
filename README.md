@@ -1,1 +1,1 @@
-Laravel livewire Chat Application :)))
+Laravel livewire Chat Application (pack)
