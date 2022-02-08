@@ -10,7 +10,7 @@ class Messages extends Component
 	public $allmessages;
 	public $sender;
     public $get_user_to_chat = false;
-    public $msg;
+    // public $msg;
     public function render()
     {
     	$users=User::all();

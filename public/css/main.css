@@ -1,3 +1,45 @@
+body{
+    overflow-x: hidden;
+}
+.row-in-container{
+   display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 90vh;
+}
+.box-card-all{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+   width:70% ;
+   /* height: 100%; */
+  
+    /* padding: 0 !important; */
+}
+.box-list-user{
+    width: 30%;
+    height: 100%;
+     /* margin-left:10rem; */
+    /* display: flex;
+    justify-content: flex-end; */
+}
+.box-chat{
+    width: 70%;
+     height: 100%;
+    /* margin-right:10rem; */
+    /* display: flex;
+    justify-content: flex-start; */
+}
+.card-list-user{
+    min-width: 320px !important;
+    width: 100%;
+    height: 100%;
+}
+.card-chat{
+   width: 100%; 
+   height: 100%;
+}
 .avatar {
     height: 50px;
     width: 50px;
@@ -44,10 +86,7 @@
 .online-icon {
     font-size: 11px !important;
 }
-.container-fluid{
-    padding: 0 !important;
-    margin:0  !important;
-}
+
 .img_in_chat{
     width: 40px;
     border-radius: 50%;
@@ -68,6 +107,70 @@
     width: 50px;
 }
 .seen{
+    font-size: 12px;
+    color: rgb(148, 148, 148);
     display: flex;
     justify-content: flex-end;
+
+    padding-right: 2px;
 }
+.card_img_profile{
+    
+    width: 100% ;
+    height: 10vh !important ;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    padding-left: 1rem !important;
+    /* justify-content: center ; */
+}
+.card-img-overlay{
+    display: flex  !important;
+     align-items: center !important;
+    color: rgb(8, 8, 8);
+    padding: 35px 0 0  49px !important;
+    
+}
+
+.card-img{
+    width: 50px !important;
+    height: 50px;
+    border-radius: 50%;
+}
+.dot{
+    padding-left:5px ;
+    width: 15px;
+    height: 15px;
+    background-color: green;
+    border-radius: 50%;
+    border: 3px solid white;
+}
+.text-card-profile{
+    display: flex;
+    flex-direction: column;
+    padding-left: 1rem;
+}
+.message-card-profile{
+    width: 100%;
+    /* display:inline-block; */
+    max-width: 100%;
+    /* display: flex;
+    flex-direction: row; */
+}
+.name-text-card-profile{
+ 
+    /* width: 100%; */
+    font-size: 16px;
+    font-weight: 600;
+}
+.status-text-card-profile{
+    margin-left: 3px;
+    font-size:16px;
+    color: rgb(148, 148, 148);
+}
+.msg-card-profile{
+    /* display: inline; */
+}
+/* .card{
+    width: 100%;
+} */
