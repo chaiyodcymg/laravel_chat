@@ -6,12 +6,11 @@ use Livewire\Component;
 use App\Models\User;
 class Messages extends Component
 {
-    
 	public $message;
 	public $allmessages;
 	public $sender;
     public $get_user_to_chat = false;
-    // public $msg;
+    public $keydown;
     public function render()
     {
     	$users=User::all();
@@ -53,7 +52,7 @@ class Messages extends Component
        $this->sender=$user;
        $this->allmessages=Message::where('user_id',auth()->id())->where('receiver_id',$userId)->orWhere('user_id',$userId)->where('receiver_id',auth()->id())->orderBy('id','desc')->get();
         $this->get_user_to_chat = true;
-        $this->msg= Message::where('user_id',auth()->id())->where('receiver_id',$userId)->orderBy('id', 'desc')->first();
+    $this->msg= Message::where('user_id',auth()->id())->where('receiver_id',$userId)->orderBy('id', 'desc')->first();
     }
 
 }

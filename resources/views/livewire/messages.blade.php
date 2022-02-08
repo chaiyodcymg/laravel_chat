@@ -2,7 +2,7 @@
     @php \Carbon\Carbon::setLocale('th'); @endphp
 	<div class="container-fluid">
     <div class="row  row-in-container ">
-      
+       
     <div class=" box-card-all">
 
      <div class="card card-list-user" wire:poll.keep-alive>
@@ -45,21 +45,21 @@
                                    
                                    
                                     @else 
-                                            <span class="status-text-card-profile">{{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
+                                            <span class="status-text-card-profile">ใช้งานเมื่อ  {{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
                                     @endif   
                                 @else   
                                  <span class="msg-card-profile ">{{$mes->message}} : </span>
                                         @if($user->is_online==true)
-                                        <span class="status-text-card-profile">{{\Carbon\Carbon::parse($mes->created_at)->diffForHumans()}}</span> 
+                                            <span class="status-text-card-profile">{{\Carbon\Carbon::parse($mes->created_at)->diffForHumans()}}</span> 
                                         @else 
-                                        <span class="status-text-card-profile">{{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
+                                         <span class="status-text-card-profile">ใช้งานเมื่อ  {{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
                                         @endif
                                 @endif
                         @else
                             @if($user->is_online==true)
                                 <span class="status-text-card-profile"> กำลังใช้งาน</span>
                             @else 
-                                <span class="status-text-card-profile">{{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
+                                <span class="status-text-card-profile">ใช้งานเมื่อ {{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
                              @endif                        
                         @endif
                         </div>
