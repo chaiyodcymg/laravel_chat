@@ -8,6 +8,11 @@ use App\Models\User;
 // use Livewire\Component;
 class UploadProfileController extends Controller
 {
+  public $image_url ="image";
+    function index(){
+     $image_url=  $this->image_url ;
+      return view('profile.upload-profile',compact('image_url'));
+    }
     function upload(Request $request){
         //  dd($request->file('file_image'));
        
@@ -22,6 +27,7 @@ class UploadProfileController extends Controller
         $name_uniqid = hexdec(uniqid());
         $image_location = "image/";
         $image_name = $name_uniqid.".".$img_ext;
+        $this->image_url = $image_name;
         // dd($name );
         $request->file('file_image')->move($image_location,$image_name );
 

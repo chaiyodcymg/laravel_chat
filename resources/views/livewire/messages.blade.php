@@ -20,7 +20,7 @@
             @endphp
               
             <div class="card card_img_profile" wire:click="getUser({{$user->id}})" >
-                <img class="card-img rounded-circle" src="{{ asset($user->image_profile) }}" alt="Card image" >
+                <img class="card-img rounded-circle" src="{{ $user['profile_photo_url'] }}" alt="Card image" >
                     @if($user->is_online==true)
                         <div class="card-img-overlay">
                             <div class="dot"></div>
@@ -119,8 +119,10 @@
                      
                      <div class="box_img_left">
                             <div class="box_img_in_chat">
-                                <img class="img_in_chat" data-toggle="tooltip" data-placement="left" title="{{$mgs['user']['name']}}" src="{{ asset($mgs['user']['image_profile']) }}" alt="">
-                          </div>
+                                <img class="img_in_chat" data-toggle="tooltip" data-placement="left" title="{{$mgs['user']['profile_photo_path']}}" src="{{ $mgs['user']['profile_photo_url'] }}" alt="">
+                        
+                          
+                            </div>
                          <div class="single-message received" data-toggle="tooltip" data-placement="left" title="{{\Carbon\Carbon::parse($mgs['created_at'])->diffForHumans()}}">
                              
                               {{ $mgs['message']}}
