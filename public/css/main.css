@@ -84,6 +84,7 @@ body{
 
 .img_in_chat{
     width: 40px;
+    height: 40px;
     border-radius: 50%;
 }
 .box_img_left{
