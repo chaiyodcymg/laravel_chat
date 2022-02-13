@@ -2,10 +2,10 @@
     @php \Carbon\Carbon::setLocale('th'); @endphp
 	<div class="container-fluid">
     <div class="row  row-in-container ">
-       
-    <div class=" box-card-all">
 
-     <div class="card card-list-user" wire:poll.keep-alive>
+    <div class=" box-card-all">
+        <div class=" box-list-user">
+        <div class="card card-list-user" wire:poll.keep-alive>
         <div class="card-header text-center">
             {{Auth::user()->name}}
         </div>
@@ -20,7 +20,7 @@
             @endphp
               
             <div class="card card_img_profile" wire:click="getUser({{$user->id}})" >
-                <img class="card-img rounded-circle" src="https://scontent.fkkc3-1.fna.fbcdn.net/v/t39.30808-6/265037037_4583606948423513_6845078172086085211_n.jpg?_nc_cat=109&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeFnJMFayYs-lTj0LeL1-vEmgXLU6bpkhRuBctTpumSFG9qq3aIGeq5SvvL3cIwfb3YPPtjfyTfdKhXMJ9l1PgIu&_nc_ohc=x7xGYsvKr6cAX_GVzDK&_nc_ht=scontent.fkkc3-1.fna&oh=00_AT96U0KaLWH2qngc5X1_XtUKdc9KWrNi3V5Z3RgXtIs_-g&oe=6206F38E" alt="Card image" >
+                <img class="card-img rounded-circle" src="{{ asset($user->image_profile) }}" alt="Card image" >
                     @if($user->is_online==true)
                         <div class="card-img-overlay">
                             <div class="dot"></div>
@@ -72,44 +72,9 @@
               @endforeach
        
         </div>
-        
+        </div>
               
-       
-            <!-- <div class="  box-list-user">
-                <div class="card card-list-user">
-                    <div class="card-header">
-                       {{Auth::user()->name}}
-                    </div>
-                    <div class="card-body chatbox p-0" wire:poll.keep-alive>
-                        <ul class="list-group list-group-flush">
-                          @foreach($users as $user)
 
-                          @if($user->id !== auth()->id())
-                          @php
-                              $not_seen= App\Models\Message::where('user_id',$user->id)->where('receiver_id',auth()->id())->where('is_seen',false)->get() ?? null
-
-                          @endphp
-                           
-                                <a wire:click="getUser({{$user->id}})"  class="text-dark link">
-                                    <li class="list-group-item">
-                                        <img class="img-fluid avatar" src="https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png">
-                                        @if($user->is_online==true)
-
-                                         <i class="fa fa-circle text-success online-icon">
-                                            @endif
-                                             
-                                         </i> {{$user->name}}
-                                       @if(filled($not_seen))
-                                            <div class="badge badge-success rounded"> {{ $not_seen->count()}} </div>
-                                            @endif
-                                    </li>
-                                </a>
-                                @endif
-                          @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div> -->
   <!-- ************************************************************************ -->
         <div class=" box-chat">
               @if(filled($allmessages) || $get_user_to_chat == true)
@@ -117,20 +82,25 @@
               
                 <div class="card-header">
                      @if(isset($sender)) {{$sender->name}}   @endif
+                      
                 </div>
-                <div class="card-body message-box" wire:poll="mountdata">
-                   @php $count = 0 @endphp
+               
+                <div class="card-body message-box" id="message-box" onscroll="load_scroll()" wire:poll=" mountdata">
+                  
+                @php $count = 0 @endphp
                      @foreach($allmessages as $mgs)
                       @php
-                              $msg= App\Models\Message::where('user_id',auth()->id())->where('receiver_id',$mgs->receiver_id)->orderBy('id', 'desc')->first();
+                              $msg= App\Models\Message::where('user_id',auth()->id())->where('receiver_id',$mgs['receiver_id'])->orderBy('id', 'desc')->first();
                             
                           @endphp
-                     @if($mgs->user_id == Auth::user()->id)  
+                         
+                          
+                     @if($mgs['user_id'] == Auth::user()->id)  
                      <div class="box_img_right">
                         
-                            <div class="single-message sent" data-toggle="tooltip" data-placement="left" title="{{\Carbon\Carbon::parse($mgs->created_at)->diffForHumans()}}">
+                            <div class="single-message sent" data-toggle="tooltip" data-placement="left" title="{{\Carbon\Carbon::parse($mgs['created_at'])->diffForHumans()}}">
                              
-                              {{ $mgs->message}}
+                              {{ $mgs['message']}}
                               
                             </div>
                             @php  @endphp
@@ -149,21 +119,27 @@
                      
                      <div class="box_img_left">
                             <div class="box_img_in_chat">
-                                <img class="img_in_chat" data-toggle="tooltip" data-placement="left" title="{{$mgs->user->name}}" src="https://scontent.fkkc3-1.fna.fbcdn.net/v/t39.30808-6/265037037_4583606948423513_6845078172086085211_n.jpg?_nc_cat=109&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeFnJMFayYs-lTj0LeL1-vEmgXLU6bpkhRuBctTpumSFG9qq3aIGeq5SvvL3cIwfb3YPPtjfyTfdKhXMJ9l1PgIu&_nc_ohc=x7xGYsvKr6cAX_GVzDK&_nc_ht=scontent.fkkc3-1.fna&oh=00_AT96U0KaLWH2qngc5X1_XtUKdc9KWrNi3V5Z3RgXtIs_-g&oe=6206F38E" alt="">
+                                <img class="img_in_chat" data-toggle="tooltip" data-placement="left" title="{{$mgs['user']['name']}}" src="{{ asset($mgs['user']['image_profile']) }}" alt="">
                           </div>
-                         <div class="single-message received" data-toggle="tooltip" data-placement="left" title="{{\Carbon\Carbon::parse($mgs->created_at)->diffForHumans()}}">
+                         <div class="single-message received" data-toggle="tooltip" data-placement="left" title="{{\Carbon\Carbon::parse($mgs['created_at'])->diffForHumans()}}">
                              
-                              {{ $mgs->message}}
+                              {{ $mgs['message']}}
                               
                             </div>
 
                      </div>
                      
                      @endif
-
+                    
                             @endforeach
-                           
-                        
+
+                           <!--******************* spinner ************************-->
+                    <div class="d-flex justify-content-center" id="spinner" style=" display:none  !important;">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                    <!--******************* spinner ************************-->
                 </div>
                  
                 <div class="card-footer">
@@ -183,8 +159,35 @@
             </div>
              
         </div>
+        @else
+       
+                <div class="card card-chat">
+                    
+                     <div class="card-body message-box" id="message-box" style="overflow: hidden;">
+
+                    </div>
+                </div>
+     
+
+
         @endif
     </div>
     </div>
 </div>
 </div>
+ <script type="text/javascript">
+   
+     function load_scroll(){
+     let div_scroll =  document.getElementById("message-box");
+       let  scroll_1 =  div_scroll.scrollHeight;
+        let  scroll_2 =  Math.abs(div_scroll.scrollTop)+487;
+        // console.log(scroll_2);
+        if(scroll_1  <= scroll_2){
+            //    console.log("เข้า");
+            //    console.log(scroll_1);
+               document.getElementById("spinner").style.display="flex ";
+                window.livewire.emit('load-more');
+                // let spinner =  document.getElementById("spinner").style.display="none ";
+         }
+        }
+    </script>
