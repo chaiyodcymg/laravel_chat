@@ -16,10 +16,17 @@ class CreateMessagesTable extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->text('message')->nullable();
-            $table->integer('user_id')->unsigned();
-            $table->integer('receiver_id')->unsigned();
+            $table->unsignedBigInteger('user_id')->unsigned();
+            $table->unsignedBigInteger('receiver_id')->unsigned();
             $table->boolean('is_seen')->default(0);
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('receiver_id')->references('id')->on('users');
             $table->timestamps();
+        });
+        Schema::create('message_user', function (Blueprint $table) {
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('message_id');
+            $table->unsignedBigInteger('receiver_id');
         });
     }
 

@@ -1,0 +1,35 @@
+.btn-submit{
+    width: 100px;
+    background-color:#FF6347 !important;
+}
+
+.btn-submit:hover{
+    background-color:#e62200 !important;
+}
+
+.namelogo{
+    padding-left: 5rem;
+}
+
+.imglogo{
+    width: 22vw;
+    height:auto;
+    border-radius: 50%;
+    min-width: 300px;
+}
+  
+.goregis{
+    width: 100% !important;
+    max-width: 28rem !important;
+}
+
+
+.btn-submit_regis{
+    width: 120px;
+    background-color:#FF6347 !important;
+}
+@media screen and (max-width:960px){
+    .logobox{
+        display: none;
+    }
+}

@@ -1,0 +1,71 @@
+/* profile */
+img.profile-img{
+    width: 100%;
+    max-width: 180px;
+    height: 180px;
+    min-width: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.link-editprofile{
+    color: white;
+    width: 100%;
+    max-width: 200px;
+    margin-bottom: 1em;
+}
+.bt{
+    background-color: rgb(218, 218, 218) !important;
+} 
+/* yun */
+.user-profile-profile{
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+.user-profile-profile img{
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.user-profile-profile p{
+    font-weight: 500;
+    color: #626262;
+    margin: 0;
+}
+.user-profile-post{
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+.user-profile-post img{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.user-profile-post p{
+    font-weight: 500;
+    color: #626262;
+    margin: 0;
+}
+
+.pro-left{
+    display: inline-block;
+    max-width: 10rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* others-profile */
+.message-button{
+    fill: black;
+    margin-top:0.1em;
+    margin-right:0.6em;
+    margin-left: -0.2em;
+}
+.fill-message{
+    width: 100%;
+    max-width: 40px;
+}

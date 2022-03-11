@@ -19,7 +19,7 @@ class OnlineMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        date_default_timezone_set("Asia/Bangkok");
+  
        $users_to_offline = User::where('last_activity', '<', now());
         $users_to_online = User::where('last_activity', '>=', now());
         if (isset($users_to_offline)) {

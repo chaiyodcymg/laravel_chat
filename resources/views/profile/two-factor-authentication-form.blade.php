@@ -1,14 +1,8 @@
 <x-jet-action-section>
-    <x-slot name="title">
-        {{ __('Two Factor Authentication') }}
-    </x-slot>
-
-    <x-slot name="description">
-        {{ __('Add additional security to your account using two factor authentication.') }}
-    </x-slot>
 
     <x-slot name="content">
-        <h3 class="text-lg font-medium text-gray-900">
+        <b style="font-size: 2rem;">Two factor authentication</b>
+        <h3 class="text-lg font-medium text-gray-900" style="width: 50vw; max-width:600px; min-width:400px;">
             @if ($this->enabled)
                 {{ __('You have enabled two factor authentication.') }}
             @else
@@ -18,7 +12,7 @@
 
         <div class="mt-3 max-w-xl text-sm text-gray-600">
             <p>
-                {{ __('When two factor authentication is enabled, you will be prompted for a secure, random token during authentication. You may retrieve this token from your phone\'s Google Authenticator application.') }}
+                When two factor authentication is enabled,you will be   prompted <br/> for a secure, random token during authentication. <br/>  You may retrieve this token from your phone\'s  Google <br/>  Authenticator application.
             </p>
         </div>
 
@@ -53,9 +47,9 @@
         <div class="mt-5">
             @if (! $this->enabled)
                 <x-jet-confirms-password wire:then="enableTwoFactorAuthentication">
-                    <x-jet-button type="button" wire:loading.attr="disabled">
+                    <button class="btn bg-success text-white" type="button" wire:loading.attr="disabled">
                         {{ __('Enable') }}
-                    </x-jet-button>
+                    </button>
                 </x-jet-confirms-password>
             @else
                 @if ($showingRecoveryCodes)
@@ -73,9 +67,9 @@
                 @endif
 
                 <x-jet-confirms-password wire:then="disableTwoFactorAuthentication">
-                    <x-jet-danger-button wire:loading.attr="disabled">
+                    <button class="btn bg-danger text-white" wire:loading.attr="disabled">
                         {{ __('Disable') }}
-                    </x-jet-danger-button>
+                    </button>
                 </x-jet-confirms-password>
             @endif
         </div>

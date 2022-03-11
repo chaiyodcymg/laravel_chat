@@ -1,5 +1,6 @@
 body{
     overflow-x: hidden;
+    overflow-y: scroll;
 }
 .row-in-container{
    display: flex;
@@ -13,7 +14,7 @@ body{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-   width:70% ;
+   width:74% ;
    /* height: 100%; */
   
     /* padding: 0 !important; */
@@ -40,11 +41,11 @@ body{
 .card-list-user{
     min-width: 320px !important;
     width: 100%;
-    height: 600px;
+    height: 85vh !important;
 }
 .card-chat{
    width: 100%; 
-   height: 600px;
+   height: 85vh !important;
 
 }
 .avatar {
@@ -57,8 +58,6 @@ body{
 }
 
 .message-box {
-   
-    
     overflow-y: scroll;
     overflow-x: hidden;
     display:flex;
@@ -81,7 +80,11 @@ body{
     color: white!important;
 }
 
-
+.img_in_head{
+     width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
 .img_in_chat{
     width: 40px;
     height: 40px;
@@ -112,8 +115,8 @@ body{
 }
 .card_img_profile{
     
-    width: 100% ;
-    height: 10vh !important ;
+    max-width: 100% ;
+    min-height: 10vh !important ;
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
@@ -124,7 +127,7 @@ body{
     background-color: rgb(223, 223, 223);
     cursor: pointer;
 }
-.card-img-overlay{
+.card-img-overlay-list-chat{
     display: flex  !important;
      align-items: center !important;
     color: rgb(8, 8, 8);
@@ -138,6 +141,9 @@ body{
     border-radius: 50%;
 }
 .dot{
+    position: relative;
+    top: 23px;
+    left: 25px;
     padding-left:5px ;
     width: 15px;
     height: 15px;
@@ -168,7 +174,50 @@ body{
     font-size:16px;
     color: rgb(148, 148, 148);
 }
-
-/* .card{
+.name-sender-card-chat{
+font-size: 16px;
+    font-weight: 600;
+    color: black;
+}
+.status-text-card-chat{
+    font-size: 14px;
+    color: #a8a8a8;
+}
+.card{
+    /* background-color: white !important; */
+}
+.card-header{
+    background-color: white !important;
+}
+.card-img-overlay-head-chat{
+    display: flex  !important;
+     align-items: center !important;
+    color: rgb(8, 8, 8);
+    padding: 22px 0 0  20px !important;
+    
+}
+.dot-card-chat{
+    padding-left:5px ;
+    width: 12px;
+    height: 12px;
+    background-color: green;
+    border-radius: 50%;
+    border: 3px solid white;
+}
+.card-footer-send-message{
+    background-color: white !important;
+}
+.input-send-message{
+    resize: none;
+    max-height: 300px !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    outline: none;
+    font: 18px sans-serif;
+    color: #333;
     width: 100%;
-} */
+    padding: 8px 14px;
+    box-sizing: border-box;
+    border: 0.2px solid black !important;
+    background: transparent;
+}

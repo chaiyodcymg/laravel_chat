@@ -8,13 +8,15 @@ use App\Models\User;
 // use Livewire\Component;
 class UploadProfileController extends Controller
 {
-  public $image_url ="image";
+  public $image_url ="";
+
     function index(){
      $image_url=  $this->image_url ;
       return view('profile.upload-profile',compact('image_url'));
     }
     function upload(Request $request){
-        //  dd($request->file('file_image'));
+       
+      
        
           $validatedData =  $request->validate([
          'file_image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:10240',
