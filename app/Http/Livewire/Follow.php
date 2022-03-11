@@ -54,7 +54,7 @@ class Follow extends Component
             $Follower->user_id = $this->user_id;
             $Follower->follower_id = Auth::user()->id;
             $Follower->save();
-            
+            dd();
         }else{
 
             $result_1 =   Following::onlyTrashed()->where('user_id', $result_following[0]->user_id)->where('following_id', $result_following[0]->following_id)->get();
