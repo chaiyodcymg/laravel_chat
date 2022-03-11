@@ -4,43 +4,36 @@
          <!-- Logo -->
          <a class="navbar-brand" href="{{ route('feed') }}"><img class="logo" src="{{asset('img/tomatoe.png')}}" alt="logo tometalk"></a>
 
-         <div class="expand relative">
-             <div class="search">
-                 <div class="icon"></div>
-                 <div class="inputspace">
-                     <input type="text" placeholder="ค้นหา..." id="search" onkeyup="searchfillter()">
-                 </div>
-             </div>
-         </div>
+      @livewire('search-user')
 
 
          <script>
-             const icon = document.querySelector('.icon');
-             const search = document.querySelector('.search');
-             icon.onclick = function() {
-                 search.classList.toggle('open')
-             }
+            //  const icon = document.querySelector('.icon');
+            //  const search = document.querySelector('.search');
+            //  icon.onclick = function() {
+            //      search.classList.toggle('open')
+            //  }
 
-             $(".icon").click(function() {
-                 $(".nav-icon").toggleClass("hide");
+            //  $(".icon").click(function() {
+            //      $(".nav-icon").toggleClass("hide");
 
-             });
+            //  });
 
 
 
-             $("#search").keyup(function() {
-                 $("#box-search").toggleClass("show-box");
-                 var value = $(this).val().toLowerCase();
-                 $("#box-search #box-name").filter(function() {
-                     var search = $(this).text().toLowerCase();
-                     if (search.indexOf(value) > -1) {
-                         $(this).show();
-                     } else {
-                         $(this).hide();
-                     }
-                 });
-             });
-         </script>
+            //  $("#search").keyup(function() {
+            //      $("#box-search").toggleClass("show-box");
+            //      var value = $(this).val().toLowerCase();
+            //      $("#box-search #box-name").filter(function() {
+            //          var search = $(this).text().toLowerCase();
+            //          if (search.indexOf(value) > -1) {
+            //              $(this).show();
+            //          } else {
+            //              $(this).hide();
+            //          }
+            //      });
+            //  });
+        //  </script>
 
          <!-- Navigation Links -->
          <ul class="nav-icon">
@@ -303,22 +296,7 @@
 
  <div class="container">
      <div class="nonti-position">
-         <div id="box-search" class="absolute z-50 w-48 rounded-md shadow-lg origin-top-left left-2">
-             @php $users = App\Models\User::all(); @endphp
-
-             @foreach($users as $user)
-             @if($user->id !== Auth::user()->id)
-             <a href="{{route('otheruser', ['user_id' => Crypt::encryptString($user->id)])}}" class="menu-sidebar" id="box-name">
-                 <img class="card-img-profile" src="{{asset($user->profile_photo_url)}}" alt="#">
-                 <div class="card-body-menu">
-                     <p class="card-title-menu">{{$user->name}}</p>
-                 </div>
-             </a>
-             @endif
-             @endforeach
-
-
-         </div>
+      
 
 
 

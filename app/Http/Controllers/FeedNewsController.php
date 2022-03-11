@@ -22,7 +22,7 @@ class FeedNewsController extends Controller
         // $users=User::all();
         // $posts= Post::orderBy('created_at','desc')->get();
 
-        $users =  User::all();
+        $followings =  Following::where('user_id', Auth::user()->id)->get();
 
 
         // dd($users);
@@ -38,7 +38,7 @@ class FeedNewsController extends Controller
         // $PostLike = PostLike::first();
         // dd($posts);
         // }
-        return view('feed_news',compact('users'));
+        return view('feed_news',compact('followings'));
     }
     //     public function index()
     // {

@@ -2,7 +2,7 @@
 
 </x-app-layout>
 <div class="container fluid">
-  @livewire('following',[ 'user_id' => Auth::user()->id])
+  @livewire('follow',[ 'user_id' => Auth::user()->id])
 
   @include('write-post')
   <!---- post ---->

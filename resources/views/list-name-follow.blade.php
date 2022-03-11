@@ -12,18 +12,16 @@
     </div>
     <div class="imp-links">
 
-        @foreach($users as $user)
-        @php @endphp
-        @if($user->id !== Auth::user()->id)
-        <a href="{{route('otheruser', ['user_id' => Crypt::encryptString($user->id)])}}" class="menu-sidebar ">
-            @if($user->profile_photo_path == null)
+        @foreach($followings as $following)
 
-            <img class="card-img-profile" src="{{ asset('/image/avatar.png')}}" alt="#">
-            @else
-            <img class="card-img-profile" src="{{ asset('storage/'.$user->profile_photo_path)}}" alt="#">
-            @endif
+        @php  @endphp
+        @if($following->user->id !== Auth::user()->id)
+        <a href="{{route('otheruser', ['user_id' => Crypt::encryptString($following->user->id)])}}" class="menu-sidebar ">
+
+            <img class="card-img-profile" src="{{ $following->user->profile_photo_url}}" alt="#">
+
             <div class="card-body-menu">
-                <p class="card-title-menu pro-left">{{$user->name}}</p>
+                <p class="card-title-menu pro-left">{{$following->user->name}}</p>
             </div>
         </a>
         @endif

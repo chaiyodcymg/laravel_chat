@@ -20,8 +20,19 @@
                         <span class="mr-3" aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body like-body" wire:poll.visible>
+                <div class="modal-body like-body">
+                    @foreach($post->postlikes as $like)
 
+                    <a href="{{route('otheruser', ['user_id' => Crypt::encryptString($like->user->id)])}}" class="menu-sidebar ">
+
+                        <img class="card-img-profile" src="{{ $like->user->profile_photo_url}}" alt="#">
+
+                        <div class="card-body-menu">
+                            <p class="card-title-menu pro-left"> {{$like->user->name}}</p>
+                        </div>
+                    </a>
+
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -86,11 +97,16 @@
                 </div>
             </div>
             <div class="d-flex justify-content-between mt-1 liked-comment">
+                @if(count($post->postlikes) != 0)
                 <a class="liked cursor-pointer" data-toggle="modal" data-target="#likedModal{{$likecount}}" wire:poll.keep-alive>
 
-                  liked
-                </a>
+                    {{count($post->postlikes)}} liked
 
+
+                </a>
+                @else
+                <div></div>
+                @endif
                 <a class="comment">1k comment</a>
             </div>
 
@@ -100,7 +116,14 @@
                 <button class="btn btn-like d-flex  justify-content-center mr-2" wire:click="UserLikePost('{{Crypt::encryptString($post->id)}}')">
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="mr-2 svg-heart" h>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="mr-2 svg-heart" @foreach($post->postlikes as $like)
+
+                        @if($like->user->id == Auth::user()->id)
+
+                        style="fill:rgb(255, 99, 71);"
+                        @endif
+                        @endforeach
+                        >
 
                         <path d=" M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z" />
                     </svg>

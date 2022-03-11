@@ -15,6 +15,7 @@ class Follow extends Component
     public $users;
     public $count_folllower;
     public $count_folllowing;
+    
 
     public function render()
     {
@@ -34,18 +35,39 @@ class Follow extends Component
         // $this->count_folllower = count($follower);
         // $this->count_folllowing = count($following);
         $this->users = $user_target;
+        // dd($user_target[0]->followers);
         return view('livewire.follow');
     }
     public function following()
     {
-        $Following = new Following;
-        $Following->user_id = Auth::user()->id;
-        $Following->following_id = $this->user_id;
-        $Following->save();
+      
+        $result_following =  Following::withTrashed()->where('user_id', Auth::user()->id)->where('following_id', $this->user_id)->get();
+        $result_follower =  Follower::withTrashed()->where('user_id', $this->user_id)->where('follower_id', Auth::user()->id)->get();
+        if ($result_following->isEmpty() && $result_follower->isEmpty()) {
+       
+            $Following = new Following;
+            $Following->user_id = Auth::user()->id;
+            $Following->following_id = $this->user_id;
+            $Following->save();
+        
+            $Follower = new Follower;
+            $Follower->user_id = $this->user_id;
+            $Follower->follower_id = Auth::user()->id;
+            $Follower->save();
+        }else{
 
-        $Follower = new Follower;
-        $Follower->user_id = $this->user_id;
-        $Follower->follower_id = Auth::user()->id;
-        $Follower->save();
+            $result_1 =   Following::onlyTrashed()->where('user_id', $result_following[0]->user_id)->where('following_id', $result_following[0]->following_id)->get();
+            $result_2 =   Follower::onlyTrashed()->where('user_id',$result_follower[0]->follower_id)->where('follower_id', $result_follower[0]->user_id)->get();
+         
+            if($result_1->isEmpty() && $result_2->isEmpty()){
+                Following::destroy($result_following[0]->id);
+                Follower::destroy($result_follower[0]->id);
+            }else{
+                
+                Following::withTrashed()->where('id', $result_following[0]->id)->restore();
+                Follower::withTrashed()->where('id', $result_follower[0]->id)->restore();
+            }
+        
+        }
     }
 }
