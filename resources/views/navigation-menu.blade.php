@@ -131,7 +131,7 @@
 
              <!-- Settings Dropdown -->
              <!-- ยังไม่ได้แก้ไข -->
-             <div class="ml-3 relative test">
+             <div class="ml-3 test">
                  <x-jet-dropdown align="right" width="48">
                      <x-slot name="trigger">
                          @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
