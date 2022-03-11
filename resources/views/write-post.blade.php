@@ -3,10 +3,10 @@
          <img src="{{ Auth::user()->profile_photo_url }}" alt="#">
 
          <div class="post-input-container w-100">
-             <button type="button" class="btn btn-light w-100 radius" data-toggle="modal" data-target="#postmessage">คุณกำลังคิดอะไรอยู่</button>
-             <div class="modal fade popup" id="postmessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+             <button type="button" class="btn btn-light w-100 radius" id="showmodalpost" data-toggle="modal" data-target="#postmessage">คุณกำลังคิดอะไรอยู่</button>
+             <div class="modal fade popup " id="postmessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                  <div class="modal-dialog" role="document">
-                     <div class="modal-content">
+                     <div class="modal-content postmodal">
                          <div class="modal-header d-flex justify-content-center p-2">
                              <h5 class="modal-title" id="exampleModalLabel">สร้างโพสต์</h5>
                              <button type="button" class="close m-0 p-0" data-dismiss="modal" aria-label="Close">
@@ -24,13 +24,21 @@
                                  @csrf
                                  <textarea name="whitten_post" id="textarea_post" rows="1" placeholder="คุณกำลังคิดอะไรอยู่" class="pt-3 pl-0 w-100" onfocus="update_textlen(this);" onblur="update_textlen(this);" onkeyup="update_textlen(this);"></textarea>
                                  <div class="modal-footer pl-0 pr-0 pb-0">
-                                     <button type="submit" class="btn btn-secondary w-100 disabled" id="myclass">โพสต์</button>
+                                     <button type="submit" class="btn btn-secondary w-100 disabled" id="myclass" >โพสต์</button>
                                  </div>
                              </form>
                          </div>
                      </div>
                  </div>
              </div>
+         </div>
+     </div>
+ </div>
+
+ <div class="modal fade bd-example-modal-lg spinner" data-backdrop="static" data-keyboard="false" tabindex="-1" role="status">
+     <div class="modal-dialog modal-sm">
+         <div class="modal-content" style="width: 48px">
+             <span class="spinner-border "></span>
          </div>
      </div>
  </div>
@@ -73,4 +81,15 @@
          textarea.oninput = adjust;
      }
      setTimeout(adjust.bind(textarea));
+
+
+   
+     $("#myclass").click(function() {
+        $('.spinner').modal('show');
+        $('.postmodal').css('opacity','0.8')
+         setTimeout(function() {
+             
+             $('.spinner').modal('hide');
+         }, 1000);
+     });
  </script>
