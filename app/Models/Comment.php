@@ -10,13 +10,12 @@ class Comment extends Model
 {
     use HasFactory;
     use SoftDeletes;
-
+    public function post()
+    {
+        return $this->belongsTo(Post::class,'user_id');
+    }
     public function user()
     {
-    	return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
-
-
 }
-
-

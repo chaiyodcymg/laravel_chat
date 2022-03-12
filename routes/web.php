@@ -50,5 +50,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/follow/{id}',[ListFollowController::class,'follow1'])->name('follow');
     Route::post('/upload', [UploadProfileController::class, 'upload'])->name('upload'); 
 
-    Route::post('/comment/store', [commentController::class,'store'])->name('comment.add');
+    Route::post('/comment_post',[WritePostController::class,'comment_post'])->name('comment_post');
 });
