@@ -17,6 +17,7 @@ use App\Models\Follower;
 use Illuminate\Support\Arr;
 use App\Models\Comment;
 use Illuminate\Support\Str;
+
 class LikePost extends Component
 {
     public $LikePost;
@@ -28,14 +29,14 @@ class LikePost extends Component
     public $count_post_like;
     public $other_user;
     public $showfollowpost;
-    public $text_comment =[];
-    
+    public $text_comment = [];
+
 
     public function render()
     {
-    
 
-     
+
+
         $arr = array();
         $posts_arr = array();
         $follows =  Following::where('user_id', Auth::user()->id)->get();
@@ -60,7 +61,7 @@ class LikePost extends Component
         // dd(strtotime(
         //     $posts_arr[0]->created_at
         // ));
-        
+
         $count = 0;
         $sort_array = array();
         foreach ($posts_arr as $posts_real) {
@@ -71,17 +72,24 @@ class LikePost extends Component
             } else if (strtotime($sort_array[0]->created_at) < strtotime($posts_real->created_at)) {
                 array_unshift($sort_array, $posts_real);
                 // dd($sort_array);
-            } else {
+            }else {
                 array_push($sort_array, $posts_real);
+                
             }
         }
+        $first_post = array_slice($sort_array,0,1);
+        $leftover_post = array_slice($sort_array,1,sizeof($sort_array));
+        shuffle($leftover_post);
+        $random_post = array_merge($first_post,$leftover_post);
+
+       
         //  
-        // $sort = sort($posts_arr);
+       
         if (isset($this->other_user)) {
             $posts = Post::where('user_id', $this->other_user)->orderBy('id', 'desc')->get();
             $this->posts = $posts;
         } else {
-            $this->posts = $sort_array;
+            $this->posts = $random_post;
         }
 
         // $posts = Post::find($this->LikePost);
@@ -153,11 +161,12 @@ class LikePost extends Component
                 }
             }
         } catch (\Exception $e) {
-           
+
             return back();
         }
     }
-    public function comment($post){
+    public function comment($post)
+    {
         // dd(gettype( $post));
         // dd($this->text_comment);
         $comm  = $this->text_comment[$post];
@@ -166,8 +175,7 @@ class LikePost extends Component
         $Comment = new Comment;
         $Comment->user_id = Auth::user()->id;
         $Comment->post_id = $post;
-        $Comment->write_comment = $comm; 
+        $Comment->write_comment = $comm;
         $Comment->save();
-      
     }
 }
