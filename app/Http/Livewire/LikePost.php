@@ -62,36 +62,6 @@ class LikePost extends Component
         // dd(strtotime(
         //     $posts_arr[0]->created_at
         // ));
-
-        $count = 0;
-        $sort_array = array();
-        foreach ($posts_arr as $posts_real) {
-            if ($count == 0) {
-                array_push($sort_array, $posts_real);
-                // dd($sort_array);
-                $count++;
-            } else if (strtotime($sort_array[0]->created_at) < strtotime($posts_real->created_at)) {
-                array_unshift($sort_array, $posts_real);
-                // dd($sort_array);
-            } else {
-                array_push($sort_array, $posts_real);
-            }
-        }
-
-        function insert($my_array)
-        {
-            for ($i = 0; $i < count($my_array); $i++) {
-                $val = strtotime($my_array[$i]->created_at);
-                $j = $i - 1;
-                while ($j >= 0 && strtotime($my_array[$j]->created_at) > $val) {
-                    $my_array[$j + 1] = $my_array[$j];
-                    $j--;
-                }
-                $my_array[$j + 1] = $val;
-            }
-            return $my_array;
-        }
-
         $price = array_column($posts_arr, 'created_at');
         array_multisort($price, SORT_DESC, $posts_arr);
       
