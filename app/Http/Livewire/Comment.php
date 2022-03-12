@@ -26,7 +26,7 @@ class Comment extends Component
             ->join('posts', 'posts.id', '=', 'comments.post_id')
             ->select('users.*')
             ->where('comment.id', $this->user_id)->get();
-        dd($commenttest);
+        
     }
 
     public function comment()

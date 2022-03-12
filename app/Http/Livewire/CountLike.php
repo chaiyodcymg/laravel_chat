@@ -25,6 +25,6 @@ class CountLike extends Component
        
         $this->count_post_like = count($posts->postlikes);
         $this->Post_Id = $posts->postlikes;
-        dd($posts);
+        
     }
 }

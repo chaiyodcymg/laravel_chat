@@ -144,7 +144,7 @@ class Messages extends Component
                 // dd($userId);
             }
         } catch (\Exception $e) {
-                dd($e);
+            
             return redirect('/chat');
         }
     }
