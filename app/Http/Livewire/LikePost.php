@@ -73,26 +73,38 @@ class LikePost extends Component
             } else if (strtotime($sort_array[0]->created_at) < strtotime($posts_real->created_at)) {
                 array_unshift($sort_array, $posts_real);
                 // dd($sort_array);
-            }else {
+            } else {
                 array_push($sort_array, $posts_real);
-                
             }
         }
 
-        $first_post = array_slice($sort_array,0,1);
-        $leftover_post = array_slice($sort_array,1,sizeof($sort_array));
-        shuffle($leftover_post);
-        $random_post = array_merge($first_post,$leftover_post);
+        function insert($my_array)
+        {
+            for ($i = 0; $i < count($my_array); $i++) {
+                $val = strtotime($my_array[$i]->created_at);
+                $j = $i - 1;
+                while ($j >= 0 && strtotime($my_array[$j]->created_at) > $val) {
+                    $my_array[$j + 1] = $my_array[$j];
+                    $j--;
+                }
+                $my_array[$j + 1] = $val;
+            }
+            return $my_array;
+        }
 
-       
+        $price = array_column($posts_arr, 'created_at');
+        array_multisort($price, SORT_DESC, $posts_arr);
+      
+
+
 
         //  
-       
+
         if (isset($this->other_user)) {
             $posts = Post::where('user_id', $this->other_user)->orderBy('id', 'desc')->get();
             $this->posts = $posts;
         } else {
-            $this->posts = $random_post;
+            $this->posts = $posts_arr;
         }
 
         // $posts = Post::find($this->LikePost);
