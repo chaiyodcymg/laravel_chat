@@ -56,7 +56,7 @@
                 </div>
 
 
-                @if(Auth::user()->id == $post->user->id)
+                @if( $post->user->id == Auth::user()->id)
                 <div class="dropleft list-icon" wire:ignore>
                     <a class="drop dt" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa-solid fa-ellipsis" style="font-size: 20px !important;"></i>
@@ -80,7 +80,7 @@
                                     </div>
                                     <div class="modal-footer p-1">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                        <a href="{{route('delete', ['id'=> Crypt::encryptString($post->id)]);}}"><button type="button" class="btn btn-danger w-100" wire:poll.visible>ลบโพสต์</button></a>
+                                        <a href="{{route('delete', ['id'=> Crypt::encryptString($post->id)]);}}"><button type="button" class="btn btn-danger w-100">ลบโพสต์</button></a>
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +107,15 @@
                 @else
                 <div></div>
                 @endif
+<<<<<<< HEAD
                 <p class="comment">{{count($post->comments)}} comment</p>
+=======
+                @if(count($post->comments) != 0)
+                <a class="comment">{{count($post->comments)}} comment</a>
+                @else
+                <div></div>
+                @endif
+>>>>>>> 4ed74c1cb9630ea8eea8cf20999461f0ce10c342
             </div>
 
 

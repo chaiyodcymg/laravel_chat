@@ -37,6 +37,7 @@
             <span style="font-weight: 700;">followed</span>
             
             @php  @endphp
+            @break
         </a>
         @break
         @elseif($follower->follower_id != Auth::user()->id && count($users[0]->followers)==$count)

@@ -11,8 +11,14 @@ class DeletePostController extends Controller
 {
     public function delete(Request $request)
     {
+        try {
         $id = Crypt::decryptString($request->id);
-        $delete = Post::destroy($id);
+
+       Post::destroy($id);
         return redirect('/');
+        } catch (\Exception $e) {
+
+            return back();
+        }
     }
 }

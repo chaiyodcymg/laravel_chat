@@ -42,6 +42,7 @@ class LikePost extends Component
         $follows =  Following::where('user_id', Auth::user()->id)->get();
         // dd($follows[0]->user);
         $posts_auth =   Post::where('user_id', Auth::user()->id)->get();
+        // dd($posts_auth);
         foreach ($posts_auth as $posts_aut) {
             array_push($posts_arr, $posts_aut);
         }
@@ -77,12 +78,14 @@ class LikePost extends Component
                 
             }
         }
+
         $first_post = array_slice($sort_array,0,1);
         $leftover_post = array_slice($sort_array,1,sizeof($sort_array));
         shuffle($leftover_post);
         $random_post = array_merge($first_post,$leftover_post);
 
        
+
         //  
        
         if (isset($this->other_user)) {
