@@ -242,16 +242,26 @@ textarea:focus {
     background-color: #ececec;
     transition: 0.3s;
 }
+.profile-img-comment{
+    border-radius: 50%;
+    object-fit: cover;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+  }
 
 .input-comment {
     width: 100%;
 }
-.profile-img-comment {
-    width: 100%;
-    max-width: 25px;
+.commentshow{
+    background-color: #F0FFFF !important;
+}
+.comment-time{
+    
+    font-size: smaller;
 }
 .user-comment {
-    font-size: x-small;
+    font-size: medium;
 }
 .username {
     font-weight: bold;
@@ -381,4 +391,8 @@ textarea:focus {
     border: none;
     
   }
+
+ 
+
+ 
 

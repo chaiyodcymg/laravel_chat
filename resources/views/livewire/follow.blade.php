@@ -38,7 +38,7 @@
             
             @php  @endphp
         </a>
-        
+        @break
         @elseif($follower->follower_id != Auth::user()->id && count($users[0]->followers)==$count)
         <a class="link-editprofile btn bt d-flex flex-row  justify-content-center text-center" wire:click="following">
             <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" style="fill:#000000">

@@ -107,7 +107,7 @@
                 @else
                 <div></div>
                 @endif
-                <a class="comment">{{count($post->comments)}} comment</a>
+                <p class="comment">{{count($post->comments)}} comment</p>
             </div>
 
 
@@ -162,11 +162,11 @@
 
                     @foreach($post->comments as $comment)
 
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center ">
 
 
                         <img class="profile-img-comment mr-1" src="{{$comment->user->profile_photo_url}}" alt="profile">
-                        <div class="card user-comment mt-2">
+                        <div class="card user-comment mt-0 pr-2 pl-2 pt-1 pb-1 commentshow">
 
 
 
@@ -177,11 +177,13 @@
                             </p>
 
 
-                            <p class="comment-text ml-2 mr-2 mb-1">{{$comment->write_comment}}</p>
+                            <p class="comment-text ml-2 mr-2 mb-0">{{$comment->write_comment}}</p>
+
+
                         </div>
-
+                       
                     </div>
-
+                    <p class="comment-time ml-5 ">{{\Carbon\Carbon::parse( $comment->created_at)->diffForHumans()}}</p>
                     @endforeach
 
                 </div>
