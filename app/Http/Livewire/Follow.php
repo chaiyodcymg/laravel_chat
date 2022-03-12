@@ -67,6 +67,7 @@ class Follow extends Component
                 
                 Following::withTrashed()->where('id', $result_following[0]->id)->restore();
                 Follower::withTrashed()->where('id', $result_follower[0]->id)->restore();
+               
             }
         
         }
