@@ -70,8 +70,7 @@ class LikePost extends Component
             }
         }
         //  
-        $sort = sort($posts_arr);
-        dd( $sort);
+        // $sort = sort($posts_arr);
         if (isset($this->other_user)) {
             $posts = Post::where('user_id', $this->other_user)->orderBy('id', 'desc')->get();
             $this->posts = $posts;

@@ -23,10 +23,11 @@
 
         @else
 
-
-
-        @forelse($users[0]->followers as $follower)
-
+        @php $count=0; @endphp
+        @if(count($users[0]->followers)>0)
+        @php  @endphp
+        @foreach($users[0]->followers as $follower)
+        @php $count++ @endphp
         @if($follower->follower_id == Auth::user()->id)
         <a class="link-editprofile btn bt d-flex flex-row  justify-content-center text-center" wire:click="following">
             <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" style="fill:#000000">
@@ -34,9 +35,25 @@
                 <path d="M274.7 304H173.3C77.61 304 0 381.6 0 477.3C0 496.5 15.52 512 34.66 512H413.3C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304zM224 256c70.7 0 128-57.31 128-128S294.7 0 224 0C153.3 0 96 57.31 96 128S153.3 256 224 256zM632.3 134.4c-9.703-9-24.91-8.453-33.92 1.266l-87.05 93.75l-38.39-38.39c-9.375-9.375-24.56-9.375-33.94 0s-9.375 24.56 0 33.94l56 56C499.5 285.5 505.6 288 512 288h.4375c6.531-.125 12.72-2.891 17.16-7.672l104-112C642.6 158.6 642 143.4 632.3 134.4z" />
             </svg>
             <span style="font-weight: 700;">followed</span>
-
+            
+            @php  @endphp
         </a>
+        
+        @elseif($follower->follower_id != Auth::user()->id && count($users[0]->followers)==$count)
+        <a class="link-editprofile btn bt d-flex flex-row  justify-content-center text-center" wire:click="following">
+            <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" style="fill:#000000">
+                <!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                <path d="M224 256c70.7 0 128-57.31 128-128S294.7 0 224 0C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3C0 496.5 15.52 512 34.66 512h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304zM616 200h-48v-48C568 138.8 557.3 128 544 128s-24 10.75-24 24v48h-48C458.8 200 448 210.8 448 224s10.75 24 24 24h48v48C520 309.3 530.8 320 544 320s24-10.75 24-24v-48h48C629.3 248 640 237.3 640 224S629.3 200 616 200z" />
+            </svg>
+            <span style="font-weight: 700;">follow</span>
+         
+        </a>
+        @endif
+       
+
+        @endforeach
         @else
+       
         <a class="link-editprofile btn bt d-flex flex-row  justify-content-center text-center" wire:click="following">
             <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" style="fill:#000000">
                 <!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
@@ -46,18 +63,6 @@
 
         </a>
         @endif
-        @empty
-
-        <a class="link-editprofile btn bt d-flex flex-row  justify-content-center text-center" wire:click="following">
-            <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" style="fill:#000000">
-                <!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                <path d="M224 256c70.7 0 128-57.31 128-128S294.7 0 224 0C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3C0 496.5 15.52 512 34.66 512h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304zM616 200h-48v-48C568 138.8 557.3 128 544 128s-24 10.75-24 24v48h-48C458.8 200 448 210.8 448 224s10.75 24 24 24h48v48C520 309.3 530.8 320 544 320s24-10.75 24-24v-48h48C629.3 248 640 237.3 640 224S629.3 200 616 200z" />
-            </svg>
-            <span style="font-weight: 700;">follow</span>
-
-        </a>
-        @endforelse
-
 
 
 
