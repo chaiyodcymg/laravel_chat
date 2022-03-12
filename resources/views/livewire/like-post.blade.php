@@ -62,11 +62,11 @@
                         <i class="fa-solid fa-ellipsis" style="font-size: 20px !important;"></i>
                     </a>
                     <div class="dropdown-menu ">
-                        <a class="dropdown-item text-danger" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">ลบโพสต์</a>
+                        <a class="dropdown-item text-danger" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal{{++$i}}">ลบโพสต์</a>
                     </div>
 
                     <div class="modal-delete-post w-100">
-                        <div class="modal" tabindex="-1" role="dialog" id="deleteModal">
+                        <div class="modal" tabindex="-1" role="dialog" id="deleteModal{{$i}}">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content" wire:ignore.self>
                                     <div class="modal-header p-2 d-flex justify-content-center">
