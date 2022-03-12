@@ -9,11 +9,8 @@
     </a>
     <div class="shortcut-links pt-3 ml-3 mr-3">
 
-<<<<<<< HEAD
         <p class="m-0 pb-2">Following </p>
-=======
-        <p class="m-0 pb-2">Following</p>
->>>>>>> 05e9faecfbc2b40dd7a6358eb3b1cceafe458d32
+   
 
     </div>
     <div class="imp-links">

@@ -107,15 +107,12 @@
                 @else
                 <div></div>
                 @endif
-<<<<<<< HEAD
                 <p class="comment">{{count($post->comments)}} comment</p>
-=======
                 @if(count($post->comments) != 0)
                 <a class="comment">{{count($post->comments)}} comment</a>
                 @else
                 <div></div>
                 @endif
->>>>>>> 4ed74c1cb9630ea8eea8cf20999461f0ce10c342
             </div>
 
 
