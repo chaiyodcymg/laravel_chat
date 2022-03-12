@@ -15,6 +15,7 @@ use Illuminate\Support\Collection;
 use App\Models\Following;
 use App\Models\Follower;
 use Illuminate\Support\Arr;
+use App\Models\Comment;
 
 class LikePost extends Component
 {
@@ -27,6 +28,8 @@ class LikePost extends Component
     public $count_post_like;
     public $other_user;
     public $showfollowpost;
+    public $text_comment;
+    
 
     public function render()
     {
@@ -150,5 +153,15 @@ class LikePost extends Component
             dd($e);
             return back();
         }
+    }
+    public function comment($post){
+        // dd(gettype( $post));
+        $test = Post::find($post);
+        $Comment = new Comment;
+        $Comment->user_id = $test->user_id;
+        $Comment->post_id = $post;
+        $Comment->write_comment = $this->text_comment; 
+        $Comment->save();
+        $this->text_comment ="";
     }
 }

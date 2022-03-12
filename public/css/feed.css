@@ -161,6 +161,20 @@ button.disabled {
 .modal-content {
     border-radius: 6px !important;
 }
+#text-comment{
+    resize: none;
+    height: auto !important;
+    max-height: 500px ;
+    min-height: 50px ;
+    outline: none;
+    /* font: 18px sans-serif; */
+    color: #333;
+    width: 100%;
+    padding: 8px 14px;
+    box-sizing: border-box;
+    border: unset !important;
+    background: transparent;
+}
 .post-input-container textarea {
     resize: none;
     max-height: 300px !important;
@@ -254,10 +268,11 @@ textarea:focus {
     margin-top: 10px;
     border-radius: 10px;
 }
-.pop .popup {
+/* .pop .popup {
     display: none;
-}
+} */
 .pop .active {
+    height: auto;
     display: block;
     transition: 0.5s;
 }
@@ -267,6 +282,7 @@ textarea:focus {
 }
 .card-body {
     padding: 1rem !important;
+   
 }
 .profile-img-post {
     border-radius: 50%;
