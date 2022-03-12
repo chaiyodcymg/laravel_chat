@@ -265,10 +265,13 @@ svg {
 
 #notification-popup {
     position: absolute;
+    margin-top: 0.8rem;
+    right: 17%;
     background-color: white;
     display: none;
     width: 300px;
     padding: 0 !important;
+    z-index: 500 !important;
 }
 
 #notification-popup.show-nonti {
@@ -444,6 +447,8 @@ img.card-img-profile-search {
 
     #box-search,
     #notification-popup {
+        right: 0;
+        left: 0;
         width: 100%;
     }
     #box-search {
@@ -464,7 +469,7 @@ img.card-img-profile-search {
     }
 
     #notification-popup {
-        margin-left: initial;
+        left: 0;
     }
 
     .hide {
