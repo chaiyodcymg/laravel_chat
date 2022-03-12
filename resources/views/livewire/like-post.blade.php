@@ -56,17 +56,17 @@
                 </div>
 
 
-                @if(Auth::user()->id == $post->user->id)
+                @if( $post->user->id == Auth::user()->id)
                 <div class="dropleft list-icon" wire:ignore>
                     <a class="drop dt" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa-solid fa-ellipsis" style="font-size: 20px !important;"></i>
                     </a>
                     <div class="dropdown-menu ">
-                        <a class="dropdown-item text-danger" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">ลบโพสต์</a>
+                        <a class="dropdown-item text-danger" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal{{++$i}}">ลบโพสต์</a>
                     </div>
 
                     <div class="modal-delete-post w-100">
-                        <div class="modal" tabindex="-1" role="dialog" id="deleteModal">
+                        <div class="modal" tabindex="-1" role="dialog" id="deleteModal{{$i}}">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content" wire:ignore.self>
                                     <div class="modal-header p-2 d-flex justify-content-center">
@@ -80,7 +80,7 @@
                                     </div>
                                     <div class="modal-footer p-1">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                        <a href="{{route('delete', ['id'=> Crypt::encryptString($post->id)]);}}"><button type="button" class="btn btn-danger w-100" wire:poll.visible>ลบโพสต์</button></a>
+                                        <a href="{{route('delete', ['id'=> Crypt::encryptString($post->id)]);}}"><button type="button" class="btn btn-danger w-100">ลบโพสต์</button></a>
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +107,11 @@
                 @else
                 <div></div>
                 @endif
+                @if(count($post->comments) != 0)
                 <a class="comment">{{count($post->comments)}} comment</a>
+                @else
+                <div></div>
+                @endif
             </div>
 
 

@@ -16,6 +16,6 @@ class WritePostController extends Controller
     $post->whitten_post=$request->whitten_post;
     $post->user_id=Auth::user()->id;
     $post->save();
-    return redirect("/");
+    return redirect()->route('feed');
     }
 }

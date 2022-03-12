@@ -41,6 +41,7 @@ class LikePost extends Component
         $follows =  Following::where('user_id', Auth::user()->id)->get();
         // dd($follows[0]->user);
         $posts_auth =   Post::where('user_id', Auth::user()->id)->get();
+        // dd($posts_auth);
         foreach ($posts_auth as $posts_aut) {
             array_push($posts_arr, $posts_aut);
         }
@@ -75,6 +76,7 @@ class LikePost extends Component
                 array_push($sort_array, $posts_real);
             }
         }
+// dd($sort_array);
         //  
         // $sort = sort($posts_arr);
         if (isset($this->other_user)) {
