@@ -8,7 +8,9 @@
         </div>
     </a>
     <div class="shortcut-links pt-3 ml-3 mr-3">
+
         <p class="m-0 pb-2">Following</p>
+
     </div>
     <div class="imp-links">
 

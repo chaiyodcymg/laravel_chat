@@ -225,14 +225,14 @@ svg {
     width: 350px;
     background-color: white;
     box-shadow: 2px 2px 10px rgb(179, 179, 179);
-    margin-left: 5%;
+    margin-left: 15px;
 }
 
 .menu-sidebar {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 10px 0 10px 0;
+
     color: black;
     border-radius: 5px;
     text-decoration: none;

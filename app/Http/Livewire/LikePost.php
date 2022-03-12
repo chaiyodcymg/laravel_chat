@@ -76,9 +76,9 @@ class LikePost extends Component
             }
         }
         //  
-        // dd($sort_array);
+        // $sort = sort($posts_arr);
         if (isset($this->other_user)) {
-            $posts = Post::where('user_id', $this->other_user)->orderBy('created_at', 'desc')->get();
+            $posts = Post::where('user_id', $this->other_user)->orderBy('id', 'desc')->get();
             $this->posts = $posts;
         } else {
             $this->posts = $sort_array;
@@ -153,7 +153,7 @@ class LikePost extends Component
                 }
             }
         } catch (\Exception $e) {
-            dd($e);
+           
             return back();
         }
     }

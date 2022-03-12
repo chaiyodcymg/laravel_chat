@@ -15,6 +15,16 @@ class Comment extends Component
     {
 
         return view('livewire.comment');
+<<<<<<< HEAD
+=======
+
+        $commenttest =  DB::table('Comment')
+            ->join('users', 'users.id', '=', 'comments.user_id')
+            ->join('posts', 'posts.id', '=', 'comments.post_id')
+            ->select('users.*')
+            ->where('comment.id', $this->user_id)->get();
+        
+>>>>>>> 9b5b432490bbe39f831b7b169a4186c750882d84
     }
     public function comment()
     {

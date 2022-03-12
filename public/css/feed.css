@@ -108,6 +108,7 @@ img.card-img-profile {
     display: flex;
     align-items: center;
     padding: 0;
+
 }
 .user-profile-post img {
     width: 45px;
@@ -365,3 +366,19 @@ textarea:focus {
 .pop .active:hover {
     color: black;
 }
+
+
+.bd-example-modal-lg .modal-dialog{
+    display: table;
+    position: relative;
+    margin: 0 auto;
+    top: calc(50% - 24px);
+  
+  }
+  
+  .bd-example-modal-lg .modal-dialog .modal-content{
+    background-color: transparent;
+    border: none;
+    
+  }
+
