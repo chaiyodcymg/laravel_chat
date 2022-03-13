@@ -17,7 +17,7 @@ use App\Models\Follower;
 use Illuminate\Support\Arr;
 use App\Models\Comment;
 use Illuminate\Support\Str;
-
+use App\Models\Notification;
 class LikePost extends Component
 {
     public $LikePost;
@@ -81,7 +81,7 @@ class LikePost extends Component
 
         $first_post = array_slice($sort_array,0,1);
         $leftover_post = array_slice($sort_array,1,sizeof($sort_array));
-        shuffle($leftover_post);
+ 
         $random_post = array_merge($first_post,$leftover_post);
 
        
@@ -128,12 +128,22 @@ class LikePost extends Component
                 $Like->post_id = $post;
                 $Like->save();
 
-                $this->fillColor = true;
+                
                 $li =  PostLike::where('post_id', $post)->where('user_id', Auth::user()->id)->get();
                 $p =  Post::find($post);
 
                 // dd($li[0]->id);
                 $p->postlikes()->attach($li[0]->id, ['post_like_id' => $li[0]->id]);
+                // dd($p->user);
+
+               $notifi  = new Notification;
+               $notifi->sender_id= Auth::user()->id;
+                 $notifi->receiver_id = $p->user->id;
+                 $notifi->message_data = "กดไลค์โพสต์ของคุณ";
+                $notifi->save();
+
+
+
             } else {
 
 

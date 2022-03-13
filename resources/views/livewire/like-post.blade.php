@@ -107,7 +107,7 @@
                 @else
                 <div></div>
                 @endif
-                <p class="comment">{{count($post->comments)}} comment</p>
+         
                 @if(count($post->comments) != 0)
                 <a class="comment">{{count($post->comments)}} comment</a>
                 @else
