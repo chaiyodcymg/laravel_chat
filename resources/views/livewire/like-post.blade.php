@@ -121,7 +121,8 @@
                 <button class="btn btn-like d-flex  justify-content-center mr-2" wire:click="UserLikePost('{{Crypt::encryptString($post->id)}}')">
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="mr-2 svg-heart" @foreach($post->postlikes as $like)
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="mr-2 svg-heart"
+                     @foreach($post->postlikes as $like)
 
                         @if($like->user->id == Auth::user()->id)
 
