@@ -83,10 +83,15 @@
                 <div class=" box-chat">
                     @if(filled($allmessages) || $get_user_to_chat == true)
                     <div class="card card-chat">
-
-                        <div class="card-header">
-                            @if(isset($sender)) {{$sender->name}} @endif
-
+                        <div class="card-header d-flex">
+                            <img class="img_in_chat" data-toggle="tooltip" data-placement="left" title="" src="{{asset('image/avatar.png')}}" alt="">
+                            <div class="send-name ml-2 ">
+                                @if(isset($sender)) {{$sender->name}} @endif
+                                <p class="status-text-card-profile mb-0">กำลังใช้งาน</p>
+                            </div>
+                                <div class="dot-sender">
+                                    <div class="dot-chat"></div>
+                                </div>
                         </div>
 
                         <div class="card-body message-box" id="message-box" wire:poll=" mountdata">
@@ -152,13 +157,13 @@
                         <div class="card-footer">
                             <form wire:submit.prevent="SendMessage">
                             @csrf 
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <input wire:model="message" class="form-control input shadow-none w-100 d-inline-block" placeholder="Type a message" required>
+                                <div class="d-flex">
+                                    <div class="w-100">
+                                        <input wire:model="message" class="form-control input shadow-none" placeholder="Type a message" required>
                                     </div>
 
-                                    <div class="col-md-4">
-                                        <button type="submit" class="btn btn-primary d-inline-block w-100"><i class="far fa-paper-plane"></i> Send</button>
+                                    <div class="ml-3 w-5">
+                                        <button type="submit" class=""><i class="fas fa-paper-plane butt"></i></button>
                                     </div>
                                 </div>
                             </form>
