@@ -1,4 +1,4 @@
- <div class="write-post-container">
+ <div class="write-post-container shadow-custom">
      <div class="user-profile-post">
          <img src="{{ Auth::user()->profile_photo_url }}" alt="#">
 
@@ -57,7 +57,7 @@
              var button_class = document.getElementById('myclass').className;
 
          } else {
-             document.getElementById('myclass').className = "btn btn-primary w-100";
+             document.getElementById('myclass').className = "btn btn-custom w-100";
              var button_class = document.getElementById('myclass').className;
              var button_class = document.getElementById('myclass').disabled = false;
          }

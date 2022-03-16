@@ -18,7 +18,7 @@
         </a>
         <div class="container" id="notification-popup" wire:ignore.self>
             <div class="nonti-position">
-                <div class="col absolute z-50 w-48 rounded-md shadow-lg origin-top-right right-0" wire:poll.visible>
+                <div class="col absolute z-50 w-48 rounded-md origin-top-right right-0 nonti-inside" wire:poll.visible>
                     <div class="noti-new">
                         <b>แจ้งเตือน</b>
                     </div>

@@ -6,6 +6,10 @@ body {
     background: #f3f3f3 !important;
 }
 
+.shadow-custom {
+    box-shadow: 1px 1px 10px #dddddd;
+}
+
 .left-sidebar {
     background: white;
     border-radius: 10px;
@@ -14,6 +18,7 @@ body {
     top: 20px;
     /* align-self: flex-start; */
     height: 100%;
+    overflow: hidden;
     /* min-height: 90vh; */
 }
 /* .right-sidebar{
@@ -162,6 +167,11 @@ button.disabled {
 .modal-content {
     border-radius: 6px !important;
 }
+
+.btn-custom {
+    background-color: #ffa36e !important;
+}
+
 #text-comment{
     resize: none;
     height: auto !important;
@@ -172,10 +182,22 @@ button.disabled {
     color: #333;
     width: 100%;
     padding: 8px 14px;
+    margin: 10px auto;
     box-sizing: border-box;
     border: unset !important;
-    background: transparent;
+    background: #f8f8f8;
 }
+
+.comment-textarea {
+    display: flex;
+}
+
+.comment-img-post {
+    width: 30px ;
+    height: 30px ;
+    margin: 20px 10px;
+}
+
 .post-input-container textarea {
     resize: none;
     max-height: 300px !important;
@@ -192,6 +214,8 @@ button.disabled {
 textarea:focus {
     box-shadow: none !important;
 }
+
+
 /* อร */
 .list-icon {
     margin-left: auto;
@@ -222,6 +246,7 @@ textarea:focus {
 }
 .liked-comment {
     height: 3vh;
+    margin-bottom: 5px;
 }
 .btn {
     /* background-color: rgba(235, 235, 235, 0.699) !important; */
@@ -254,17 +279,18 @@ textarea:focus {
     width: 100%;
 }
 .commentshow{
-    background-color: #F0FFFF !important;
+    background-color: #fdf3e8 !important;
 }
 .comment-time{
-    
     font-size: smaller;
+    margin: -10px 0 10px 3.1em;
 }
 .user-comment {
     font-size: smaller;
 }
 .username {
     font-weight: bold;
+    color: rgb(211, 115, 59);
 }
 #textarea_post2 {
     resize: none;
@@ -279,6 +305,11 @@ textarea:focus {
     margin-top: 10px;
     border-radius: 10px;
 }
+
+.all-comment {
+    margin: .0.7rem .0.6rem;
+}
+
 /* .pop .popup {
     display: none;
 } */
@@ -290,6 +321,7 @@ textarea:focus {
 .card {
     border-radius: 6px !important;
     border: unset !important;
+    margin-bottom: 1rem;
 }
 .card-body {
     padding: 1rem !important;

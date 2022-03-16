@@ -29,7 +29,7 @@ return array(
     'App\\Http\\Livewire\\Follow' => $baseDir . '/app/Http/Livewire/Follow.php',
     'App\\Http\\Livewire\\LikePost' => $baseDir . '/app/Http/Livewire/LikePost.php',
     'App\\Http\\Livewire\\Messages' => $baseDir . '/app/Http/Livewire/Messages.php',
-    'App\\Http\\Livewire\\Notification' => $baseDir . '/app/Http/Livewire/Notification.php',
+    'App\\Http\\Livewire\\Notifi' => $baseDir . '/app/Http/Livewire/Notifi.php',
     'App\\Http\\Livewire\\SearchUser' => $baseDir . '/app/Http/Livewire/SearchUser.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',

@@ -3,8 +3,8 @@
      <div class="container navbar-container">
          <!-- Logo -->
          <a class="navbar-brand" href="{{ route('feed') }}"><img class="logo" src="{{asset('img/tomatoe.png')}}" alt="logo tometalk"></a>
+         <div class="normal-search">@livewire('search-user')</div>
 
-         @livewire('search-user')
 
 
          <script>
@@ -64,7 +64,7 @@
                  </a>
              </li>
 
-          @livewire('notifi')
+             @livewire('notifi')
 
          </ul>
 
@@ -203,8 +203,9 @@
                  </x-jet-dropdown>
              </div>
          </div>
-
      </div>
+
+
 
      <!-- Responsive Navigation Menu ยังไม่ได้แก้ไข-->
      <div :class=" {'block': open, 'hidden': ! open} " class="hidden md:hidden respon-menu">
@@ -288,7 +289,11 @@
          </div>
      </div>
  </nav>
+ <div class="all-search">
+     @livewire('search-user')
+ </div>
+
+<div class="space"></div>
 
 
- </div>
- </div>
+ 

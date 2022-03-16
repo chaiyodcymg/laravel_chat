@@ -1,4 +1,4 @@
-<div class="left-sidebar col-4 col-sm-4 col-md-3">
+<div class="left-sidebar col-4 col-sm-4 col-md-3 shadow-custom">
     <a href="{{route('profile')}}" class="left-profile">
         <div class="user-profile">
             <img src="{{ Auth::user()->profile_photo_url }}" alt="#">

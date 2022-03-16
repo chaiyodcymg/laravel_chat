@@ -40,7 +40,7 @@
 
 
 
-    <div class="card mt-3">
+    <div class="card mt-3 shadow-custom">
         <div class="card-body">
             <div class="d-flex align-items-center">
                 <a href="{{route('profile')}}">
@@ -107,7 +107,7 @@
                 @else
                 <div></div>
                 @endif
-         
+
                 @if(count($post->comments) != 0)
                 <a class="comment">{{count($post->comments)}} comment</a>
                 @else
@@ -161,38 +161,50 @@
                             <button wire:click="comment" type="submit" class="btn btn-secondary w-100 disabled" id="myclass">Send</button>
                         </div>
                     </form> -->
+                    <div class="comment-textarea">
+                        <a href="{{route('profile')}}">
+                            <img class="comment-img-post" src="{{ $post->user->profile_photo_url }}" alt="profile">
+                        </a>
 
+                        <div class="spinner-grow" role="status" style="display: none;">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <textarea wire:keydown.enter="comment({{$post->id}})" wire:model="text_comment.{{$post->id}}" class="card" id="text-comment" rows="1" name="write_comment" form="usrform" placeholder="เขียนความคิดเห็น..."></textarea>
 
-                    <textarea wire:keydown.enter="comment({{$post->id}})" wire:model="text_comment.{{$post->id}}" class="card" id="text-comment" rows="1" name="write_comment" form="usrform" placeholder="เขียนความคิดเห็น..."></textarea>
+            
+                    </div>
+
+                    <script>
+                       
+                    
+                    </script>
 
 
                     @foreach($post->comments as $comment)
-
-                    <div class="d-flex align-items-center ">
-
-
-                        <img class="profile-img-comment mr-1" src="{{$comment->user->profile_photo_url}}" alt="profile">
-                        <div class="card user-comment mt-0 pr-2 pl-2 pt-1 pb-1 commentshow">
+                    <div class="all-comment">
+                        <div class="d-flex align-items-center">
 
 
-
-                            <p class="ml-2 mb-0 username">
-
-                                {{$comment->user->name}}
-
-                            </p>
+                            <img class="profile-img-comment mr-1" src="{{$comment->user->profile_photo_url}}" alt="profile">
+                            <div class="card user-comment mt-0 pr-2 pt-1 pb-1 commentshow">
 
 
-                            <p class="comment-text ml-2 mr-2 mb-0">{{$comment->write_comment}}</p>
+                                @if($comment->user->id == Auth::user()->id)
+                                <a href="{{route('profile')}}" class="ml-2 mb-0 username">{{ $comment->user->name}}</a>
+                                @else
+                                <a href="{{route('otheruser', ['user_id' => Crypt::encryptString($post->user->id)]) ;}}" class="ml-2 mb-0 username">{{ $comment->user->name}}</a>
+                                @endif
+                                <p class="comment-text ml-2 mr-2 mb-0">{{$comment->write_comment}}</p>
 
+
+                            </div>
 
                         </div>
-                       
+                        <p class="comment-time ">{{\Carbon\Carbon::parse( $comment->created_at)->diffForHumans()}}</p>
                     </div>
-                    <p class="comment-time ml-5 ">{{\Carbon\Carbon::parse( $comment->created_at)->diffForHumans()}}</p>
                     @endforeach
-
                 </div>
+
             </div>
         </div>
     </div>
@@ -243,5 +255,6 @@
             event.preventDefault();
             return false;
         }
+        $(".spinner-grow").fadeIn(4000);
     });
 </script>

@@ -611,7 +611,7 @@ class ComposerStaticInitf8595f348d1414fa191b7e05ce53ee27
         'App\\Http\\Livewire\\Follow' => __DIR__ . '/../..' . '/app/Http/Livewire/Follow.php',
         'App\\Http\\Livewire\\LikePost' => __DIR__ . '/../..' . '/app/Http/Livewire/LikePost.php',
         'App\\Http\\Livewire\\Messages' => __DIR__ . '/../..' . '/app/Http/Livewire/Messages.php',
-        'App\\Http\\Livewire\\Notification' => __DIR__ . '/../..' . '/app/Http/Livewire/Notification.php',
+        'App\\Http\\Livewire\\Notifi' => __DIR__ . '/../..' . '/app/Http/Livewire/Notifi.php',
         'App\\Http\\Livewire\\SearchUser' => __DIR__ . '/../..' . '/app/Http/Livewire/SearchUser.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
