@@ -3,37 +3,38 @@
      <div class="container navbar-container">
          <!-- Logo -->
          <a class="navbar-brand" href="{{ route('feed') }}"><img class="logo" src="{{asset('img/tomatoe.png')}}" alt="logo tometalk"></a>
+         <div class="normal-search">@livewire('search-user')</div>
 
-      @livewire('search-user')
 
 
          <script>
-            //  const icon = document.querySelector('.icon');
-            //  const search = document.querySelector('.search');
-            //  icon.onclick = function() {
-            //      search.classList.toggle('open')
-            //  }
+             //  const icon = document.querySelector('.icon');
+             //  const search = document.querySelector('.search');
+             //  icon.onclick = function() {
+             //      search.classList.toggle('open')
+             //  }
 
-            //  $(".icon").click(function() {
-            //      $(".nav-icon").toggleClass("hide");
+             //  $(".icon").click(function() {
+             //      $(".nav-icon").toggleClass("hide");
 
-            //  });
+             //  });
 
 
 
-            //  $("#search").keyup(function() {
-            //      $("#box-search").toggleClass("show-box");
-            //      var value = $(this).val().toLowerCase();
-            //      $("#box-search #box-name").filter(function() {
-            //          var search = $(this).text().toLowerCase();
-            //          if (search.indexOf(value) > -1) {
-            //              $(this).show();
-            //          } else {
-            //              $(this).hide();
-            //          }
-            //      });
-            //  });
-        //  </script>
+             //  $("#search").keyup(function() {
+             //      $("#box-search").toggleClass("show-box");
+             //      var value = $(this).val().toLowerCase();
+             //      $("#box-search #box-name").filter(function() {
+             //          var search = $(this).text().toLowerCase();
+             //          if (search.indexOf(value) > -1) {
+             //              $(this).show();
+             //          } else {
+             //              $(this).hide();
+             //          }
+             //      });
+             //  });
+             //  
+         </script>
 
          <!-- Navigation Links -->
          <ul class="nav-icon">
@@ -62,18 +63,9 @@
                      <span class="notifi ">1</span>
                  </a>
              </li>
-             <li class="nav-item notifi-icon ">
-                 <a class="notifi-all nav-link" href="#">
-                     <!-- <div class=" fa-solid fa-bell overlay "></div> -->
-                     <svg class="svg-bell" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                         <!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                         <path d="M256 32V51.2C329 66.03 384 130.6 384 208V226.8C384 273.9 401.3 319.2 432.5 354.4L439.9 362.7C448.3 372.2 450.4 385.6 445.2 397.1C440 408.6 428.6 416 416 416H32C19.4 416 7.971 408.6 2.809 397.1C-2.353 385.6-.2883 372.2 8.084 362.7L15.5 354.4C46.74 319.2 64 273.9 64 226.8V208C64 130.6 118.1 66.03 192 51.2V32C192 14.33 206.3 0 224 0C241.7 0 256 14.33 256 32H256zM224 512C207 512 190.7 505.3 178.7 493.3C166.7 481.3 160 464.1 160 448H288C288 464.1 281.3 481.3 269.3 493.3C257.3 505.3 240.1 512 224 512z" />
-                     </svg>
-                     <span class="notifi ">99+</span>
-                 </a>
 
+             @livewire('notifi')
 
-             </li>
          </ul>
 
 
@@ -131,7 +123,7 @@
 
              <!-- Settings Dropdown -->
              <!-- ยังไม่ได้แก้ไข -->
-             <div class="ml-3 relative test">
+             <div class="ml-3 test">
                  <x-jet-dropdown align="right" width="48">
                      <x-slot name="trigger">
                          @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
@@ -167,19 +159,21 @@
                          </div>
 
                          <x-jet-dropdown-link href="{{ route('profile') }}">
-                         <div class="d-flex">
-                            <svg class="icon-setting mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                            <!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                            <path d="M272 304h-96C78.8 304 0 382.8 0 480c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32C448 382.8 369.2 304 272 304zM48.99 464C56.89 400.9 110.8 352 176 352h96c65.16 0 119.1 48.95 127 112H48.99zM224 256c70.69 0 128-57.31 128-128c0-70.69-57.31-128-128-128S96 57.31 96 128C96 198.7 153.3 256 224 256zM224 48c44.11 0 80 35.89 80 80c0 44.11-35.89 80-80 80S144 172.1 144 128C144 83.89 179.9 48 224 48z"/></svg>
-                            {{ __('Profile') }}
-                        </div>
+                             <div class="d-flex">
+                                 <svg class="icon-setting mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                     <!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                                     <path d="M272 304h-96C78.8 304 0 382.8 0 480c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32C448 382.8 369.2 304 272 304zM48.99 464C56.89 400.9 110.8 352 176 352h96c65.16 0 119.1 48.95 127 112H48.99zM224 256c70.69 0 128-57.31 128-128c0-70.69-57.31-128-128-128S96 57.31 96 128C96 198.7 153.3 256 224 256zM224 48c44.11 0 80 35.89 80 80c0 44.11-35.89 80-80 80S144 172.1 144 128C144 83.89 179.9 48 224 48z" />
+                                 </svg>
+                                 {{ __('Profile') }}
+                             </div>
                          </x-jet-dropdown-link>
                          <x-jet-dropdown-link href="{{ route('profile.show') }}">
                              <div class="d-flex">
-                                <svg class="icon-setting mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
-                                <!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                                <path d="M286.3 155.1C287.4 161.9 288 168.9 288 175.1C288 183.1 287.4 190.1 286.3 196.9L308.5 216.7C315.5 223 318.4 232.1 314.7 241.7C312.4 246.1 309.9 252.2 307.1 257.2L304 262.6C300.1 267.6 297.7 272.4 294.2 277.1C288.5 284.7 278.5 287.2 269.5 284.2L241.2 274.9C230.5 283.8 218.3 290.9 205 295.9L198.1 324.9C197 334.2 189.8 341.6 180.4 342.8C173.7 343.6 166.9 344 160 344C153.1 344 146.3 343.6 139.6 342.8C130.2 341.6 122.1 334.2 121 324.9L114.1 295.9C101.7 290.9 89.5 283.8 78.75 274.9L50.53 284.2C41.54 287.2 31.52 284.7 25.82 277.1C22.28 272.4 18.98 267.5 15.94 262.5L12.92 257.2C10.13 252.2 7.592 247 5.324 241.7C1.62 232.1 4.458 223 11.52 216.7L33.7 196.9C32.58 190.1 31.1 183.1 31.1 175.1C31.1 168.9 32.58 161.9 33.7 155.1L11.52 135.3C4.458 128.1 1.62 119 5.324 110.3C7.592 104.1 10.13 99.79 12.91 94.76L15.95 89.51C18.98 84.46 22.28 79.58 25.82 74.89C31.52 67.34 41.54 64.83 50.53 67.79L78.75 77.09C89.5 68.25 101.7 61.13 114.1 56.15L121 27.08C122.1 17.8 130.2 10.37 139.6 9.231C146.3 8.418 153.1 8 160 8C166.9 8 173.7 8.418 180.4 9.23C189.8 10.37 197 17.8 198.1 27.08L205 56.15C218.3 61.13 230.5 68.25 241.2 77.09L269.5 67.79C278.5 64.83 288.5 67.34 294.2 74.89C297.7 79.56 300.1 84.42 304 89.44L307.1 94.83C309.9 99.84 312.4 105 314.7 110.3C318.4 119 315.5 128.1 308.5 135.3L286.3 155.1zM160 127.1C133.5 127.1 112 149.5 112 175.1C112 202.5 133.5 223.1 160 223.1C186.5 223.1 208 202.5 208 175.1C208 149.5 186.5 127.1 160 127.1zM484.9 478.3C478.1 479.4 471.1 480 464 480C456.9 480 449.9 479.4 443.1 478.3L423.3 500.5C416.1 507.5 407 510.4 398.3 506.7C393 504.4 387.8 501.9 382.8 499.1L377.4 496C372.4 492.1 367.6 489.7 362.9 486.2C355.3 480.5 352.8 470.5 355.8 461.5L365.1 433.2C356.2 422.5 349.1 410.3 344.1 397L315.1 390.1C305.8 389 298.4 381.8 297.2 372.4C296.4 365.7 296 358.9 296 352C296 345.1 296.4 338.3 297.2 331.6C298.4 322.2 305.8 314.1 315.1 313L344.1 306.1C349.1 293.7 356.2 281.5 365.1 270.8L355.8 242.5C352.8 233.5 355.3 223.5 362.9 217.8C367.6 214.3 372.5 210.1 377.5 207.9L382.8 204.9C387.8 202.1 392.1 199.6 398.3 197.3C407 193.6 416.1 196.5 423.3 203.5L443.1 225.7C449.9 224.6 456.9 224 464 224C471.1 224 478.1 224.6 484.9 225.7L504.7 203.5C511 196.5 520.1 193.6 529.7 197.3C535 199.6 540.2 202.1 545.2 204.9L550.5 207.9C555.5 210.1 560.4 214.3 565.1 217.8C572.7 223.5 575.2 233.5 572.2 242.5L562.9 270.8C571.8 281.5 578.9 293.7 583.9 306.1L612.9 313C622.2 314.1 629.6 322.2 630.8 331.6C631.6 338.3 632 345.1 632 352C632 358.9 631.6 365.7 630.8 372.4C629.6 381.8 622.2 389 612.9 390.1L583.9 397C578.9 410.3 571.8 422.5 562.9 433.2L572.2 461.5C575.2 470.5 572.7 480.5 565.1 486.2C560.4 489.7 555.6 492.1 550.6 496L545.2 499.1C540.2 501.9 534.1 504.4 529.7 506.7C520.1 510.4 511 507.5 504.7 500.5L484.9 478.3zM512 352C512 325.5 490.5 304 464 304C437.5 304 416 325.5 416 352C416 378.5 437.5 400 464 400C490.5 400 512 378.5 512 352z"/></svg>
-                                {{ __('Setting') }}
+                                 <svg class="icon-setting mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                                     <!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                                     <path d="M286.3 155.1C287.4 161.9 288 168.9 288 175.1C288 183.1 287.4 190.1 286.3 196.9L308.5 216.7C315.5 223 318.4 232.1 314.7 241.7C312.4 246.1 309.9 252.2 307.1 257.2L304 262.6C300.1 267.6 297.7 272.4 294.2 277.1C288.5 284.7 278.5 287.2 269.5 284.2L241.2 274.9C230.5 283.8 218.3 290.9 205 295.9L198.1 324.9C197 334.2 189.8 341.6 180.4 342.8C173.7 343.6 166.9 344 160 344C153.1 344 146.3 343.6 139.6 342.8C130.2 341.6 122.1 334.2 121 324.9L114.1 295.9C101.7 290.9 89.5 283.8 78.75 274.9L50.53 284.2C41.54 287.2 31.52 284.7 25.82 277.1C22.28 272.4 18.98 267.5 15.94 262.5L12.92 257.2C10.13 252.2 7.592 247 5.324 241.7C1.62 232.1 4.458 223 11.52 216.7L33.7 196.9C32.58 190.1 31.1 183.1 31.1 175.1C31.1 168.9 32.58 161.9 33.7 155.1L11.52 135.3C4.458 128.1 1.62 119 5.324 110.3C7.592 104.1 10.13 99.79 12.91 94.76L15.95 89.51C18.98 84.46 22.28 79.58 25.82 74.89C31.52 67.34 41.54 64.83 50.53 67.79L78.75 77.09C89.5 68.25 101.7 61.13 114.1 56.15L121 27.08C122.1 17.8 130.2 10.37 139.6 9.231C146.3 8.418 153.1 8 160 8C166.9 8 173.7 8.418 180.4 9.23C189.8 10.37 197 17.8 198.1 27.08L205 56.15C218.3 61.13 230.5 68.25 241.2 77.09L269.5 67.79C278.5 64.83 288.5 67.34 294.2 74.89C297.7 79.56 300.1 84.42 304 89.44L307.1 94.83C309.9 99.84 312.4 105 314.7 110.3C318.4 119 315.5 128.1 308.5 135.3L286.3 155.1zM160 127.1C133.5 127.1 112 149.5 112 175.1C112 202.5 133.5 223.1 160 223.1C186.5 223.1 208 202.5 208 175.1C208 149.5 186.5 127.1 160 127.1zM484.9 478.3C478.1 479.4 471.1 480 464 480C456.9 480 449.9 479.4 443.1 478.3L423.3 500.5C416.1 507.5 407 510.4 398.3 506.7C393 504.4 387.8 501.9 382.8 499.1L377.4 496C372.4 492.1 367.6 489.7 362.9 486.2C355.3 480.5 352.8 470.5 355.8 461.5L365.1 433.2C356.2 422.5 349.1 410.3 344.1 397L315.1 390.1C305.8 389 298.4 381.8 297.2 372.4C296.4 365.7 296 358.9 296 352C296 345.1 296.4 338.3 297.2 331.6C298.4 322.2 305.8 314.1 315.1 313L344.1 306.1C349.1 293.7 356.2 281.5 365.1 270.8L355.8 242.5C352.8 233.5 355.3 223.5 362.9 217.8C367.6 214.3 372.5 210.1 377.5 207.9L382.8 204.9C387.8 202.1 392.1 199.6 398.3 197.3C407 193.6 416.1 196.5 423.3 203.5L443.1 225.7C449.9 224.6 456.9 224 464 224C471.1 224 478.1 224.6 484.9 225.7L504.7 203.5C511 196.5 520.1 193.6 529.7 197.3C535 199.6 540.2 202.1 545.2 204.9L550.5 207.9C555.5 210.1 560.4 214.3 565.1 217.8C572.7 223.5 575.2 233.5 572.2 242.5L562.9 270.8C571.8 281.5 578.9 293.7 583.9 306.1L612.9 313C622.2 314.1 629.6 322.2 630.8 331.6C631.6 338.3 632 345.1 632 352C632 358.9 631.6 365.7 630.8 372.4C629.6 381.8 622.2 389 612.9 390.1L583.9 397C578.9 410.3 571.8 422.5 562.9 433.2L572.2 461.5C575.2 470.5 572.7 480.5 565.1 486.2C560.4 489.7 555.6 492.1 550.6 496L545.2 499.1C540.2 501.9 534.1 504.4 529.7 506.7C520.1 510.4 511 507.5 504.7 500.5L484.9 478.3zM512 352C512 325.5 490.5 304 464 304C437.5 304 416 325.5 416 352C416 378.5 437.5 400 464 400C490.5 400 512 378.5 512 352z" />
+                                 </svg>
+                                 {{ __('Setting') }}
                              </div>
                          </x-jet-dropdown-link>
                          @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
@@ -196,20 +190,22 @@
 
                              <x-jet-dropdown-link class="logout" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                <div class="d-flex">
-                                    <svg class="icon-logout mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                    <!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                                    <path d="M160 416H96c-17.67 0-32-14.33-32-32V128c0-17.67 14.33-32 32-32h64c17.67 0 32-14.33 32-32S177.7 32 160 32H96C42.98 32 0 74.98 0 128v256c0 53.02 42.98 96 96 96h64c17.67 0 32-14.33 32-32S177.7 416 160 416zM502.6 233.4l-128-128c-12.51-12.51-32.76-12.49-45.25 0c-12.5 12.5-12.5 32.75 0 45.25L402.8 224H192C174.3 224 160 238.3 160 256s14.31 32 32 32h210.8l-73.38 73.38c-12.5 12.5-12.5 32.75 0 45.25s32.75 12.5 45.25 0l128-128C515.1 266.1 515.1 245.9 502.6 233.4z"/></svg>
-                                    {{ __('Log Out') }}
-                                </div>
+                                 <div class="d-flex">
+                                     <svg class="icon-logout mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                         <!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                                         <path d="M160 416H96c-17.67 0-32-14.33-32-32V128c0-17.67 14.33-32 32-32h64c17.67 0 32-14.33 32-32S177.7 32 160 32H96C42.98 32 0 74.98 0 128v256c0 53.02 42.98 96 96 96h64c17.67 0 32-14.33 32-32S177.7 416 160 416zM502.6 233.4l-128-128c-12.51-12.51-32.76-12.49-45.25 0c-12.5 12.5-12.5 32.75 0 45.25L402.8 224H192C174.3 224 160 238.3 160 256s14.31 32 32 32h210.8l-73.38 73.38c-12.5 12.5-12.5 32.75 0 45.25s32.75 12.5 45.25 0l128-128C515.1 266.1 515.1 245.9 502.6 233.4z" />
+                                     </svg>
+                                     {{ __('Log Out') }}
+                                 </div>
                              </x-jet-dropdown-link>
                          </form>
                      </x-slot>
                  </x-jet-dropdown>
              </div>
          </div>
-
      </div>
+
+
 
      <!-- Responsive Navigation Menu ยังไม่ได้แก้ไข-->
      <div :class=" {'block': open, 'hidden': ! open} " class="hidden md:hidden respon-menu">
@@ -293,91 +289,11 @@
          </div>
      </div>
  </nav>
-
- <div class="container">
-     <div class="nonti-position">
-      
-
-
-
-         <div class="col absolute z-50 w-48 rounded-md shadow-lg origin-top-right right-0" id="notification-popup">
-             <div class="noti-new">
-                 <b>แจ้งเตือน</b>
-             </div>
-
-             <a href="#" class="menu-sidebar noti">
-                 <img class="card-img-profile-notifi" src="https://scontent.fbkk13-2.fna.fbcdn.net/v/t1.18169-9/12376071_919166538165321_1612014546788324017_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=174925&_nc_eui2=AeGV3ggJL0Hx9BuuK4WI-dbhuE-gdR-7iXe4T6B1H7uJd6rZ62YIkdLzaUo1wJPvx8WhYgE_Rf3u16ZNDOQaMvgP&_nc_ohc=wlGh1zLQW6IAX_3Kdc8&_nc_ht=scontent.fbkk13-2.fna&oh=00_AT-fZ5YenIv9Dmz_9Jh93Rfcm5Vc63E-ZYFDuP_emvluFQ&oe=6238DB41" alt="#">
-                 <div class="card-body-menu">
-                     <small class="card-title-menu">Kittiphong Champa</small>
-                     <small class="card-title-menu">รับคุณเป็นเพื่อน</small><br>
-                     <small class="card-color">ประมาณ 1 ชั่วโมงที่แล้ว</small>
-                 </div>
-             </a>
-             <a href="#" class="menu-sidebar noti">
-                 <img class="card-img-profile-notifi" src="https://scontent.fbkk13-2.fna.fbcdn.net/v/t1.18169-9/12376071_919166538165321_1612014546788324017_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=174925&_nc_eui2=AeGV3ggJL0Hx9BuuK4WI-dbhuE-gdR-7iXe4T6B1H7uJd6rZ62YIkdLzaUo1wJPvx8WhYgE_Rf3u16ZNDOQaMvgP&_nc_ohc=wlGh1zLQW6IAX_3Kdc8&_nc_ht=scontent.fbkk13-2.fna&oh=00_AT-fZ5YenIv9Dmz_9Jh93Rfcm5Vc63E-ZYFDuP_emvluFQ&oe=6238DB41" alt="#">
-                 <div class="card-body-menu">
-                     <small class="card-title-menu">Kittiphong Champa</small>
-                     <small class="card-title-menu">กดไลค์โพสต์ของคุณ</small><br>
-                     <small class="card-color">ประมาณ 1 ชั่วโมงที่แล้ว</small>
-                 </div>
-             </a>
-             <div class="noti-addfriend">
-                 <b>คำขอเป็นเพื่อน</b>
-             </div>
-             <a href="#" class="menu-sidebar noti">
-                 <img class="card-img-profile-notifi" src="https://scontent.fbkk13-2.fna.fbcdn.net/v/t1.18169-9/12376071_919166538165321_1612014546788324017_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=174925&_nc_eui2=AeGV3ggJL0Hx9BuuK4WI-dbhuE-gdR-7iXe4T6B1H7uJd6rZ62YIkdLzaUo1wJPvx8WhYgE_Rf3u16ZNDOQaMvgP&_nc_ohc=wlGh1zLQW6IAX_3Kdc8&_nc_ht=scontent.fbkk13-2.fna&oh=00_AT-fZ5YenIv9Dmz_9Jh93Rfcm5Vc63E-ZYFDuP_emvluFQ&oe=6238DB41" alt="#">
-                 <div class="card-body-menu">
-                     <small class="card-title-menu">Kittiphong Champa</small>
-                     <small class="card-title-menu">ได้ส่งคำขอเป็นเพื่อนคุณ</small><br>
-                     <small class="card-color">ประมาณ 1 ชั่วโมงที่แล้ว</small>
-                     <div class="add-friend">
-                         <button type="button" class="btn btn-primary">ยืนยัน</button>
-                         <button type="button" class="btn btn-light">ลบ</button>
-                     </div>
-                 </div>
-             </a>
-         </div>
-     </div>
- </div>
- </div>
+ <div class="all-search">
+     @livewire('search-user')
  </div>
 
- <script>
-   
-     $(document).ready(function() {
-
-         $('.notifi-icon').click(function(e) {
-
-             if ($(".svg-bell").css("fill") == "rgb(191, 191, 191)") {
-                 $(".svg-bell").css("fill", "#ff6347");
-
-             } else {
-                 $(".svg-bell").css("fill", "#bfbfbf");
-             }
-
-             e.stopPropagation(); // when you click the button, it stops the page from seeing it as clicking the body too
-             $('#notification-popup').toggle();
-             $('#dropprofile').hide();
-         });
+<div class="space"></div>
 
 
-         $('.test').click(function(e) {
-             e.stopPropagation();
-             $('#dropprofile').toggle();
-             $('#notification-popup').hide();
-             $(".svg-bell").css("fill", "#bfbfbf");
-         });
-
-
-         $(document).click(function() {
-
-             $(".svg-bell").css("fill", "#bfbfbf");
-             $('#notification-popup').hide();
-             $('#dropprofile').hide();
-
-         });
-
-
-
-     });
- </script>
+ 

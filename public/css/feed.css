@@ -6,6 +6,10 @@ body {
     background: #f3f3f3 !important;
 }
 
+.shadow-custom {
+    box-shadow: 1px 1px 10px #dddddd;
+}
+
 .left-sidebar {
     background: white;
     border-radius: 10px;
@@ -14,6 +18,7 @@ body {
     top: 20px;
     /* align-self: flex-start; */
     height: 100%;
+    overflow: hidden;
     /* min-height: 90vh; */
 }
 /* .right-sidebar{
@@ -108,6 +113,7 @@ img.card-img-profile {
     display: flex;
     align-items: center;
     padding: 0;
+
 }
 .user-profile-post img {
     width: 45px;
@@ -161,6 +167,37 @@ button.disabled {
 .modal-content {
     border-radius: 6px !important;
 }
+
+.btn-custom {
+    background-color: #ffa36e !important;
+}
+
+#text-comment{
+    resize: none;
+    height: auto !important;
+    max-height: 500px ;
+    min-height: 50px ;
+    outline: none;
+    /* font: 18px sans-serif; */
+    color: #333;
+    width: 100%;
+    padding: 8px 14px;
+    margin: 10px auto;
+    box-sizing: border-box;
+    border: unset !important;
+    background: #f8f8f8;
+}
+
+.comment-textarea {
+    display: flex;
+}
+
+.comment-img-post {
+    width: 30px ;
+    height: 30px ;
+    margin: 20px 10px;
+}
+
 .post-input-container textarea {
     resize: none;
     max-height: 300px !important;
@@ -177,6 +214,8 @@ button.disabled {
 textarea:focus {
     box-shadow: none !important;
 }
+
+
 /* อร */
 .list-icon {
     margin-left: auto;
@@ -207,6 +246,7 @@ textarea:focus {
 }
 .liked-comment {
     height: 3vh;
+    margin-bottom: 5px;
 }
 .btn {
     /* background-color: rgba(235, 235, 235, 0.699) !important; */
@@ -227,19 +267,30 @@ textarea:focus {
     background-color: #ececec;
     transition: 0.3s;
 }
+.profile-img-comment{
+    border-radius: 50%;
+    object-fit: cover;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+  }
 
 .input-comment {
     width: 100%;
 }
-.profile-img-comment {
-    width: 100%;
-    max-width: 25px;
+.commentshow{
+    background-color: #fdf3e8 !important;
+}
+.comment-time{
+    font-size: smaller;
+    margin: -10px 0 10px 3.1em;
 }
 .user-comment {
-    font-size: x-small;
+    font-size: smaller;
 }
 .username {
     font-weight: bold;
+    color: rgb(211, 115, 59);
 }
 #textarea_post2 {
     resize: none;
@@ -254,19 +305,27 @@ textarea:focus {
     margin-top: 10px;
     border-radius: 10px;
 }
-.pop .popup {
-    display: none;
+
+.all-comment {
+    margin: .0.7rem .0.6rem;
 }
+
+/* .pop .popup {
+    display: none;
+} */
 .pop .active {
+    height: auto;
     display: block;
     transition: 0.5s;
 }
 .card {
     border-radius: 6px !important;
     border: unset !important;
+    margin-bottom: 1rem;
 }
 .card-body {
     padding: 1rem !important;
+   
 }
 .profile-img-post {
     border-radius: 50%;
@@ -349,3 +408,23 @@ textarea:focus {
 .pop .active:hover {
     color: black;
 }
+
+
+.bd-example-modal-lg .modal-dialog{
+    display: table;
+    position: relative;
+    margin: 0 auto;
+    top: calc(50% - 24px);
+  
+  }
+  
+  .bd-example-modal-lg .modal-dialog .modal-content{
+    background-color: transparent;
+    border: none;
+    
+  }
+
+ 
+
+ 
+

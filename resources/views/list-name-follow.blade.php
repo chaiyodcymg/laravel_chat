@@ -1,4 +1,4 @@
-<div class="left-sidebar col-4 col-sm-4 col-md-3">
+<div class="left-sidebar col-4 col-sm-4 col-md-3 shadow-custom">
     <a href="{{route('profile')}}" class="left-profile">
         <div class="user-profile">
             <img src="{{ Auth::user()->profile_photo_url }}" alt="#">
@@ -8,7 +8,10 @@
         </div>
     </a>
     <div class="shortcut-links pt-3 ml-3 mr-3">
-        <p class="m-0 pb-2">Following</p>
+
+        <p class="m-0 pb-2">Following </p>
+   
+
     </div>
     <div class="imp-links">
 

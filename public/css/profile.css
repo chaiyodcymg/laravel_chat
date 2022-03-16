@@ -8,13 +8,15 @@ img.profile-img{
     object-fit: cover;
 }
 .link-editprofile{
+    
     color: white;
     width: 100%;
     max-width: 200px;
     margin-bottom: 1em;
 }
 .bt{
-    background-color: rgb(218, 218, 218) !important;
+    background-color:#DCDCDC !important;
+  
 } 
 /* yun */
 .user-profile-profile{
@@ -64,8 +66,11 @@ img.profile-img{
     margin-top:0.1em;
     margin-right:0.6em;
     margin-left: -0.2em;
+    width: 20px;
+    height: 20px;
 }
 .fill-message{
     width: 100%;
-    max-width: 40px;
+    max-width: 200px;
+    margin-bottom: 1em;
 }

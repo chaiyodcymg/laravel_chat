@@ -14,10 +14,12 @@ class SearchUser extends Component
         if(!empty($this->search)){
 
             // dd($this->search);
-
+            // $search = '%' . $this->search . '%';
             $this->users =  User::where('name', 'LIKE', $this->search."%")->get();
             // dd($search_user);
 
+         
+   
         
             // dd($users);
         }
@@ -29,6 +31,7 @@ class SearchUser extends Component
        
         return view('livewire.search-user');
     }
+
     public function mount(){
         $this->search = "";
          $this->users =[];
