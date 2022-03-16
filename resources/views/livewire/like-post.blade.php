@@ -121,8 +121,7 @@
                 <button class="btn btn-like d-flex  justify-content-center mr-2" wire:click="UserLikePost('{{Crypt::encryptString($post->id)}}')">
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="mr-2 svg-heart"
-                     @foreach($post->postlikes as $like)
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="mr-2 svg-heart" @foreach($post->postlikes as $like)
 
                         @if($like->user->id == Auth::user()->id)
 
@@ -162,8 +161,9 @@
                         </div>
                     </form> -->
                     <div class="comment-textarea">
+
                         <a href="{{route('profile')}}">
-                            <img class="comment-img-post" src="{{ $post->user->profile_photo_url }}" alt="profile">
+                            <img class="comment-img-post" src="{{ Auth::user()->profile_photo_url }}" alt="profile">
                         </a>
 
                         <div class="spinner-grow" role="status" style="display: none;">
@@ -171,12 +171,12 @@
                         </div>
                         <textarea wire:keydown.enter="comment({{$post->id}})" wire:model="text_comment.{{$post->id}}" class="card" id="text-comment" rows="1" name="write_comment" form="usrform" placeholder="เขียนความคิดเห็น..."></textarea>
 
-            
+
                     </div>
 
                     <script>
-                       
-                    
+
+
                     </script>
 
 
@@ -192,7 +192,7 @@
                                 @if($comment->user->id == Auth::user()->id)
                                 <a href="{{route('profile')}}" class="ml-2 mb-0 username">{{ $comment->user->name}}</a>
                                 @else
-                                <a href="{{route('otheruser', ['user_id' => Crypt::encryptString($post->user->id)]) ;}}" class="ml-2 mb-0 username">{{ $comment->user->name}}</a>
+                                <a href="{{route('otheruser', ['user_id' => Crypt::encryptString($comment->user->id)]) ;}}" class="ml-2 mb-0 username">{{ $comment->user->name}}</a>
                                 @endif
                                 <p class="comment-text ml-2 mr-2 mb-0">{{$comment->write_comment}}</p>
 

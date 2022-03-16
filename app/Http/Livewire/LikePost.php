@@ -62,37 +62,21 @@ class LikePost extends Component
         // dd(strtotime(
         //     $posts_arr[0]->created_at
         // ));
+        $price = array_column($posts_arr, 'created_at');
+        array_multisort($price, SORT_DESC, $posts_arr);
 
-        $count = 0;
-        $sort_array = array();
-        foreach ($posts_arr as $posts_real) {
-            if ($count == 0) {
-                array_push($sort_array, $posts_real);
-                // dd($sort_array);
-                $count++;
-            } else if (strtotime($sort_array[0]->created_at) < strtotime($posts_real->created_at)) {
-                array_unshift($sort_array, $posts_real);
-                // dd($sort_array);
-            }else {
-                array_push($sort_array, $posts_real);
-                
-            }
-        }
 
-        $first_post = array_slice($sort_array,0,1);
-        $leftover_post = array_slice($sort_array,1,sizeof($sort_array));
- 
-        $random_post = array_merge($first_post,$leftover_post);
-
+        $price = array_column($posts_arr, 'created_at');
+        array_multisort($price, SORT_DESC, $posts_arr);
        
 
         //  
-       
+
         if (isset($this->other_user)) {
             $posts = Post::where('user_id', $this->other_user)->orderBy('id', 'desc')->get();
             $this->posts = $posts;
         } else {
-            $this->posts = $random_post;
+            $this->posts = $posts_arr;
         }
 
         // $posts = Post::find($this->LikePost);

@@ -23,7 +23,7 @@ class Notifi extends Component
     public function render()
     {
         $noti= Notification::where('receiver_id', Auth::user()->id)->where('read', false)->get();
-        $list_noti = Notification::where('receiver_id', Auth::user()->id)->get();
+        $list_noti = Notification::where('receiver_id', Auth::user()->id)->orderBy('id', 'desc')->get();
         $this->noti = $noti;
         $this->list_notis = $list_noti;
         if($this->show_noti == true){
