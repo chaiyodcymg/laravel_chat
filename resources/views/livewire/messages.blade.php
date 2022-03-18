@@ -1,4 +1,4 @@
-<div>
+<div id="chat">
     @php \Carbon\Carbon::setLocale('th'); @endphp
     <div class="container-fluid">
         <div class="row  row-in-container ">
@@ -21,9 +21,9 @@
 
 
                         @endphp
-                        <a href="{{route('userchat', ['id' => Crypt::encryptString($user->id)]) ;}}">
+                        <a href="{{route('userchat', ['id' => Crypt::encryptString($user->id)]) ;}}" class="chat_username">
                             <div class="card card_img_profile">
-                                <img class="card-img rounded-circle" src="{{ $user->profile_photo_url }}" alt="Card image">
+                                <img class="card-img rounded-circle img_profile_chat" src="{{ $user->profile_photo_url }}" alt="Card image">
                                 @if($user->is_online==true)
                                 <div class="card-img-overlay">
                                     <div class="dot"></div>
@@ -159,7 +159,7 @@
                             @csrf 
                                 <div class="d-flex">
                                     <div class="w-100">
-                                        <input wire:model="message" class="form-control input shadow-none" placeholder="Type a message" required>
+                                        <input wire:model="message" class="input-message form-control input shadow-none" placeholder="Type a message" required>
                                     </div>
 
                                     <div class="ml-3 w-5">
@@ -213,4 +213,5 @@
             window.livewire.emit('load-more');
         }
     })
+
 </script>
