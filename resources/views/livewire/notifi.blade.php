@@ -13,7 +13,7 @@
             <span wire:poll.keep-alive>
                 @if(count($noti) > 0)
                 <span class="notifi ">
-            @php $i = 0 @endphp
+               
 
                     {{count($noti) }}
                 </span>
@@ -36,7 +36,7 @@
                             <small class="card-color">{{\Carbon\Carbon::parse( $list_noti->created_at)->diffForHumans()}}</small>
                         </div>
                     </a>
-                    @php $i++; @endphp
+                
                     @endforeach
 
                 </div>

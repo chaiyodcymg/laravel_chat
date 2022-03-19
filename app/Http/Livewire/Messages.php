@@ -134,18 +134,18 @@ class Messages extends Component
              
                 $allmessages = Message::where('user_id', auth()->id())->where('receiver_id', $userId)
                 ->orWhere('user_id', $userId)->where('receiver_id', auth()->id())
-                ->orderBy('id', 'desc')->paginate($this->limitPerPage)->toArray();
-           foreach( $allmessages as $all){
-                    dd($allmessages);  
-           }
+                ->orderBy('id', 'desc')->paginate($this->limitPerPage);
+        //    foreach( $allmessages as $all){
+        //             dd($allmessages);  
+        //    }
                     
               
                
-                // foreach ($allmessages as $messages) {
-                //     array_push($arr, $messages);
-                // }
+                foreach ($allmessages as $messages) {
+                    array_push($arr, $messages);
+                }
                
-                // $this->allmessages = $arr;
+                $this->allmessages = $arr;
                
                 $this->get_user_to_chat = true;
                 // dd($userId);

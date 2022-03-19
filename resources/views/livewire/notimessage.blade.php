@@ -1,5 +1,7 @@
 <div>
-    @if($messages>0)
-    <span class="notifi " wire:poll.kive-alive>{{$messages}}</span>
-    @endif
+    <span wire:poll.kive-alive>
+        @if($messages>0)
+        <span class="notifi " >{{$messages}}</span>
+        @endif
+    </span>
 </div>

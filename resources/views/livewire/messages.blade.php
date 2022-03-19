@@ -36,7 +36,7 @@
 
                                             @if(filled($mes))
 
-                                            @if( $mes->is_seen == 1)
+                                            @if( $mes['is_seen'] == 1)
 
                                             @if($user->is_online==true)
                                             <span class="status-text-card-profile"> กำลังใช้งาน</span>
@@ -103,7 +103,7 @@
 
                                 </div>
                                 @php @endphp
-                                @if($mgs->is_seen == 1)
+                                @if($mgs['is_seen'] == 1)
 
                                 @if($count == 0)
                                 <span class="seen">
@@ -118,8 +118,8 @@
 
                             <div class="box_img_left">
                                 <div class="box_img_in_chat">
-
-                                    <img class="img_in_chat" data-toggle="tooltip" data-placement="left" title="" src="{{ $mgs['user'][0]['profile_photo_url'] }}" alt="">
+           
+                                    <img class="img_in_chat" data-toggle="tooltip" data-placement="left" title="" src="{{ $mgs['user']['profile_photo_url'] }}" alt="">
 
 
                                 </div>
