@@ -56,11 +56,15 @@ class Follow extends Component
             $Follower->follower_id = Auth::user()->id;
             $Follower->save();
 
+<<<<<<< HEAD
             $notifi  = new Notification;
             $notifi->sender_id = Auth::user()->id;
             $notifi->receiver_id = $Follower->user->id;
             $notifi->message_data = "กดติดตามคุณ";
             $notifi->save();
+=======
+
+>>>>>>> 1e42c68dfea650b29994fb9b70e7e59cbe6fafab
            
         }else{
 
