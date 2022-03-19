@@ -367,7 +367,7 @@
                         </div>
                         <form wire:submit.prevent="comment({{$postshow->id}})">
                             @csrf
-                            <textarea  wire:model="text_comment.{{$postshow->id}}" class="card" id="text-comment" rows="1" name="write_comment" form="usrform" placeholder="เขียนความคิดเห็น..."></textarea>
+                            <textarea  wire:model="text_comment.{{$postshow->id}}" class="card w-100" id="text-comment" rows="1" name="write_comment" form="usrform" placeholder="เขียนความคิดเห็น..."></textarea>
 
                         </form>
                     </div>

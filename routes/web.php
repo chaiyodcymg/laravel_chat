@@ -56,4 +56,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/comment_post',[WritePostController::class,'comment_post'])->name('comment_post');
 
     Route::get('/postshow{id}',LikePost::class)->name('postshow');
+
 });

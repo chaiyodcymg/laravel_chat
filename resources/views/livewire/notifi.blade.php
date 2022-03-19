@@ -28,7 +28,17 @@
                         <b>แจ้งเตือน</b>
                     </div>
                     @foreach($list_notis as $list_noti)
-
+                    @php  @endphp
+                    @if($list_noti->message_data == "กดติดตามคุณ")
+                    <a href="{{route('otheruser', ['user_id' => Crypt::encryptString($list_noti->user->id)])}}" class="menu-sidebar noti">
+                        <img class="card-img-profile-notifi" src="{{$list_noti->user->profile_photo_url}}" alt="#">
+                        <div class="card-body-menu">
+                            <small class="card-title-menu">{{$list_noti->user->name}}</small>
+                            <small class="card-title-menu">{{$list_noti->message_data}}</small><br>
+                            <small class="card-color">{{\Carbon\Carbon::parse( $list_noti->created_at)->diffForHumans()}}</small>
+                        </div>
+                    </a>
+                    @else
                     <a href="{{route('postshow', ['id' => Crypt::encryptString($list_noti->post_id)]) ;}}" class="menu-sidebar noti">
                         <img class="card-img-profile-notifi" src="{{$list_noti->user->profile_photo_url}}" alt="#">
                         <div class="card-body-menu">
@@ -37,7 +47,7 @@
                             <small class="card-color">{{\Carbon\Carbon::parse( $list_noti->created_at)->diffForHumans()}}</small>
                         </div>
                     </a>
-
+                    @endif
                     @endforeach
 
                 </div>

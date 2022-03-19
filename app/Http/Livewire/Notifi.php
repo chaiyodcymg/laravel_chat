@@ -17,14 +17,15 @@ class Notifi extends Component
     public $list_notis;
     public $count = false ;
     public $show_noti = false;
+    public $findsender;
 
     protected $listeners = ['read_noti'];
 
     public function render()
     {
-        
         $noti= Notification::where('receiver_id', Auth::user()->id)->where('read', false)->get();
         $list_noti = Notification::where('receiver_id', Auth::user()->id)->where('sender_id', "!=", Auth::user()->id)->orderBy('id', 'desc')->get();
+    
         $this->noti = $noti;
         $this->list_notis = $list_noti;
         if($this->show_noti == true){
