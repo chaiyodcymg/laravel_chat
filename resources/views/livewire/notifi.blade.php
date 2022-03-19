@@ -13,6 +13,7 @@
             <span wire:poll.keep-alive>
                 @if(count($noti) > 0)
                 <span class="notifi ">
+            @php $i = 0 @endphp
 
                     {{count($noti) }}
                 </span>
@@ -26,7 +27,8 @@
                         <b>แจ้งเตือน</b>
                     </div>
                     @foreach($list_notis as $list_noti)
-                    <a href="#" class="menu-sidebar noti">
+                    
+                    <a href="{{route('postshow', ['id' => Crypt::encryptString($list_noti->post_id)]) ;}}" class="menu-sidebar noti">
                         <img class="card-img-profile-notifi" src="{{$list_noti->user->profile_photo_url}}" alt="#">
                         <div class="card-body-menu">
                             <small class="card-title-menu">{{$list_noti->user->name}}</small>
@@ -34,6 +36,7 @@
                             <small class="card-color">{{\Carbon\Carbon::parse( $list_noti->created_at)->diffForHumans()}}</small>
                         </div>
                     </a>
+                    @php $i++; @endphp
                     @endforeach
 
                 </div>

@@ -17,10 +17,12 @@ class CreateNotificationsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('sender_id');
             $table->unsignedBigInteger('receiver_id');
+            $table->unsignedBigInteger('post_id');
             $table->string('message_data');
             $table->boolean('read')->default(false);
             $table->foreign('sender_id')->references('id')->on('users');
             $table->foreign('receiver_id')->references('id')->on('users');
+            $table->foreign('post_id')->references('id')->on('posts');
             $table->timestamps();
         
         });

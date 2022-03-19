@@ -18,6 +18,7 @@ use Illuminate\Support\Arr;
 use App\Models\Comment;
 use Illuminate\Support\Str;
 use App\Models\Notification;
+use Illuminate\Http\Request;
 class LikePost extends Component
 {
     public $LikePost;
@@ -30,6 +31,7 @@ class LikePost extends Component
     public $other_user;
     public $showfollowpost;
     public $text_comment = [];
+    public $postshow;
 
 
     public function render()
@@ -62,8 +64,6 @@ class LikePost extends Component
         // dd(strtotime(
         //     $posts_arr[0]->created_at
         // ));
-        $price = array_column($posts_arr, 'created_at');
-        array_multisort($price, SORT_DESC, $posts_arr);
 
 
         $price = array_column($posts_arr, 'created_at');
@@ -113,11 +113,12 @@ class LikePost extends Component
 
                 // dd($li[0]->id);
                 $p->postlikes()->attach($li[0]->id, ['post_like_id' => $li[0]->id]);
-                // dd($p->user);
+                // dd($li[0]->post_id);
 
                $notifi  = new Notification;
                $notifi->sender_id= Auth::user()->id;
                  $notifi->receiver_id = $p->user->id;
+                 $notifi->post_id = $li[0]->post_id;
                  $notifi->message_data = "กดไลค์โพสต์ของคุณ";
                 $notifi->save();
 
@@ -169,5 +170,17 @@ class LikePost extends Component
         $Comment->post_id = $post;
         $Comment->write_comment = $comm;
         $Comment->save();
+    }
+
+    public function mount(Request $request){
+        if (!empty($request->id)) {
+       
+            $post_id =   Crypt::decryptString($request->id);
+            $this->postshow = Post::find($post_id);
+        
+        }
+      
+      
+     
     }
 }
