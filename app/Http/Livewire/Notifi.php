@@ -39,10 +39,11 @@ class Notifi extends Component
 
         $this->show_noti = !$this->show_noti;
         if ($this->show_noti == true) {
+          
             $noti =  Notification::where('receiver_id', Auth::user()->id);
             $noti->update(['read' => true]);
-            $this->open = 'เปิด';
-           
+         
+       
         }
 
     }

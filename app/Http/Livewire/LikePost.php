@@ -53,7 +53,7 @@ class LikePost extends Component
 
         return view('livewire.like-post');
     }
-   
+
     public function UserLikePost($post)
     {
 
@@ -63,12 +63,6 @@ class LikePost extends Component
             $result =  Like::withTrashed()->where('user_id', Auth::user()->id)->where('post_id', $post)->get();
 
 
-            // $likepostid =  DB::table('post_post_like')
-            //     ->join('posts', 'posts.id', '=', 'post_post_like.post_id')
-            //     ->join('post_likes', 'post_likes.id', '=', 'post_post_like.post_like_id')
-            //     ->select('post_likes.id')
-            //     ->where('post_likes.user_id', Auth::user()->id)->get();
-            // dd($likepostid);
 
             if ($result->isEmpty()) {
                 $Like = new Like;
@@ -121,6 +115,7 @@ class LikePost extends Component
         $notifi->sender_id = Auth::user()->id;
         $notifi->receiver_id = $posts->user->id;
         $notifi->post_id = $post;
+
         $notifi->message_data = "คอมเมนต์โพสต์ของคุณ";
         $notifi->save();
         }

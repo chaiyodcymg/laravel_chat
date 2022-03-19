@@ -13,13 +13,14 @@
             <span wire:poll.keep-alive>
                 @if(count($noti) > 0)
                 <span class="notifi ">
-               
+
 
                     {{count($noti) }}
                 </span>
                 @endif
             </span>
         </a>
+
         <div class="container" id="notification-popup" wire:ignore.self>
             <div class="nonti-position">
                 <div class="col absolute z-50 w-48 rounded-md origin-top-right right-0 nonti-inside" wire:poll.visible>
@@ -27,7 +28,7 @@
                         <b>แจ้งเตือน</b>
                     </div>
                     @foreach($list_notis as $list_noti)
-                    
+
                     <a href="{{route('postshow', ['id' => Crypt::encryptString($list_noti->post_id)]) ;}}" class="menu-sidebar noti">
                         <img class="card-img-profile-notifi" src="{{$list_noti->user->profile_photo_url}}" alt="#">
                         <div class="card-body-menu">
@@ -36,7 +37,7 @@
                             <small class="card-color">{{\Carbon\Carbon::parse( $list_noti->created_at)->diffForHumans()}}</small>
                         </div>
                     </a>
-                
+
                     @endforeach
 
                 </div>
@@ -78,16 +79,14 @@
 
         $(document).click(function() {
 
-            $(".svg-bell").css("fill", "#bfbfbf");
+         
             if ($('#notification-popup').show()) {
-
+                        // alert('โชว?');
                 $('.notifi-icon').trigger("click");
                 $(".svg-bell").css("fill", "#bfbfbf");
             }
 
-            // $('#notification-popup').hide();
 
-            // $('#dropprofile').hide();
 
         });
 

@@ -8,7 +8,7 @@
     @endphp
 
     @php $likecount = 0 @endphp
-    @if (empty($postshow)) 
+    @if (empty($postshow))
     @php @endphp
     @foreach($posts as $post)
     <div class="modal modal-like-post w-100 " tabindex="-1" role="dialog" id="likedModal{{++$likecount}}" wire:ignore.self>
@@ -162,14 +162,14 @@
                     </form> -->
                     <div class="comment-textarea">
 
-                        <a >
+                        <a>
                             <img class="comment-img-post" src="{{ Auth::user()->profile_photo_url }}" alt="profile">
                         </a>
 
                         <div class="spinner-grow" role="status" style="display: none;">
                             <span class="sr-only">Loading...</span>
                         </div>
-                        <textarea wire:keydown.enter="comment({{$post->id}})" wire:model="text_comment.{{$post->id}}" class="card" id="text-comment" rows="1" name="write_comment" form="usrform" placeholder="เขียนความคิดเห็น..."></textarea>
+                        <textarea wire:keydown.enter="comment({{$post->id}})" wire:model="text_comment.{{$post->id}}" class="card" id="text-comment" rows="1" name="write_comment" placeholder="เขียนความคิดเห็น..."></textarea>
 
 
                     </div>
@@ -202,11 +202,11 @@
 
             </div>
         </div>
-        
+
     </div>
     @endforeach
-    @elseif (!empty($postshow)) 
-    
+    @elseif (!empty($postshow))
+
     <div class="modal modal-like-post w-100 " tabindex="-1" role="dialog" id="likedModal{{++$likecount}}" wire:ignore.self>
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -365,9 +365,11 @@
                         <div class="spinner-grow" role="status" style="display: none;">
                             <span class="sr-only">Loading...</span>
                         </div>
-                        <textarea wire:keydown.enter="comment({{$postshow->id}})" wire:model="text_comment.{{$postshow->id}}" class="card" id="text-comment" rows="1" name="write_comment" form="usrform" placeholder="เขียนความคิดเห็น..."></textarea>
+                        <form wire:submit.prevent="comment({{$postshow->id}})">
+                            @csrf
+                            <textarea  wire:model="text_comment.{{$postshow->id}}" class="card" id="text-comment" rows="1" name="write_comment" form="usrform" placeholder="เขียนความคิดเห็น..."></textarea>
 
-
+                        </form>
                     </div>
 
 
@@ -399,7 +401,7 @@
             </div>
         </div>
     </div>
-  
+
     @endif
 </div>
 <script>
