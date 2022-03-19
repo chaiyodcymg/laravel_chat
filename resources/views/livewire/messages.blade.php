@@ -1,4 +1,4 @@
-<div>
+<div id="chat">
     @php \Carbon\Carbon::setLocale('th'); @endphp
     <div class="container-fluid">
         <div class="row  row-in-container ">
@@ -42,6 +42,7 @@
                                             <span class="status-text-card-profile"> กำลังใช้งาน</span>
 
 
+<<<<<<< HEAD
                                             @else
                                             <span class="status-text-card-profile">ใช้งานเมื่อ {{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
                                             @endif
@@ -61,6 +62,33 @@
                                             @endif
                                             @endif
                                         </div>
+=======
+                        @endphp
+                        <a href="{{route('userchat', ['id' => Crypt::encryptString($user->id)]) ;}}" class="chat_username">
+                            <div class="card card_img_profile">
+                                <img class="card-img rounded-circle img_profile_chat" src="{{ $user->profile_photo_url }}" alt="Card image">
+                                @if($user->is_online==true)
+                                <div class="card-img-overlay">
+                                    <div class="dot"></div>
+                                </div>
+                                @endif
+                                <div class="text-card-profile">
+                                    <span class="name-text-card-profile"> {{$user->name}}</span>
+
+                                    @php
+                                    $mes= App\Models\Message::where('user_id',$user->id)->where('receiver_id',Auth::user()->id)->orderBy('id', 'desc')->first();
+
+                                    @endphp
+
+                                    <div class="message-card-profile  text-truncate">
+
+                                        @if(filled($mes))
+
+                                        @if( $mes->is_seen == 1)
+
+                                        @if($user->is_online==true)
+                                        <span class="status-text-card-profile"> กำลังใช้งาน</span>
+>>>>>>> c20e47554d10a0dc5b6527363b4ba0155c0d30f2
 
 
                                     </div>
@@ -164,7 +192,7 @@
                             @csrf 
                                 <div class="d-flex">
                                     <div class="w-100">
-                                        <input wire:model="message" class="form-control input shadow-none" placeholder="Type a message" required>
+                                        <input wire:model="message" class="input-message form-control input shadow-none" placeholder="Type a message" required>
                                     </div>
 
                                     <div class="ml-3 w-5">
@@ -219,4 +247,5 @@
             window.livewire.emit('load-more');
         }
     })
+
 </script>
