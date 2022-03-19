@@ -37,51 +37,19 @@ class LikePost extends Component
     public function render()
     {
 
+        $follows =  Following::where('user_id', Auth::id())->pluck('following_id')->toArray();
 
+        $posts =  Post::where('user_id', Auth::id())->union(Post::whereIn('user_id', $follows))->orderBy('created_at','desc')->get();
+  
 
-        $arr = array();
-        $posts_arr = array();
-        $follows =  Following::where('user_id', Auth::user()->id)->get();
-        // dd($follows[0]->user);
-        $posts_auth =   Post::where('user_id', Auth::user()->id)->get();
-        // dd($posts_auth);
-        foreach ($posts_auth as $posts_aut) {
-            array_push($posts_arr, $posts_aut);
-        }
-        foreach ($follows as $follow) {
-            array_push($arr, $follow->user->posts);
-        }
-
-        foreach ($arr as $ar) {
-
-            foreach ($ar as $a) {
-
-                array_push($posts_arr, $a);
-            }
-        }
-        // 
-        // $posts_arr = collect($posts_arr)->sort() ;
-        // dd(strtotime(
-        //     $posts_arr[0]->created_at
-        // ));
-
-
-        $price = array_column($posts_arr, 'created_at');
-        array_multisort($price, SORT_DESC, $posts_arr);
-       
-
-        //  
 
         if (isset($this->other_user)) {
-            $posts = Post::where('user_id', $this->other_user)->orderBy('id', 'desc')->get();
+            $posts = Post::where('user_id', $this->other_user)->orderBy('created_at', 'desc')->get();
             $this->posts = $posts;
         } else {
-            $this->posts = $posts_arr;
+            $this->posts = $posts;
         }
 
-        // $posts = Post::find($this->LikePost);
-        // $this->count_post_like = count($posts->postlikes);
-        // $this->Post_Id = $posts->postlikes;
         return view('livewire.like-post');
     }
    
@@ -160,8 +128,10 @@ class LikePost extends Component
     }
     public function comment($post)
     {
+        $posts =    Post::find($post);
         // dd(gettype( $post));
         // dd($this->text_comment);
+
         $comm  = $this->text_comment[$post];
         $this->text_comment[$post] = "";
         // $test = Post::find($post);
@@ -170,6 +140,18 @@ class LikePost extends Component
         $Comment->post_id = $post;
         $Comment->write_comment = $comm;
         $Comment->save();
+
+        
+    if($posts->user->id != Auth::user()->id){
+
+
+        $notifi  = new Notification;
+        $notifi->sender_id = Auth::user()->id;
+        $notifi->receiver_id = $posts->user->id;
+        $notifi->post_id = $post;
+        $notifi->message_data = "คอมเมนต์โพสต์ของคุณ";
+        $notifi->save();
+        }
     }
 
     public function mount(Request $request){
