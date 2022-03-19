@@ -396,13 +396,17 @@ a.dropdown-item.logout {
 
 img.card-img-profile-notifi {
     margin: 0 10px 0 15px;
-    width: 40px;
+    width: 100%;
+    max-width: 45px;
+    height: 45px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 img.card-img-profile-search {
     margin: 0 15px 0 15px;
-    width: 40px;
+    width: 100%;
+    max-width: 45px;
     height: 40px;
     border-radius: 50%;
     overflow: hidden;

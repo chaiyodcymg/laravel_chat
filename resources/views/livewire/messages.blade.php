@@ -78,10 +78,15 @@
                 <div class=" box-chat">
                     @if(filled($allmessages) || $get_user_to_chat == true)
                     <div class="card card-chat">
-
-                        <div class="card-header">
-                            @if(isset($sender)) {{$sender->name}} @endif
-
+                        <div class="card-header d-flex">
+                            <img class="img_in_chat" data-toggle="tooltip" data-placement="left" title="" src="{{asset('image/avatar.png')}}" alt="">
+                            <div class="send-name ml-2 ">
+                                @if(isset($sender)) {{$sender->name}} @endif
+                                <p class="status-text-card-profile mb-0">กำลังใช้งาน</p>
+                            </div>
+                                <div class="dot-sender">
+                                    <div class="dot-chat"></div>
+                                </div>
                         </div>
 
                         <div class="card-body message-box" id="message-box" wire:poll=" mountdata">
@@ -146,6 +151,7 @@
 
                         <div class="card-footer">
                             <form wire:submit.prevent="SendMessage">
+<<<<<<< HEAD
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-10">
@@ -154,6 +160,16 @@
 
                                     <div class="col-md-2 d-flex  align-items-center">
                                         <button type="submit" class="btn   d-flex  align-items-center"><i class="far fa-paper-plane mt-0"></i></button>
+=======
+                            @csrf 
+                                <div class="d-flex">
+                                    <div class="w-100">
+                                        <input wire:model="message" class="form-control input shadow-none" placeholder="Type a message" required>
+                                    </div>
+
+                                    <div class="ml-3 w-5">
+                                        <button type="submit" class=""><i class="fas fa-paper-plane butt"></i></button>
+>>>>>>> 90ff104b406ed585b941b06a949a95d96894378d
                                     </div>
                                 </div>
                             </form>
