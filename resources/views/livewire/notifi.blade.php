@@ -9,11 +9,14 @@
             </svg>
             @php $count = 0 @endphp
             @php $count_loop = 0 @endphp
+            @php @endphp
+            <span wire:poll.keep-alive>
+                @if(count($noti) > 0)
+                <span class="notifi ">
 
-
-            <span class="notifi " wire:poll.keep-alive>
-
-                {{count($noti) }}
+                    {{count($noti) }}
+                </span>
+                @endif
             </span>
         </a>
         <div class="container" id="notification-popup" wire:ignore.self>

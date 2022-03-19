@@ -84,12 +84,7 @@ class LikePost extends Component
         // $this->Post_Id = $posts->postlikes;
         return view('livewire.like-post');
     }
-    public function count_like_post()
-    {
-    }
-
-    // protected $listeners = ['like'=>'UserLikePost'];
-
+   
     public function UserLikePost($post)
     {
 

@@ -10,71 +10,66 @@
                             {{Auth::user()->name}}
                         </div>
 
-                       
-                        <!-- ************************************************************************************* -->
-                        @foreach($users as $user)
+                        <div class="box-in-card-list-user">
+                            <!-- ************************************************************************************* -->
+                            @foreach($users as $user)
 
-                        @if($user->id !== Auth::user()->id)
-                        @php
+                            @if($user->id !== Auth::user()->id)
 
-                        $not_seen= App\Models\Message::where('user_id',$user->id)->where('receiver_id',Auth::user()->id)->get()
+                            <a href="{{route('userchat', ['id' => Crypt::encryptString($user->id)]) ;}}">
+                                <div class="card card_img_profile">
+                                    <img class="card-img rounded-circle" src="{{ $user->profile_photo_url }}" alt="Card image">
+                                    @if($user->is_online==true)
+                                    <div class="card-img-overlay">
+                                        <div class="dot"></div>
+                                    </div>
+                                    @endif
+                                    <div class="text-card-profile">
+                                        <span class="name-text-card-profile"> {{$user->name}}</span>
 
+                                        @php
+                                        $mes= App\Models\Message::where('user_id',$user->id)->where('receiver_id',Auth::user()->id)->orderBy('id', 'desc')->first();
 
-                        @endphp
-                        <a href="{{route('userchat', ['id' => Crypt::encryptString($user->id)]) ;}}">
-                            <div class="card card_img_profile">
-                                <img class="card-img rounded-circle" src="{{ $user->profile_photo_url }}" alt="Card image">
-                                @if($user->is_online==true)
-                                <div class="card-img-overlay">
-                                    <div class="dot"></div>
-                                </div>
-                                @endif
-                                <div class="text-card-profile">
-                                    <span class="name-text-card-profile"> {{$user->name}}</span>
+                                        @endphp
 
-                                    @php
-                                    $mes= App\Models\Message::where('user_id',$user->id)->where('receiver_id',Auth::user()->id)->orderBy('id', 'desc')->first();
+                                        <div class="message-card-profile  text-truncate">
 
-                                    @endphp
+                                            @if(filled($mes))
 
-                                    <div class="message-card-profile  text-truncate">
+                                            @if( $mes->is_seen == 1)
 
-                                        @if(filled($mes))
-
-                                        @if( $mes->is_seen == 1)
-
-                                        @if($user->is_online==true)
-                                        <span class="status-text-card-profile"> กำลังใช้งาน</span>
+                                            @if($user->is_online==true)
+                                            <span class="status-text-card-profile"> กำลังใช้งาน</span>
 
 
-                                        @else
-                                        <span class="status-text-card-profile">ใช้งานเมื่อ {{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
-                                        @endif
-                                        @else
-                                        <span class="msg-card-profile ">{{$mes->message}} : </span>
-                                        @if($user->is_online==true)
-                                        <span class="status-text-card-profile">{{\Carbon\Carbon::parse($mes->created_at)->diffForHumans()}}</span>
-                                        @else
-                                        <span class="status-text-card-profile">ใช้งานเมื่อ {{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
-                                        @endif
-                                        @endif
-                                        @else
-                                        @if($user->is_online==true)
-                                        <span class="status-text-card-profile"> กำลังใช้งาน</span>
-                                        @else
-                                        <span class="status-text-card-profile">ใช้งานเมื่อ {{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
-                                        @endif
-                                        @endif
+                                            @else
+                                            <span class="status-text-card-profile">ใช้งานเมื่อ {{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
+                                            @endif
+                                            @else
+                                            <span class="msg-card-profile ">{{$mes->message}} : </span>
+                                            @if($user->is_online==true)
+                                            <span class="status-text-card-profile">{{\Carbon\Carbon::parse($mes->created_at)->diffForHumans()}}</span>
+                                            @else
+                                            <span class="status-text-card-profile">ใช้งานเมื่อ {{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
+                                            @endif
+                                            @endif
+                                            @else
+                                            @if($user->is_online==true)
+                                            <span class="status-text-card-profile"> กำลังใช้งาน</span>
+                                            @else
+                                            <span class="status-text-card-profile">ใช้งานเมื่อ {{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
+                                            @endif
+                                            @endif
+                                        </div>
+
+
                                     </div>
 
-
                                 </div>
-
-                            </div>
-                        </a>
-                        @endif
-                        @endforeach
-
+                            </a>
+                            @endif
+                            @endforeach
+                        </div>
                     </div>
                 </div>
 
@@ -108,7 +103,7 @@
 
                                 </div>
                                 @php @endphp
-                                @if($msg->is_seen == 1)
+                                @if($mgs->is_seen == 1)
 
                                 @if($count == 0)
                                 <span class="seen">
@@ -151,14 +146,14 @@
 
                         <div class="card-footer">
                             <form wire:submit.prevent="SendMessage">
-                            @csrf 
+                                @csrf
                                 <div class="row">
-                                    <div class="col-md-8">
+                                    <div class="col-md-10">
                                         <input wire:model="message" class="form-control input shadow-none w-100 d-inline-block" placeholder="Type a message" required>
                                     </div>
 
-                                    <div class="col-md-4">
-                                        <button type="submit" class="btn btn-primary d-inline-block w-100"><i class="far fa-paper-plane"></i> Send</button>
+                                    <div class="col-md-2 d-flex  align-items-center">
+                                        <button type="submit" class="btn   d-flex  align-items-center"><i class="far fa-paper-plane mt-0"></i></button>
                                     </div>
                                 </div>
                             </form>
