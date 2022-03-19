@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\User;
 use App\Models\Following ;
 use App\Models\Follower;
+use App\Models\Notification;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -54,6 +55,8 @@ class Follow extends Component
             $Follower->user_id = $this->user_id;
             $Follower->follower_id = Auth::user()->id;
             $Follower->save();
+
+
            
         }else{
 

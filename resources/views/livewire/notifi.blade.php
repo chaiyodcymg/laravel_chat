@@ -24,7 +24,7 @@
                         <b>แจ้งเตือน</b>
                     </div>
                     @foreach($list_notis as $list_noti)
-                    
+                        
                     <a href="{{route('postshow', ['id' => Crypt::encryptString($list_noti->post_id)]) ;}}" class="menu-sidebar noti">
                         <img class="card-img-profile-notifi" src="{{$list_noti->user->profile_photo_url}}" alt="#">
                         <div class="card-body-menu">
@@ -74,17 +74,11 @@
 
 
         $(document).click(function() {
+            if ($('#notification-popup').css('display') == 'block') {
 
-            $(".svg-bell").css("fill", "#bfbfbf");
-            if ($('#notification-popup').show()) {
-
-                $('.notifi-icon').trigger("click");
+                $('#notification-popup').css("display", "none")
                 $(".svg-bell").css("fill", "#bfbfbf");
             }
-
-            // $('#notification-popup').hide();
-
-            // $('#dropprofile').hide();
 
         });
 

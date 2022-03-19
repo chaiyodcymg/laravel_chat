@@ -21,11 +21,7 @@ class CreatePostsTable extends Migration
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users');
         });
-        Schema::create('likes', function (Blueprint $table) {
-            $table->unsignedBigInteger('post_id');
-            $table->unsignedBigInteger('post_like_id');
-            $table->softDeletes();
-        });
+  
     }
 
     /**
