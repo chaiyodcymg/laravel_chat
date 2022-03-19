@@ -21,7 +21,7 @@
                     </button>
                 </div>
                 <div class="modal-body like-body">
-                    @foreach($post->postlikes as $like)
+                    @foreach($post->likes as $like)
 
                     <a href="{{route('otheruser', ['user_id' => Crypt::encryptString($like->user->id)])}}" class="menu-sidebar ">
 
@@ -97,10 +97,10 @@
                 </div>
             </div>
             <div class="d-flex justify-content-between mt-1 liked-comment">
-                @if(count($post->postlikes) != 0)
+                @if(count($post->likes) != 0)
                 <a class="liked cursor-pointer" data-toggle="modal" data-target="#likedModal{{$likecount}}" wire:poll.keep-alive>
 
-                    {{count($post->postlikes)}} liked
+                    {{count($post->likes)}} liked
 
 
                 </a>
@@ -121,7 +121,7 @@
                 <button class="btn btn-like d-flex  justify-content-center mr-2" wire:click="UserLikePost('{{Crypt::encryptString($post->id)}}')">
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="mr-2 svg-heart" @foreach($post->postlikes as $like)
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="mr-2 svg-heart" @foreach($post->likes as $like)
 
                         @if($like->user->id == Auth::user()->id)
 
@@ -217,7 +217,7 @@
                     </button>
                 </div>
                 <div class="modal-body like-body">
-                    @foreach($postshow->postlikes as $like)
+                    @foreach($postshow->likes as $like)
 
                     <a href="{{route('otheruser', ['user_id' => Crypt::encryptString($like->user->id)])}}" class="menu-sidebar ">
 
@@ -293,10 +293,10 @@
                 </div>
             </div>
             <div class="d-flex justify-content-between mt-1 liked-comment">
-                @if(count($postshow->postlikes) != 0)
+                @if(count($postshow->likes) != 0)
                 <a class="liked cursor-pointer" data-toggle="modal" data-target="#likedModal{{$likecount}}" wire:poll.keep-alive>
 
-                    {{count($postshow->postlikes)}} liked
+                    {{count($postshow->likes)}} liked
 
 
                 </a>
@@ -317,7 +317,7 @@
                 <button class="btn btn-like d-flex  justify-content-center mr-2" wire:click="UserLikePost('{{Crypt::encryptString($postshow->id)}}')">
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="mr-2 svg-heart" @foreach($postshow->postlikes as $like)
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="mr-2 svg-heart" @foreach($postshow->likes as $like)
 
                         @if($like->user->id == Auth::user()->id)
 
