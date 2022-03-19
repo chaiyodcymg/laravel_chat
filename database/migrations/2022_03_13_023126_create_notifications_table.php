@@ -20,11 +20,11 @@ class CreateNotificationsTable extends Migration
             $table->unsignedBigInteger('post_id');
             $table->string('message_data');
             $table->boolean('read')->default(false);
-            $table->foreign('sender_id')->references('id')->on('users');
-            $table->foreign('receiver_id')->references('id')->on('users');
+            $table->foreign('sender_id')->references('follower_id')->on('followers');
+            $table->foreign('receiver_id')->references('user_id')->on('followers');
             $table->foreign('post_id')->references('id')->on('posts');
             $table->timestamps();
-        
+            $table->softDeletes();
         });
     }
 

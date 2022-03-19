@@ -46,6 +46,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // Route::view('chat','users.messages');
     // Route::get('/user_id', 'UserController@index')->name('post.index');
     Route::get('/delete/{id}', [DeletePostController::class,'delete'])->name('delete');
+    
     // {{route('delete', ['id'=> Crypt::encryptString($post->id)]);}}
     Route::get('/chat{id}', Messages::class)->name('userchat');
 

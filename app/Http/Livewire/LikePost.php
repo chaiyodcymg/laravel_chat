@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\User;
 use App\Models\Post;
-use App\Models\PostLike;
+use App\Models\Like;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -19,6 +19,7 @@ use App\Models\Comment;
 use Illuminate\Support\Str;
 use App\Models\Notification;
 use Illuminate\Http\Request;
+
 class LikePost extends Component
 {
     public $LikePost;
@@ -59,7 +60,7 @@ class LikePost extends Component
         try {
 
             $post =  (int) Crypt::decryptString($post);
-            $result =  PostLike::withTrashed()->where('user_id', Auth::user()->id)->where('post_id', $post)->get();
+            $result =  Like::withTrashed()->where('user_id', Auth::user()->id)->where('post_id', $post)->get();
 
 
             // $likepostid =  DB::table('post_post_like')
@@ -70,55 +71,26 @@ class LikePost extends Component
             // dd($likepostid);
 
             if ($result->isEmpty()) {
-                $Like = new PostLike;
+                $Like = new Like;
                 $Like->user_id = Auth::user()->id;
                 $Like->post_id = $post;
                 $Like->save();
 
-                
-                $li =  PostLike::where('post_id', $post)->where('user_id', Auth::user()->id)->get();
                 $p =  Post::find($post);
 
-                // dd($li[0]->id);
-                $p->postlikes()->attach($li[0]->id, ['post_like_id' => $li[0]->id]);
-                // dd($li[0]->post_id);
-
-               $notifi  = new Notification;
-               $notifi->sender_id= Auth::user()->id;
-                 $notifi->receiver_id = $p->user->id;
-                 $notifi->post_id = $li[0]->post_id;
-                 $notifi->message_data = "กดไลค์โพสต์ของคุณ";
+                $notifi  = new Notification;
+                $notifi->sender_id = Auth::user()->id;
+                $notifi->receiver_id = $p->user->id;
+                $notifi->post_id = $post;
+                $notifi->message_data = "กดไลค์โพสต์ของคุณ";
                 $notifi->save();
-
-
-
             } else {
 
-
-
-
-                $re =   PostLike::onlyTrashed()->where('id', $result[0]->id)->get();
+                $re =   Like::onlyTrashed()->where('id', $result[0]->id)->get();
                 if ($re->isEmpty()) {
-                    $li =  PostLike::where('post_id', $post)->where('user_id', Auth::user()->id)->get();
-                    $p =  Post::find($post);
-                    // dd($li);
-                    // $p->postlikes()->detach(['post_like_id' => $li[0]->id]);
-                    // dd('เข้า');
-
-                    //   $date=   date('Y-m-d H:i:s', time());
-                    // dd( gettype($date));
-                    $p->postlikes()->updateExistingPivot($li[0]->id, ['deleted_at' => Carbon::now()]);
-                    PostLike::destroy($result[0]->id);
-                    $this->fillColor = false;
+                    Like::destroy($result[0]->id);
                 } else {
-
-                    PostLike::withTrashed()->where('id', $result[0]->id)->restore();
-                    $li =  PostLike::where('post_id', $post)->where('user_id', Auth::user()->id)->get();
-                    $p =  Post::find($post);
-                    $this->fillColor = true;
-                    // dd($this->fillColor);
-                    // $p->postlikes()->updateExistingPivot($p, ['deleted_at' => null]);
-                    $p->postlikes()->updateExistingPivot($li[0]->id, ['deleted_at' => NULL]);
+                    Like::withTrashed()->where('id', $result[0]->id)->restore();
                 }
             }
         } catch (\Exception $e) {
@@ -134,7 +106,7 @@ class LikePost extends Component
 
         $comm  = $this->text_comment[$post];
         $this->text_comment[$post] = "";
-        // $test = Post::find($post);
+
         $Comment = new Comment;
         $Comment->user_id = Auth::user()->id;
         $Comment->post_id = $post;
@@ -154,15 +126,12 @@ class LikePost extends Component
         }
     }
 
-    public function mount(Request $request){
+    public function mount(Request $request)
+    {
         if (!empty($request->id)) {
-       
+
             $post_id =   Crypt::decryptString($request->id);
             $this->postshow = Post::find($post_id);
-        
         }
-      
-      
-     
     }
 }
