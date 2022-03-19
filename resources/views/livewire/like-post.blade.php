@@ -162,7 +162,7 @@
                     </form> -->
                     <div class="comment-textarea">
 
-                        <a href="{{route('profile')}}">
+                        <a >
                             <img class="comment-img-post" src="{{ Auth::user()->profile_photo_url }}" alt="profile">
                         </a>
 

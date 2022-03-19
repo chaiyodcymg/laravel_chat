@@ -42,7 +42,6 @@
                                             <span class="status-text-card-profile"> กำลังใช้งาน</span>
 
 
-<<<<<<< HEAD
                                             @else
                                             <span class="status-text-card-profile">ใช้งานเมื่อ {{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
                                             @endif
@@ -62,33 +61,6 @@
                                             @endif
                                             @endif
                                         </div>
-=======
-                        @endphp
-                        <a href="{{route('userchat', ['id' => Crypt::encryptString($user->id)]) ;}}" class="chat_username">
-                            <div class="card card_img_profile">
-                                <img class="card-img rounded-circle img_profile_chat" src="{{ $user->profile_photo_url }}" alt="Card image">
-                                @if($user->is_online==true)
-                                <div class="card-img-overlay">
-                                    <div class="dot"></div>
-                                </div>
-                                @endif
-                                <div class="text-card-profile">
-                                    <span class="name-text-card-profile"> {{$user->name}}</span>
-
-                                    @php
-                                    $mes= App\Models\Message::where('user_id',$user->id)->where('receiver_id',Auth::user()->id)->orderBy('id', 'desc')->first();
-
-                                    @endphp
-
-                                    <div class="message-card-profile  text-truncate">
-
-                                        @if(filled($mes))
-
-                                        @if( $mes->is_seen == 1)
-
-                                        @if($user->is_online==true)
-                                        <span class="status-text-card-profile"> กำลังใช้งาน</span>
->>>>>>> c20e47554d10a0dc5b6527363b4ba0155c0d30f2
 
 
                                     </div>
@@ -107,14 +79,14 @@
                     @if(filled($allmessages) || $get_user_to_chat == true)
                     <div class="card card-chat">
                         <div class="card-header d-flex">
-                            <img class="img_in_chat" data-toggle="tooltip" data-placement="left" title="" src="{{asset('image/avatar.png')}}" alt="">
+                            <img class="img_in_chat" data-toggle="tooltip" data-placement="left" title="" src="{{$sender->profile_photo_url}}" alt="">
                             <div class="send-name ml-2 ">
                                 @if(isset($sender)) {{$sender->name}} @endif
                                 <p class="status-text-card-profile mb-0">กำลังใช้งาน</p>
                             </div>
-                                <div class="dot-sender">
-                                    <div class="dot-chat"></div>
-                                </div>
+                            <div class="dot-sender">
+                                <div class="dot-chat"></div>
+                            </div>
                         </div>
 
                         <div class="card-body message-box" id="message-box" wire:poll=" mountdata">
@@ -151,7 +123,7 @@
 
                             <div class="box_img_left">
                                 <div class="box_img_in_chat">
-           
+
                                     <img class="img_in_chat" data-toggle="tooltip" data-placement="left" title="" src="{{ $mgs['user']['profile_photo_url'] }}" alt="">
 
 
@@ -179,17 +151,8 @@
 
                         <div class="card-footer">
                             <form wire:submit.prevent="SendMessage">
-<<<<<<< HEAD
-                                @csrf
-                                <div class="row">
-                                    <div class="col-md-10">
-                                        <input wire:model="message" class="form-control input shadow-none w-100 d-inline-block" placeholder="Type a message" required>
-                                    </div>
 
-                                    <div class="col-md-2 d-flex  align-items-center">
-                                        <button type="submit" class="btn   d-flex  align-items-center"><i class="far fa-paper-plane mt-0"></i></button>
-=======
-                            @csrf 
+                                @csrf
                                 <div class="d-flex">
                                     <div class="w-100">
                                         <input wire:model="message" class="input-message form-control input shadow-none" placeholder="Type a message" required>
@@ -197,7 +160,6 @@
 
                                     <div class="ml-3 w-5">
                                         <button type="submit" class=""><i class="fas fa-paper-plane butt"></i></button>
->>>>>>> 90ff104b406ed585b941b06a949a95d96894378d
                                     </div>
                                 </div>
                             </form>
@@ -247,5 +209,4 @@
             window.livewire.emit('load-more');
         }
     })
-
 </script>
