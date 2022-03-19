@@ -183,7 +183,7 @@ button.disabled {
     outline: none;
     /* font: 18px sans-serif; */
     color: #333;
-    width: 100%;
+    width: 100% !important;
     padding: 8px 14px;
     margin: 10px auto;
     box-sizing: border-box;
