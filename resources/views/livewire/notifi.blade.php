@@ -80,7 +80,7 @@
         $(document).click(function() {
 
          
-            if ($('#notification-popup').show()) {
+            if ($('#notification-popup').css('display') == 'block') {
                         // alert('โชว?');
                 $('.notifi-icon').trigger("click");
                 $(".svg-bell").css("fill", "#bfbfbf");
