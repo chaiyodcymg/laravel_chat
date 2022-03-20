@@ -9,6 +9,12 @@ body{
     height: 90vh;
     
 }
+.act{
+    height: auto;
+    display: block;
+    transition: 0.5s;
+}
+
 .box-card-all{
     display: flex;
     flex-direction: row;

@@ -11,6 +11,7 @@
 
     @php @endphp
     @foreach($posts as $post)
+    @include('edit-post')
     <div class="modal modal-like-post w-100 " tabindex="-1" role="dialog" id="likedModal{{++$likecount}}" wire:ignore.self>
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -62,6 +63,7 @@
                         <i class="fa-solid fa-ellipsis" style="font-size: 20px !important;"></i>
                     </a>
                     <div class="dropdown-menu ">
+                        <a class="dropdown-item" class="btn btn-primary" data-toggle="modal" data-target="#editModal{{++$i}}">แก้ไขโพสต์</a>
                         <a class="dropdown-item text-danger" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal{{++$i}}">ลบโพสต์</a>
                     </div>
 
@@ -86,7 +88,7 @@
                             </div>
                         </div>
                     </div>
-
+                  
                 </div>
                 @endif
             </div>
