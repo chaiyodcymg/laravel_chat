@@ -366,7 +366,7 @@
                             <span class="sr-only">Loading...</span>
                         </div>
 
-                        <textarea wire:keydown.enter="comment({{$postshow->id}})" wire:model="text_comment.{{$postshow->id}}" class="card" id="text-comment" rows="1" name="write_comment" placeholder="เขียนความคิดเห็น..."></textarea>
+                        <textarea wire:keydown.enter="comment({{$postshow->id}})" wire:model="text_comment.{{$postshow->id}}" class="card commententer" id="text-comment" rows="1" name="write_comment" placeholder="เขียนความคิดเห็น..."></textarea>
 
                     </div>
 
@@ -421,5 +421,11 @@
     }
     setTimeout(adjust.bind(textarea));
 
-    
+    $("textarea").keydown(function(e) {
+        // Enter pressed
+        if (e.keyCode == 13) {
+            //method to prevent from default behaviour
+            e.preventDefault();
+        }
+    });
 </script>

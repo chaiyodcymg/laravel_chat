@@ -31,7 +31,7 @@ class LikePost extends Component
     public $count_post_like;
     public $other_user;
     public $showfollowpost;
-    public $text_comment = [];
+    public $text_comment = array();
     public $postshow;
 
 
@@ -40,8 +40,8 @@ class LikePost extends Component
 
         $follows =  Following::where('user_id', Auth::id())->pluck('following_id')->toArray();
 
-        $posts =  Post::where('user_id', Auth::id())->union(Post::whereIn('user_id', $follows))->orderBy('created_at','desc')->get();
-  
+        $posts =  Post::where('user_id', Auth::id())->union(Post::whereIn('user_id', $follows))->orderBy('created_at', 'desc')->get();
+
 
 
         if (isset($this->other_user)) {
@@ -72,12 +72,16 @@ class LikePost extends Component
 
                 $p =  Post::find($post);
 
-                $notifi  = new Notification;
-                $notifi->sender_id = Auth::user()->id;
-                $notifi->receiver_id = $p->user->id;
-                $notifi->post_id = $post;
-                $notifi->message_data = "กดไลค์โพสต์ของคุณ";
-                $notifi->save();
+
+                if ($p->user->id != Auth::user()->id) {
+
+                    $notifi  = new Notification;
+                    $notifi->sender_id = Auth::user()->id;
+                    $notifi->receiver_id = $p->user->id;
+                    $notifi->post_id = $post;
+                    $notifi->message_data = "กดไลค์โพสต์ของคุณ";
+                    $notifi->save();
+                }
             } else {
 
                 $re =   Like::onlyTrashed()->where('id', $result[0]->id)->get();
@@ -98,27 +102,25 @@ class LikePost extends Component
         $posts =    Post::find($post);
         // dd(gettype( $post));
         // dd($this->text_comment);
+        if (!empty($this->text_comment)) {
+            $comm  = $this->text_comment[$post];
+            unset($this->text_comment);
+            $this->text_comment = array();
+          
+            $Comment = new Comment;
+            $Comment->user_id = Auth::user()->id;
+            $Comment->post_id = $post;
+            $Comment->write_comment = $comm;
+            $Comment->save();
+        }
+        if ($posts->user->id != Auth::user()->id) {
+            $notifi  = new Notification;
+            $notifi->sender_id = Auth::user()->id;
+            $notifi->receiver_id = $posts->user->id;
+            $notifi->post_id = $post;
 
-        $comm  = $this->text_comment[$post];
-        $this->text_comment[$post] = "";
-
-        $Comment = new Comment;
-        $Comment->user_id = Auth::user()->id;
-        $Comment->post_id = $post;
-        $Comment->write_comment = $comm;
-        $Comment->save();
-
-        
-    if($posts->user->id != Auth::user()->id){
-
-
-        $notifi  = new Notification;
-        $notifi->sender_id = Auth::user()->id;
-        $notifi->receiver_id = $posts->user->id;
-        $notifi->post_id = $post;
-
-        $notifi->message_data = "คอมเมนต์โพสต์ของคุณ";
-        $notifi->save();
+            $notifi->message_data = "คอมเมนต์โพสต์ของคุณ";
+            $notifi->save();
         }
     }
 
