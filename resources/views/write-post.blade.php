@@ -43,27 +43,6 @@
      </div>
  </div>
  <script>
-     function update_textlen(field) {
-         var maxlen = 0;
-         var fval = field.value;
-         var flen = fval.length;
-         var tlen = fval.replace(/\n/g, "\r\n").length;
-         var dlen = tlen - flen;
-         // console.log(field.value);
-         if (!field.value || !field.value.trim()) {
-             var button_class = document.getElementById('myclass').disabled = true;
-
-             document.getElementById('myclass').className = "btn btn-secondary w-100 disabled";
-             var button_class = document.getElementById('myclass').className;
-
-         } else {
-             document.getElementById('myclass').className = "btn btn-custom w-100";
-             var button_class = document.getElementById('myclass').className;
-             var button_class = document.getElementById('myclass').disabled = false;
-         }
-     }
-     update_textlen(document.getElementById('textarea_post'));
-
      function adjust() {
          var style = this.currentStyle || window.getComputedStyle(this);
          var boxSizing = style.boxSizing === 'border-box' ?

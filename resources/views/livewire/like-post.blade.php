@@ -366,7 +366,6 @@
                             <span class="sr-only">Loading...</span>
                         </div>
                         
-                            
                         <textarea wire:keydown.enter="comment({{$postshow->id}})" wire:model="text_comment.{{$postshow->id}}" class="card" id="text-comment" rows="1" name="write_comment" form="usrform" placeholder="เขียนความคิดเห็น..."></textarea>
 
                     </div>
@@ -404,26 +403,23 @@
     @endif
 </div>
 <script>
-    //  function update_textlen(field) {
-    //      var maxlen = 0;
-    //      var fval = field.value;
-    //      var flen = fval.length;
-    //      var tlen = fval.replace(/\n/g, "\r\n").length;
-    //      var dlen = tlen - flen;
-    //      // console.log(field.value);
-    //      if (!field.value || !field.value.trim()) {
-    //          var button_class = document.getElementById('myid').disabled = true;
-
-    //          document.getElementById('myid').className = "btn btn-secondary w-100 disabled";
-    //          var button_class = document.getElementById('myid').className;
-
-    //      } else {
-    //          document.getElementById('myid').className = "btn btn-primary w-100";
-    //          var button_class = document.getElementById('myid').className;
-    //          var button_class = document.getElementById('myid').disabled = false;
-    //      }
-    //  }
-    //  update_textlen(document.getElementById('ta'));
+    document.addEventListener('keypress', function (e) {
+        if (e.keyCode === 13 || e.which === 13) {
+            e.preventDefault();
+            return false;
+        }
+        else{
+            e.preventDefault();
+            return true;
+        }    
+    });
+    $(document).ready(function() {
+        $("form").bind("keypress", function(e) {
+            if (e.keyCode == 13) {
+                return false;
+            }
+        });
+    });
 
     function adjust() {
         var style = this.currentStyle || window.getComputedStyle(this);
