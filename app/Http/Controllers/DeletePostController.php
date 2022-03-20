@@ -20,10 +20,10 @@ class DeletePostController extends Controller
         $wherenoti = Notification::where('post_id',$id)->get();
         $wherecomment = Comment::where('post_id',$id)->get();
 
-       Comment::destroy($wherecomment);
-       Notification::destroy($wherenoti);
+        Comment::destroy($wherecomment);
+        Notification::destroy($wherenoti);
         Like::destroy($wherelike);  
-       Post::destroy($id);
+        Post::destroy($id);
         return redirect('/');
         } catch (\Exception $e) {
 

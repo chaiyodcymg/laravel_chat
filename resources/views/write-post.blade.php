@@ -24,7 +24,7 @@
                                  @csrf
                                  <textarea name="whitten_post" id="textarea_post" rows="1" placeholder="คุณกำลังคิดอะไรอยู่" class="pt-3 pl-0 w-100" onfocus="update_textlen(this);" onblur="update_textlen(this);" onkeyup="update_textlen(this);"></textarea>
                                  <div class="modal-footer pl-0 pr-0 pb-0">
-                                     <button type="submit" class="btn btn-secondary w-100 disabled" id="myclass">โพสต์</button>
+                                     <button type="submit" class="btn btn-secondary w-100 disabled" id="myclass" onclick="modal();">โพสต์</button>
                                  </div>
                              </form>
                          </div>
@@ -72,12 +72,12 @@
 
 
 
-     $("#myclass").click(function() {
+     function modal() {
          $('.spinner').modal('show');
-         $('.postmodal').css('opacity', '0.8')
+         $('.postmodal').css('opacity','0.7');
          setTimeout(function() {
 
              $('.spinner').modal('hide');
-         }, 1000);
-     });
+         }, 3000);
+     }
  </script>

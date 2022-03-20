@@ -94,6 +94,7 @@ class LikePost extends Component
     }
     public function comment($post)
     {
+        
         $posts =    Post::find($post);
         // dd(gettype( $post));
         // dd($this->text_comment);

@@ -365,8 +365,8 @@
                         <div class="spinner-grow" role="status" style="display: none;">
                             <span class="sr-only">Loading...</span>
                         </div>
-                        
-                        <textarea wire:keydown.enter="comment({{$postshow->id}})" wire:model="text_comment.{{$postshow->id}}" class="card" id="text-comment" rows="1" name="write_comment" form="usrform" placeholder="เขียนความคิดเห็น..."></textarea>
+
+                        <textarea wire:keydown.enter="comment({{$postshow->id}})" wire:model="text_comment.{{$postshow->id}}" class="card" id="text-comment" rows="1" name="write_comment" placeholder="เขียนความคิดเห็น..."></textarea>
 
                     </div>
 
@@ -403,8 +403,6 @@
     @endif
 </div>
 <script>
-   
-
     function adjust() {
         var style = this.currentStyle || window.getComputedStyle(this);
         var boxSizing = style.boxSizing === 'border-box' ?
@@ -423,11 +421,5 @@
     }
     setTimeout(adjust.bind(textarea));
 
-    $("#text-comment").keypress(function(event) {
-        if (event.keyCode == 13) {
-            event.preventDefault();
-            return false;
-        }
-        $(".spinner-grow").fadeIn(4000);
-    });
+    
 </script>
