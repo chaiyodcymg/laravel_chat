@@ -403,23 +403,7 @@
     @endif
 </div>
 <script>
-    document.addEventListener('keypress', function (e) {
-        if (e.keyCode === 13 || e.which === 13) {
-            e.preventDefault();
-            return false;
-        }
-        else{
-            e.preventDefault();
-            return true;
-        }    
-    });
-    $(document).ready(function() {
-        $("form").bind("keypress", function(e) {
-            if (e.keyCode == 13) {
-                return false;
-            }
-        });
-    });
+   
 
     function adjust() {
         var style = this.currentStyle || window.getComputedStyle(this);

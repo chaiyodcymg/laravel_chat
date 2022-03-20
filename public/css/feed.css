@@ -356,6 +356,14 @@ textarea:focus {
         width: 100%;
         
     }
+    p.pro-left{
+        display: inline-block;
+        max-width: 8rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    
 }
 @media only screen and (max-width: 992px) {
     .write-post-container {
@@ -370,6 +378,13 @@ textarea:focus {
         padding-right: 0 !important;
         padding-left: 0 !important;
     }
+    p.pro-left{
+        display: inline-block;
+        max-width: 6rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
     /* .user-profile-post img{
         margin: 0 7px 0 7px;
     }
@@ -396,6 +411,13 @@ textarea:focus {
             margin: 0 auto;
         }
     }
+    p.pro-left{
+        display: inline-block;
+        max-width: 6rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
 }
 
 .svg-comment {
