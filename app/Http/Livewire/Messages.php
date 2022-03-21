@@ -41,16 +41,19 @@ class Messages extends Component
     public function render()
     {
 
-      
-        $users1 = DB::table('messages')->select('user_id', 'created_at')->where('receiver_id', Auth::id());
-        $users2 = DB::table('messages')->select('receiver_id', 'created_at')->where('user_id', Auth::id());
+      if(!(empty(Message::count()))){
+            $users1 = DB::table('messages')->select('user_id', 'created_at')->where('receiver_id', Auth::id());
+            // dd(empty(Message::count()));
+            $users2 = DB::table('messages')->select('receiver_id', 'created_at')->where('user_id', Auth::id());
 
-        $a = $users1->union($users2)->orderByDesc('created_at')->get()->unique('user_id')->pluck('user_id')->toArray();
-        $b =  implode(',', $a);
-        $user =  User::WhereIn('id', $a)->orderByRaw("FIELD(id,  $b)")->get();
-        // $not_seen = Message::WhereIn('id', $a)->orderByRaw("FIELD(id,  $b)")->get();
-        // dd($not_seen);
-        $this->users = $user;
+            $a = $users1->union($users2)->orderByDesc('created_at')->get()->unique('user_id')->pluck('user_id')->toArray();
+            $b =  implode(',', $a);
+            $user =  User::WhereIn('id', $a)->orderByRaw("FIELD(id,  $b)")->get();
+            // $not_seen = Message::WhereIn('id', $a)->orderByRaw("FIELD(id,  $b)")->get();
+            // dd($not_seen);
+            $this->users = $user;
+      }
+     
   
        
         return view('livewire.messages');
