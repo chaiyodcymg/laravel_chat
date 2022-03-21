@@ -13,12 +13,19 @@
 
                         <!-- ************************************************************************************* -->
                         @if(!(empty($users)))
+
                         @foreach($users as $user)
 
                         @if($user->id !== Auth::user()->id)
 
                         <a href="{{route('userchat', ['id' => Crypt::encryptString($user->id)]) ;}}">
-                            <div class="card card_img_profile">
+
+                            <div class="card card_img_profile " 
+                            @if(!(empty($sender))) 
+                            @if($sender->id == $user->id)
+                            style="background-color: #f1f0f0;"
+                            @endif
+                            @endif>
                                 <img class="card-img rounded-circle" src="{{ $user->profile_photo_url }}" alt="Card image">
                                 @if($user->is_online==true)
                                 <div class="card-img-overlay">
@@ -34,28 +41,25 @@
 
                                     <div class="message-card-profile  text-truncate">
 
+                                        @if($user->is_online==true)
+
+
+
+                                        @if(!empty($user->messages->sortByDesc('created_at')->first()))
                                         @if($user->messages->sortByDesc('created_at')->first()->is_seen == 0)
-                                        @php @endphp
-                                        @if( $user->is_seen == 1)
-
-                                        @if($user->is_online==true)
-                                        <span class="status-text-card-profile"> กำลังใช้งาน</span>
-
-
-                                        @else
-                                        <span class="status-text-card-profile">ใช้งานเมื่อ {{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
-                                        @endif
-                                        @else
                                         <span class="msg-card-profile ">{{$user->messages->sortByDesc('created_at')->first()->message}} : </span>
-                                        @if($user->is_online==true)
-                                        <span class="status-text-card-profile">{{\Carbon\Carbon::parse($user->created_at)->diffForHumans()}}</span>
-                                        @else
-                                        <span class="status-text-card-profile">ใช้งานเมื่อ {{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
                                         @endif
-                                        @endif
-                                        @else
-                                        @if($user->is_online==true)
                                         <span class="status-text-card-profile"> กำลังใช้งาน</span>
+                                        @else
+                                        <span class="status-text-card-profile"> กำลังใช้งาน</span>
+                                        @endif
+                                        @else
+
+                                        @if(!empty($user->messages->sortByDesc('created_at')->first()))
+                                        @if($user->messages->sortByDesc('created_at')->first()->is_seen == 0)
+                                        <span class="msg-card-profile ">{{$user->messages->sortByDesc('created_at')->first()->message}} : </span>
+                                        @endif
+                                        <span class="status-text-card-profile">ใช้งานเมื่อ {{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
                                         @else
                                         <span class="status-text-card-profile">ใช้งานเมื่อ {{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
                                         @endif
@@ -67,8 +71,12 @@
 
                             </div>
                         </a>
+                        
+
+
                         @endif
                         @endforeach
+
                         @endif
                     </div>
                 </div>
@@ -89,7 +97,7 @@
                             @php $count = 0 @endphp
                             @foreach($allmessages as $mgs)
 
-                        
+
 
                             @if($mgs['user_id'] == Auth::user()->id)
                             <div class="box_img_right">
@@ -143,13 +151,14 @@
 
                         <div class="card-footer">
                             <form wire:submit.prevent="SendMessage">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <input wire:model="message" class="form-control input shadow-none w-100 d-inline-block" placeholder="Type a message" required>
+                                @csrf
+                                <div class="d-flex">
+                                    <div class="w-100">
+                                        <input wire:model="message" class="form-control input shadow-none" placeholder="Type a message" required style="border:none">
                                     </div>
 
-                                    <div class="col-md-4">
-                                        <button type="submit" class="btn btn-primary d-inline-block w-100"><i class="far fa-paper-plane"></i> Send</button>
+                                    <div class="ml-3 w-5">
+                                        <button type="submit" class=""><i class="fas fa-paper-plane butt"></i></button>
                                     </div>
                                 </div>
                             </form>
