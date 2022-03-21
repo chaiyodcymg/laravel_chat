@@ -24,7 +24,7 @@
                                  @csrf
                                  <textarea name="whitten_post" id="textarea_post" rows="1" placeholder="คุณกำลังคิดอะไรอยู่" class="pt-3 pl-0 w-100" onfocus="update_textlen(this);" onblur="update_textlen(this);" onkeyup="update_textlen(this);"></textarea>
                                  <div class="modal-footer pl-0 pr-0 pb-0">
-                                     <button type="submit" class="btn btn-secondary w-100 disabled" id="myclass">โพสต์</button>
+                                     <button type="submit" class="btn btn-secondary w-100 disabled" id="myclass" onclick="waitpost()">โพสต์</button>
                                  </div>
                              </form>
                          </div>
@@ -71,32 +71,12 @@
      setTimeout(adjust.bind(textarea));
 
 
-
-     $("#myclass").click(function() {
+     function waitpost() {
          $('.spinner').modal('show');
          $('.postmodal').css('opacity', '0.8')
          setTimeout(function() {
 
              $('.spinner').modal('hide');
-         }, 1000);
-     });
-
-
-     function update_textlen(field) {
-         var maxlen = 0;
-         var fval = field.value;
-         var flen = fval.length;
-         var tlen = fval.replace(/\n/g, "\r\n").length;
-         var dlen = tlen - flen;
-         console.log(field.value);
-         if (!field.value || !field.value.trim()) {
-             // alert('ห้ามใส่ค่าว่าง');
-             // console.log ('ห้ามใส่ค่าว่าง');
-         }
-         // else {
-         //     document.getElementById('myclass').className = "btn btn-primary w-100";
-         //     var button_class = document.getElementById('myclass').className;
-         // }
+         }, 3000);
      }
-     update_textlen2(document.getElementById('textarea_post'));
  </script>

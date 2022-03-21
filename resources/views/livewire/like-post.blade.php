@@ -446,23 +446,7 @@
         $('#myInput').trigger('focus')
     })
 
-    function update_textlen2(field) {
-        var maxlen = 0;
-        var fval = field.value;
-        var flen = fval.length;
-        var tlen = fval.replace(/\n/g, "\r\n").length;
-        var dlen = tlen - flen;
-        console.log(field.value);
-        if (!field.value || !field.value.trim()) {
-            // alert('ห้ามใส่ค่าว่าง');
-            // console.log ('ห้ามใส่ค่าว่าง');
-        }
-        // else {
-        //     document.getElementById('myclass').className = "btn btn-primary w-100";
-        //     var button_class = document.getElementById('myclass').className;
-        // }
-    }
-    update_textlen2(document.getElementById('textarea_post2'));
+    
 
     function adjust() {
         var style = this.currentStyle || window.getComputedStyle(this);
