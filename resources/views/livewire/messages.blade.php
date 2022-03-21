@@ -13,12 +13,19 @@
 
                         <!-- ************************************************************************************* -->
                         @if(!(empty($users)))
+
                         @foreach($users as $user)
 
                         @if($user->id !== Auth::user()->id)
 
                         <a href="{{route('userchat', ['id' => Crypt::encryptString($user->id)]) ;}}">
-                            <div class="card card_img_profile">
+
+                            <div class="card card_img_profile " 
+                            @if(!(empty($sender))) 
+                            @if($sender->id == $user->id)
+                            style="background-color: #f1f0f0;"
+                            @endif
+                            @endif>
                                 <img class="card-img rounded-circle" src="{{ $user->profile_photo_url }}" alt="Card image">
                                 @if($user->is_online==true)
                                 <div class="card-img-overlay">
@@ -67,8 +74,12 @@
 
                             </div>
                         </a>
+                        
+
+
                         @endif
                         @endforeach
+
                         @endif
                     </div>
                 </div>
@@ -152,7 +163,7 @@
                                 @csrf
                                 <div class="d-flex">
                                     <div class="w-100">
-                                        <input wire:model="message" class="form-control input shadow-none" placeholder="Type a message" required>
+                                        <input wire:model="message" class="form-control input shadow-none" placeholder="Type a message" required style="border:none">
                                     </div>
 
                                     <div class="ml-3 w-5">

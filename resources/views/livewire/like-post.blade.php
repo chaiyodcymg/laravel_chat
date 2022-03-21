@@ -376,7 +376,7 @@
                             <span class="sr-only">Loading...</span>
                         </div>
 
-                        <textarea wire:keydown.enter="comment({{$postshow->id}})" wire:model="text_comment.{{$postshow->id}}" class="card commententer" id="text-comment" rows="1" name="write_comment" placeholder="เขียนความคิดเห็น..."></textarea>
+                        <textarea wire:keydown.enter="comment({{$postshow->id}})" wire:model="text_comment.{{$postshow->id}}" class="card commententer" id="text-comment" rows="1" name="write_comment"  holder="เขียนความคิดเห็น..."></textarea>
 
                     </div>
 

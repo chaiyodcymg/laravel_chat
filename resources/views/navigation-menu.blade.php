@@ -47,7 +47,7 @@
 
             </li>
             <li class="nav-item chat">
-                <a class="notifi-all nav-link {{(request()->routeIs('chat')) ? 'active' : '' }}" href="{{ route('chat') }}">
+                <a class="notifi-all nav-link {{(request()->routeIs('chat')) ? 'active' : '' }} {{(request()->routeIs('userchat')) ? 'active' : '' }}" href="{{ route('chat') }}">
                     <div class="icon-nav ">
                         <!-- <i class="fa-solid fa-message "></i> -->
                         <svg class="svg-message" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
