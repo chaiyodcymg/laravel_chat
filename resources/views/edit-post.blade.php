@@ -1,5 +1,5 @@
 <div class="modal-delete-post w-100">
-    <div class="modal" tabindex="-1" role="dialog" id="editModal{{++$i}}">
+    <div class="modal" tabindex="-1" role="dialog" id="editModal{{++$i}}" wire:ignore>
         <div class="modal-dialog" role="document">
             <div class="modal-content" wire:ignore.self>
                 <div class="modal-header p-2 d-flex justify-content-center">
@@ -19,7 +19,7 @@
                         @csrf
                         <textarea name="whitten_post" id="textarea_post" rows="3" placeholder="คุณกำลังคิดอะไรอยู่" value="{{$post->whitten_post}}" class="pt-3 pl-0 w-100" onfocus="delete_post(this);" onblur="delete_post(this);" onkeyup="delete_post(this);">{{$post->whitten_post}}</textarea>
                         <div class="modal-footer pl-0 pr-0 pb-0">
-                            <button type="submit" class="btn btn-secondary w-100 disabled" id="editpost">ยืนยันการแก้ไข</button>update_textlen
+                            <button type="submit" class="btn btn-secondary w-100 disabled" id="editpost">ยืนยันการแก้ไข</button>
                         </div>
                     </form>
                 </div>
