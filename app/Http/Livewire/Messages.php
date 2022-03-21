@@ -44,14 +44,12 @@ class Messages extends Component
 
         if (!(empty(Message::count()))) {
             $users1 = DB::table('messages')->select('user_id', 'created_at')->where('receiver_id', Auth::id());
-            // dd(empty(Message::count()));
             $users2 = DB::table('messages')->select('receiver_id', 'created_at')->where('user_id', Auth::id());
 
             $a = $users1->union($users2)->orderByDesc('created_at')->get()->unique('user_id')->pluck('user_id')->toArray();
             $b =  implode(',', $a);
             $user =  User::WhereIn('id', $a)->orderByRaw("FIELD(id,  $b)")->get();
-            // $not_seen = Message::WhereIn('id', $a)->orderByRaw("FIELD(id,  $b)")->get();
-            // dd($not_seen);
+        
             $this->users = $user;
         }
 
@@ -62,14 +60,14 @@ class Messages extends Component
     {
         if (isset($this->sender->id)) {
 
-            $allmessages = Message::where('user_id', auth()->id())->where('receiver_id', $this->sender->id)
-                ->orWhere('user_id', $this->sender->id)->where('receiver_id', auth()->id())->orderBy('id', 'desc')
+            $allmessages = Message::where('user_id', Auth::id())->where('receiver_id', $this->sender->id)
+                ->orWhere('user_id', $this->sender->id)->where('receiver_id', Auth::id())->orderBy('id', 'desc')
                 ->paginate($this->limitPerPage)->items();
 
 
             $this->allmessages = $allmessages;
 
-           Message::where('user_id', $this->sender->id)->where('receiver_id', auth()->id())->update(['is_seen' => true]);
+           Message::where('user_id', $this->sender->id)->where('receiver_id', Auth::id())->update(['is_seen' => true]);
           
            
         }
@@ -85,7 +83,7 @@ class Messages extends Component
         $this->resetForm();
         $data = new Message;
         $data->message = $mes;
-        $data->user_id = auth()->id();
+        $data->user_id = Auth::id();
         $data->receiver_id = $this->sender->id;
         $data->save();
     }
@@ -98,23 +96,13 @@ class Messages extends Component
 
             if (!empty($userId)) {
                 $userId = Crypt::decryptString($userId);
-
-                $arr = array();
                 $user = User::find($userId);
-                // array_push($this->users, $user);
-
-
                 $this->users_want_chat = $user;
                 $this->sender = $user;
-
-
-
-                $this->allmessages = Message::where('user_id', auth()->id())->where('receiver_id', $userId)
-                    ->orWhere('user_id', $userId)->where('receiver_id', auth()->id())
+                $this->allmessages = Message::where('user_id', Auth::id())->where('receiver_id', $userId)
+                    ->orWhere('user_id', $userId)->where('receiver_id', Auth::id())
                     ->orderBy('id', 'desc')->paginate($this->limitPerPage)->items();
-
                 $this->get_user_to_chat = true;
-              
             }
         } catch (\Exception $e) {
 

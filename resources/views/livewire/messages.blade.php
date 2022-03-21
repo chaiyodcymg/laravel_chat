@@ -44,14 +44,16 @@
                                         @endif
                                         <span class="status-text-card-profile"> กำลังใช้งาน</span>
                                         @else
+                                       
                                         <span class="status-text-card-profile"> กำลังใช้งาน</span>
                                         @endif
+
                                         @else
 
                                         @if(!empty($user->messages->sortByDesc('created_at')->first()))
-                                            @if($user->messages->sortByDesc('created_at')->first()->is_seen == 0)
-                                            <span class="msg-card-profile ">{{$user->messages->sortByDesc('created_at')->first()->message}} : </span>
-                                            @endif
+                                        @if($user->messages->sortByDesc('created_at')->first()->is_seen == 0)
+                                        <span class="msg-card-profile ">{{$user->messages->sortByDesc('created_at')->first()->message}} : </span>
+                                        @endif
                                         <span class="status-text-card-profile">ใช้งานเมื่อ {{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
                                         @else
                                         <span class="status-text-card-profile">ใช้งานเมื่อ {{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
@@ -77,9 +79,15 @@
                     @if(!empty($allmessages) || $get_user_to_chat == true)
                     <div class="card card-chat">
 
-                        <div class="card-header">
-                            @if(isset($sender)) {{$sender->name}} @endif
-
+                        <div class="card-header d-flex">
+                            <img class="img_in_chat" data-toggle="tooltip" data-placement="left" title="" src="{{$sender->profile_photo_url}}" alt="">
+                            <div class="send-name ml-2 ">
+                                @if(isset($sender)) {{$sender->name}} @endif
+                                <p class="status-text-card-profile mb-0">กำลังใช้งาน</p>
+                            </div>
+                            <div class="dot-sender">
+                                <div class="dot-chat"></div>
+                            </div>
                         </div>
 
                         <div class="card-body message-box" id="message-box" wire:poll=" mountdata">
