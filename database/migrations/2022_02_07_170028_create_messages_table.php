@@ -23,11 +23,7 @@ class CreateMessagesTable extends Migration
             $table->foreign('receiver_id')->references('id')->on('users');
             $table->timestamps();
         });
-        Schema::create('message_user', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('message_id');
-            $table->unsignedBigInteger('receiver_id');
-        });
+
     }
 
     /**

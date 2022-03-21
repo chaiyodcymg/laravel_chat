@@ -21,11 +21,7 @@ class CreatePostsTable extends Migration
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users');
         });
-<<<<<<< HEAD
      
-=======
-  
->>>>>>> 1e42c68dfea650b29994fb9b70e7e59cbe6fafab
     }
 
     /**

@@ -2,7 +2,9 @@ body {
     overflow-x: hidden;
     overflow-y: scroll;
 }
-
+a{
+    text-decoration: none !important;
+}
 .row-in-container {
     display: flex;
     flex-direction: row;

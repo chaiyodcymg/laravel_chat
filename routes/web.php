@@ -15,9 +15,9 @@ use App\Http\Livewire\LikePost;
 
 // Route::prefix('login')->group(function () {
 
-// Route::get('/login', function () {
-//     return redirect('/');
-// })->name('login');
+Route::get('/', function () {
+    return view('auth.login');
+});
 // Route::get('/', function () {
 //     return view('auth.register');
 // });

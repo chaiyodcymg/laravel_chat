@@ -17,7 +17,7 @@
         var flen = fval.length;
         var tlen = fval.replace(/\n/g, "\r\n").length;
         var dlen = tlen - flen;
-        console.log(field.value);
+ 
         if (!field.value || !field.value.trim()) {
             document.getElementById('myclass').className = "btn btn-secondary w-100 disabled";
             var button_class = document.getElementById('myclass').className;

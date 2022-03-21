@@ -1,4 +1,4 @@
-<div id="chat">
+<div>
     @php \Carbon\Carbon::setLocale('th'); @endphp
     <div class="container-fluid">
         <div class="row  row-in-container ">
@@ -10,83 +10,77 @@
                             {{Auth::user()->name}}
                         </div>
 
-                        <div class="box-in-card-list-user">
-                            <!-- ************************************************************************************* -->
-                            @foreach($users as $user)
 
-                            @if($user->id !== Auth::user()->id)
+                        <!-- ************************************************************************************* -->
+                        @foreach($users as $user)
 
-                            <a href="{{route('userchat', ['id' => Crypt::encryptString($user->id)]) ;}}">
-                                <div class="card card_img_profile">
-                                    <img class="card-img rounded-circle" src="{{ $user->profile_photo_url }}" alt="Card image">
-                                    @if($user->is_online==true)
-                                    <div class="card-img-overlay">
-                                        <div class="dot"></div>
+                        @if($user->id !== Auth::user()->id)
+
+                        <a href="{{route('userchat', ['id' => Crypt::encryptString($user->id)]) ;}}">
+                            <div class="card card_img_profile">
+                                <img class="card-img rounded-circle" src="{{ $user->profile_photo_url }}" alt="Card image">
+                                @if($user->is_online==true)
+                                <div class="card-img-overlay">
+                                    <div class="dot"></div>
+                                </div>
+                                @endif
+                                <div class="text-card-profile">
+                                    <span class="name-text-card-profile"> {{$user->name}}</span>
+
+                                    @php
+                                    $mes= App\Models\Message::where('user_id',$user->id)->where('receiver_id',Auth::user()->id)->orderBy('id', 'desc')->first();
+                                    @endphp
+
+                                    <div class="message-card-profile  text-truncate">
+
+                                        @if(filled($mes))
+                                        @php @endphp
+                                        @if( $mes->is_seen == 1)
+
+                                        @if($user->is_online==true)
+                                        <span class="status-text-card-profile"> กำลังใช้งาน</span>
+
+
+                                        @else
+                                        <span class="status-text-card-profile">ใช้งานเมื่อ {{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
+                                        @endif
+                                        @else
+                                        <span class="msg-card-profile ">{{$mes->message}} : </span>
+                                        @if($user->is_online==true)
+                                        <span class="status-text-card-profile">{{\Carbon\Carbon::parse($mes->created_at)->diffForHumans()}}</span>
+                                        @else
+                                        <span class="status-text-card-profile">ใช้งานเมื่อ {{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
+                                        @endif
+                                        @endif
+                                        @else
+                                        @if($user->is_online==true)
+                                        <span class="status-text-card-profile"> กำลังใช้งาน</span>
+                                        @else
+                                        <span class="status-text-card-profile">ใช้งานเมื่อ {{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
+                                        @endif
+                                        @endif
                                     </div>
-                                    @endif
-                                    <div class="text-card-profile">
-                                        <span class="name-text-card-profile"> {{$user->name}}</span>
 
-                                        @php
-                                        $mes= App\Models\Message::where('user_id',$user->id)->where('receiver_id',Auth::user()->id)->orderBy('id', 'desc')->first();
-
-                                        @endphp
-
-                                        <div class="message-card-profile  text-truncate">
-
-                                            @if(filled($mes))
-
-                                            @if( $mes['is_seen'] == 1)
-
-                                            @if($user->is_online==true)
-                                            <span class="status-text-card-profile"> กำลังใช้งาน</span>
-
-
-                                            @else
-                                            <span class="status-text-card-profile">ใช้งานเมื่อ {{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
-                                            @endif
-                                            @else
-                                            <span class="msg-card-profile ">{{$mes->message}} : </span>
-                                            @if($user->is_online==true)
-                                            <span class="status-text-card-profile">{{\Carbon\Carbon::parse($mes->created_at)->diffForHumans()}}</span>
-                                            @else
-                                            <span class="status-text-card-profile">ใช้งานเมื่อ {{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
-                                            @endif
-                                            @endif
-                                            @else
-                                            @if($user->is_online==true)
-                                            <span class="status-text-card-profile"> กำลังใช้งาน</span>
-                                            @else
-                                            <span class="status-text-card-profile">ใช้งานเมื่อ {{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
-                                            @endif
-                                            @endif
-                                        </div>
-
-
-                                    </div>
 
                                 </div>
-                            </a>
-                            @endif
-                            @endforeach
-                        </div>
+
+                            </div>
+                        </a>
+                        @endif
+                        @endforeach
+
                     </div>
                 </div>
 
 
                 <!-- ************************************************************************ -->
                 <div class=" box-chat">
-                    @if(filled($allmessages) || $get_user_to_chat == true)
+                    @if(!empty($allmessages) || $get_user_to_chat == true)
                     <div class="card card-chat">
-                        <div class="card-header d-flex">
-                            <img class="img_in_chat" data-toggle="tooltip" data-placement="left" title="" src="{{$sender->profile_photo_url}}" alt="">
-                            <div class="send-name ml-2 ">
-                                @if(isset($sender)) {{$sender->name}} @endif
-                                <p class="status-text-card-profile mb-0">กำลังใช้งาน</p>
-                            </div>
-                            <div class="dot-sender">
-                                <div class="dot-chat"></div>
-                            </div>
+
+                        <div class="card-header">
+                            @if(isset($sender)) {{$sender->name}} @endif
+
                         </div>
 
                         <div class="card-body message-box" id="message-box" wire:poll=" mountdata">
@@ -95,7 +89,6 @@
                             @foreach($allmessages as $mgs)
                             @php
                             $msg= App\Models\Message::where('user_id',auth()->id())->where('receiver_id',$mgs['receiver_id'])->orderBy('id', 'desc')->first();
-
                             @endphp
 
 
@@ -108,7 +101,7 @@
 
                                 </div>
                                 @php @endphp
-                                @if($mgs['is_seen'] == 1)
+                                @if($msg->is_seen == 1)
 
                                 @if($count == 0)
                                 <span class="seen">
@@ -151,15 +144,13 @@
 
                         <div class="card-footer">
                             <form wire:submit.prevent="SendMessage">
-
-                                @csrf
-                                <div class="d-flex">
-                                    <div class="w-100">
-                                        <input wire:model="message" class="input-message form-control input shadow-none" placeholder="Type a message" required>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <input wire:model="message" class="form-control input shadow-none w-100 d-inline-block" placeholder="Type a message" required>
                                     </div>
 
-                                    <div class="ml-3 w-5">
-                                        <button type="submit" class=""><i class="fas fa-paper-plane butt"></i></button>
+                                    <div class="col-md-4">
+                                        <button type="submit" class="btn btn-primary d-inline-block w-100"><i class="far fa-paper-plane"></i> Send</button>
                                     </div>
                                 </div>
                             </form>
@@ -184,6 +175,7 @@
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
     function adjust() {
         var style = this.currentStyle || window.getComputedStyle(this);
@@ -200,7 +192,6 @@
     } else if ('oninput' in textarea) {
         textarea.oninput = adjust;
     }
-
     setTimeout(adjust.bind(textarea));
     $('#message-box').on('scroll', function() {
         height = (Math.abs($(this).scrollTop()) + $(this).innerHeight()) + 2

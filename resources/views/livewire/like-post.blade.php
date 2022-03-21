@@ -153,13 +153,7 @@
             <div class="pop">
                 <div class="popup popup-comment" wire:ignore.self>
 
-                    <!-- <form action="{{route('comment_post')}}" method="post">
-                        @csrf
-                        <textarea name="write_comment" id="textarea_post" rows="1" placeholder="เขียนความคิดเห็น..." class="pt-3 pl-0 w-100" onfocus="update_textlen(this);" onblur="update_textlen(this);" onkeyup="update_textlen(this);"></textarea>
-                        <div class="modal-footer pl-0 pr-0 pb-0">
-                            <button wire:click="comment" type="submit" class="btn btn-secondary w-100 disabled" id="myclass">Send</button>
-                        </div>
-                    </form> -->
+
                     <div class="comment-textarea">
 
                         <a>
@@ -349,13 +343,7 @@
             <div class="pop">
                 <div class="popup popup-comment" wire:ignore.self>
 
-                    <!-- <form action="{{route('comment_post')}}" method="post">
-                        @csrf
-                        <textarea name="write_comment" id="textarea_post" rows="1" placeholder="เขียนความคิดเห็น..." class="pt-3 pl-0 w-100" onfocus="update_textlen(this);" onblur="update_textlen(this);" onkeyup="update_textlen(this);"></textarea>
-                        <div class="modal-footer pl-0 pr-0 pb-0">
-                            <button wire:click="comment" type="submit" class="btn btn-secondary w-100 disabled" id="myclass">Send</button>
-                        </div>
-                    </form> -->
+
                     <div class="comment-textarea">
 
                         <a href="{{route('profile')}}">
@@ -365,7 +353,7 @@
                         <div class="spinner-grow" role="status" style="display: none;">
                             <span class="sr-only">Loading...</span>
                         </div>
-                        
+
                         <textarea wire:keydown.enter="comment({{$postshow->id}})" wire:model="text_comment.{{$postshow->id}}" class="card" id="text-comment" rows="1" name="write_comment" form="usrform" placeholder="เขียนความคิดเห็น..."></textarea>
 
                     </div>
@@ -403,23 +391,8 @@
     @endif
 </div>
 <script>
-    document.addEventListener('keypress', function (e) {
-        if (e.keyCode === 13 || e.which === 13) {
-            e.preventDefault();
-            return false;
-        }
-        else{
-            e.preventDefault();
-            return true;
-        }    
-    });
-    $(document).ready(function() {
-        $("form").bind("keypress", function(e) {
-            if (e.keyCode == 13) {
-                return false;
-            }
-        });
-    });
+ 
+
 
     function adjust() {
         var style = this.currentStyle || window.getComputedStyle(this);
@@ -439,11 +412,52 @@
     }
     setTimeout(adjust.bind(textarea));
 
-    $("#text-comment").keypress(function(event) {
-        if (event.keyCode == 13) {
-            event.preventDefault();
-            return false;
+
+
+  
+    $('#myModal').on('shown.bs.modal', function() {
+        $('#myInput').trigger('focus')
+    })
+
+    function update_textlen2(field) {
+        var maxlen = 0;
+        var fval = field.value;
+        var flen = fval.length;
+        var tlen = fval.replace(/\n/g, "\r\n").length;
+        var dlen = tlen - flen;
+        console.log(field.value);
+        if (!field.value || !field.value.trim()) {
+            // alert('ห้ามใส่ค่าว่าง');
+            // console.log ('ห้ามใส่ค่าว่าง');
         }
-        $(".spinner-grow").fadeIn(4000);
-    });
+        // else {
+        //     document.getElementById('myclass').className = "btn btn-primary w-100";
+        //     var button_class = document.getElementById('myclass').className;
+        // }
+    }
+    update_textlen2(document.getElementById('textarea_post2'));
+
+    function adjust() {
+        var style = this.currentStyle || window.getComputedStyle(this);
+        var boxSizing = style.boxSizing === 'border-box' ?
+            parseInt(style.borderBottomWidth, 10) +
+            parseInt(style.borderTopWidth, 10) :
+            0;
+        this.style.height = '';
+        this.style.height = (this.scrollHeight + boxSizing) + 'px';
+    };
+
+    var textarea = document.getElementById("textarea_post2");
+    if ('onpropertychange' in textarea) { // IE
+        textarea.onpropertychange = adjust;
+    } else if ('oninput' in textarea) {
+        textarea.oninput = adjust;
+    }
+    setTimeout(adjust.bind(textarea));
+
+    function togglepopup(id) {
+        var pop = document.getElementById(id);
+        pop.classList.toggle("active");
+    }
+
 </script>
