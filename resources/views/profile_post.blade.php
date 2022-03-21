@@ -14,6 +14,7 @@
                     <i class="fa-solid fa-ellipsis"></i>
                 </a>
                 <div class="dropdown-menu ">
+                    <a class="dropdown-item" href="#">แก้ไขโพสต์</a>
                     <a class="dropdown-item text-danger" href="#">ลบโพสต์</a>
                 </div>
             </div>

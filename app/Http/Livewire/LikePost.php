@@ -102,7 +102,7 @@ class LikePost extends Component
         $posts =    Post::find($post);
         // dd(gettype( $post));
         // dd($this->text_comment);
-        if (!empty($this->text_comment)) {
+        if (!empty($this->text_comment[$post])) {
             $comm  = $this->text_comment[$post];
             unset($this->text_comment);
             $this->text_comment = array();
