@@ -76,6 +76,7 @@
 
                 <!-- ************************************************************************ -->
                 <div class=" box-chat">
+
                     @if(filled($allmessages) || $get_user_to_chat == true)
                     <div class="card card-chat">
                         <div class="card-header d-flex">
@@ -170,10 +171,17 @@
                 </div>
                 @else
 
-                <div class="card card-chat">
+                <div class="card card-chat ">
 
                     <div class="card-body message-box" id="message-box" style="overflow: hidden;">
+                        <div class='container-before-mes align-self-center d-flex flex-column align-items-center justify-content-center'>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <!--! Font Awesome Pro 6.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                                <path d="M511.1 63.1v287.1c0 35.25-28.75 63.1-64 63.1h-144l-124.9 93.68c-7.875 5.75-19.12 .0497-19.12-9.7v-83.98h-96c-35.25 0-64-28.75-64-63.1V63.1c0-35.25 28.75-63.1 64-63.1h384C483.2 0 511.1 28.75 511.1 63.1z" />
+                            </svg>
 
+                            <h4>ข้อความของคุณ</h4>
+                        </div>
                     </div>
                 </div>
 
