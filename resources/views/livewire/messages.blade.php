@@ -1,5 +1,5 @@
 <div>
-    @php \Carbon\Carbon::setLocale('th'); @endphp
+
     <div class="container-fluid">
         <div class="row  row-in-container ">
 
@@ -12,6 +12,7 @@
 
 
                         <!-- ************************************************************************************* -->
+                        @if(!(empty($users)))
                         @foreach($users as $user)
 
                         @if($user->id !== Auth::user()->id)
@@ -68,7 +69,7 @@
                         </a>
                         @endif
                         @endforeach
-
+                        @endif
                     </div>
                 </div>
 
