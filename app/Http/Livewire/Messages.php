@@ -42,7 +42,7 @@ class Messages extends Component
     public function render()
     {
 
-        if (!(empty(Message::count()))) {
+        if (!(empty(Message::Where('user_id', Auth::id())->orWhere('receiver_id', Auth::id())->count()))) {
             $users1 = DB::table('messages')->select('user_id', 'created_at')->where('receiver_id', Auth::id());
             $users2 = DB::table('messages')->select('receiver_id', 'created_at')->where('user_id', Auth::id());
 

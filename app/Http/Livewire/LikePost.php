@@ -79,7 +79,7 @@ class LikePost extends Component
                     $notifi->sender_id = Auth::user()->id;
                     $notifi->receiver_id = $p->user->id;
                     $notifi->post_id = $post;
-                    $notifi->message_data = "กดไลค์โพสต์ของคุณ";
+                    $notifi->message_data = "Liked your post";
                     $notifi->save();
                 }
             } else {
@@ -114,17 +114,19 @@ class LikePost extends Component
                     $Comment->post_id = $post;
                     $Comment->write_comment = $comm;
                     $Comment->save();
+                    
+                    if ($posts->user->id != Auth::user()->id) {
+                        $notifi  = new Notification;
+                        $notifi->sender_id = Auth::user()->id;
+                        $notifi->receiver_id = $posts->user->id;
+                        $notifi->post_id = $post;
+
+                        $notifi->message_data = "Commented your post";
+                        $notifi->save();
+                    }
                 }
             }
-            if ($posts->user->id != Auth::user()->id) {
-                $notifi  = new Notification;
-                $notifi->sender_id = Auth::user()->id;
-                $notifi->receiver_id = $posts->user->id;
-                $notifi->post_id = $post;
-
-                $notifi->message_data = "คอมเมนต์โพสต์ของคุณ";
-                $notifi->save();
-            }
+            
         } catch (\Exception $e) {
 
         

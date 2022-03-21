@@ -3,7 +3,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content postmodal" wire:ignore.self>
                 <div class="modal-header p-2 d-flex justify-content-center">
-                    <h5 class="modal-title">แก้ไขโพสต์</h5>
+                    <h5 class="modal-title">Edit post</h5>
                     <button type="button" class="close m-0 p-0" data-dismiss="modal" aria-label="Close">
                         <span class="mr-3" aria-hidden="true">&times;</span>
                     </button>
@@ -19,7 +19,7 @@
                         @csrf
                         <textarea name="whitten_post" id="textarea_post" rows="3" placeholder="{{$post->whitten_post}}" value="{{$post->whitten_post}}" class="pt-3 pl-0 w-100" onfocus="delete_post(this);" onblur="delete_post(this);" onkeyup="delete_post(this);">{{$post->whitten_post}}</textarea>
                         <div class="modal-footer pl-0 pr-0 pb-0">
-                            <button type="submit" class="btn btn-secondary w-100 disabled" id="editpost">ยืนยันการแก้ไข</button>
+                            <button type="submit" class="btn btn-secondary w-100 disabled" id="editpost">Edit</button>
                         </div>
                     </form>
                 </div>

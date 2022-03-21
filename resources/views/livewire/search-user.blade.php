@@ -4,7 +4,7 @@
            <div class="search">
                <div class="icon fa" aria-hidden="false"></div>
                <div class="inputspace">
-                   <input autocomplete="off" type="text" placeholder="ค้นหา..." id="search" wire:model="search">
+                   <input autocomplete="off" type="text" placeholder="Search..." id="search" wire:model="search">
                </div>
            </div>
        </div>

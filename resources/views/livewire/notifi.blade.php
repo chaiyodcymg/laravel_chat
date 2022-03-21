@@ -25,11 +25,11 @@
             <div class="nonti-position">
                 <div class="col absolute z-50 w-48 rounded-md origin-top-right right-0 nonti-inside" wire:poll.visible>
                     <div class="noti-new">
-                        <b>แจ้งเตือน</b>
+                        <b>Notification</b>
                     </div>
                     @foreach($list_notis as $list_noti)
                     @php  @endphp
-                    @if($list_noti->message_data == "กดติดตามคุณ")
+                    @if($list_noti->message_data == "Followed you")
                     <a href="{{route('otheruser', ['user_id' => Crypt::encryptString($list_noti->user->id)])}}" class="menu-sidebar noti">
                         <img class="card-img-profile-notifi" src="{{$list_noti->user->profile_photo_url}}" alt="#">
                         <div class="card-body-menu">

@@ -16,7 +16,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header p-2 d-flex justify-content-center">
-                    <h5 class="modal-title">จำนวนผู้ใช้ที่ถูกใจ</h5>
+                    <h5 class="modal-title">User who liked you</h5>
                     <button type="button" class="close m-0 p-0" data-dismiss="modal" aria-label="Close">
                         <span class="mr-3" aria-hidden="true">&times;</span>
                     </button>
@@ -63,8 +63,8 @@
                         <i class="fa-solid fa-ellipsis" style="font-size: 20px !important;"></i>
                     </a>
                     <div class="dropdown-menu ">
-                        <a class="dropdown-item" class="btn btn-primary" data-toggle="modal" data-target="#editModal{{++$i}}">แก้ไขโพสต์</a>
-                        <a class="dropdown-item text-danger" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal{{++$i}}">ลบโพสต์</a>
+                        <a class="dropdown-item" class="btn btn-primary" data-toggle="modal" data-target="#editModal{{++$i}}">Edit post</a>
+                        <a class="dropdown-item text-danger" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal{{++$i}}">Delete post</a>
                     </div>
 
                     <div class="modal-delete-post w-100">
@@ -72,17 +72,17 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content" wire:ignore.self>
                                     <div class="modal-header p-2 d-flex justify-content-center">
-                                        <h5 class="modal-title">ลบโพสต์</h5>
+                                        <h5 class="modal-title">Delete post</h5>
                                         <button type="button" class="close m-0 p-0" data-dismiss="modal" aria-label="Close">
                                             <span class="mr-3" aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body pt-4 pb-4">
-                                        <p class="m-0 text-center">คุณต้องการลบโพสต์หรือไม่ หากลบแล้วคุณจะไม่สามารถกู้คืนได้</p>
+                                        <p class="m-0 text-center">Do you want to delete the post? If you delete it, you can't recover it.</p>
                                     </div>
                                     <div class="modal-footer p-1">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                        <a href="{{route('delete', ['id'=> Crypt::encryptString($post->id)]);}}"><button type="button" class="btn btn-danger w-100">ลบโพสต์</button></a>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>
+                                        <a href="{{route('delete', ['id'=> Crypt::encryptString($post->id)]);}}"><button type="button" class="btn btn-danger w-100">Delete</button></a>
                                     </div>
                                 </div>
                             </div>
@@ -165,7 +165,7 @@
                         <div class="spinner-grow" role="status" style="display: none;">
                             <span class="sr-only">Loading...</span>
                         </div>
-                        <textarea wire:keydown.enter="comment({{$post->id}})" wire:model="text_comment.{{$post->id}}" class="card" id="text-comment" rows="1" name="write_comment" placeholder="เขียนความคิดเห็น..."></textarea>
+                        <textarea wire:keydown.enter="comment({{$post->id}})" wire:model="text_comment.{{$post->id}}" class="card" id="text-comment" rows="1" name="write_comment" placeholder="Write comment..."></textarea>
 
 
                     </div>
@@ -189,32 +189,6 @@
                     @endforeach
                 </div>
 
-                <!-- <div class="dropdown-menu ">
-                        <a class="dropdown-item" class="btn btn-primary" data-toggle="modal" data-target="#editModal{{++$i}}">แก้ไขโพสต์</a>
-                        <a class="dropdown-item text-danger" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal{{++$i}}">ลบโพสต์</a>
-                    </div>
-
-                    <div class="modal-delete-post w-100">
-                        <div class="modal" tabindex="-1" role="dialog" id="deleteModal{{$i}}">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content" wire:ignore.self>
-                                    <div class="modal-header p-2 d-flex justify-content-center">
-                                        <h5 class="modal-title">ลบโพสต์</h5>
-                                        <button type="button" class="close m-0 p-0" data-dismiss="modal" aria-label="Close">
-                                            <span class="mr-3" aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body pt-4 pb-4">
-                                        <p class="m-0 text-center">คุณต้องการลบโพสต์หรือไม่ หากลบแล้วคุณจะไม่สามารถกู้คืนได้</p>
-                                    </div>
-                                    <div class="modal-footer p-1">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                        <a href="{{route('delete', ['id'=> Crypt::encryptString($post->id)]);}}"><button type="button" class="btn btn-danger w-100">ลบโพสต์</button></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
 
             </div>
         </div>
@@ -227,7 +201,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header p-2 d-flex justify-content-center">
-                    <h5 class="modal-title">จำนวนผู้ใช้ที่ถูกใจ</h5>
+                    <h5 class="modal-title">User who liked you</h5>
                     <button type="button" class="close m-0 p-0" data-dismiss="modal" aria-label="Close">
                         <span class="mr-3" aria-hidden="true">&times;</span>
                     </button>
@@ -274,7 +248,8 @@
                         <i class="fa-solid fa-ellipsis" style="font-size: 20px !important;"></i>
                     </a>
                     <div class="dropdown-menu ">
-                        <a class="dropdown-item text-danger" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal{{++$i}}">ลบโพสต์</a>
+                    <a class="dropdown-item" class="btn btn-primary" data-toggle="modal" data-target="#editModal{{++$i}}">Edit post</a>
+                        <a class="dropdown-item text-danger" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal{{++$i}}">Delete post</a>
                     </div>
 
                     <div class="modal-delete-post w-100">
@@ -282,17 +257,17 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content" wire:ignore.self>
                                     <div class="modal-header p-2 d-flex justify-content-center">
-                                        <h5 class="modal-title">ลบโพสต์</h5>
+                                        <h5 class="modal-title">Delete Post</h5>
                                         <button type="button" class="close m-0 p-0" data-dismiss="modal" aria-label="Close">
                                             <span class="mr-3" aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body pt-4 pb-4">
-                                        <p class="m-0 text-center">คุณต้องการลบโพสต์หรือไม่ หากลบแล้วคุณจะไม่สามารถกู้คืนได้</p>
+                                        <p class="m-0 text-center">Do you want to delete the post? If you delete it, you can't recover it.</p>
                                     </div>
                                     <div class="modal-footer p-1">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                                        <a href="{{route('delete', ['id'=> Crypt::encryptString($postshow->id)]);}}"><button type="button" class="btn btn-danger w-100">ลบโพสต์</button></a>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <a href="{{route('delete', ['id'=> Crypt::encryptString($postshow->id)]);}}"><button type="button" class="btn btn-danger w-100">Delete Post</button></a>
                                     </div>
                                 </div>
                             </div>
@@ -376,7 +351,7 @@
                             <span class="sr-only">Loading...</span>
                         </div>
 
-                        <textarea wire:keydown.enter="comment({{$postshow->id}})" wire:model="text_comment.{{$postshow->id}}" class="card commententer" id="text-comment" rows="1" name="write_comment"  holder="เขียนความคิดเห็น..."></textarea>
+                        <textarea wire:keydown.enter="comment({{$postshow->id}})" wire:model="text_comment.{{$postshow->id}}" class="card commententer" id="text-comment" rows="1" name="write_comment" holder="write a comment..."></textarea>
 
                     </div>
 
@@ -446,7 +421,7 @@
         $('#myInput').trigger('focus')
     })
 
-    
+
 
     function adjust() {
         var style = this.currentStyle || window.getComputedStyle(this);

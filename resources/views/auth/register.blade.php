@@ -21,7 +21,7 @@
                 <div class="mt-4">
                     <x-jet-label for="name" value="{{ __('Name') }}" />
                     <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" maxlength="20" />
-                    <p style="color: red;">*จำกัดตัวอักษร 20 ตัว</p>
+                    <p style="color: red;">*Must have 20 characters</p>
                 </div>
 
                 <div class="mt-4">

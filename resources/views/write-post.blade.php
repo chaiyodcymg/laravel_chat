@@ -3,12 +3,12 @@
          <img src="{{ Auth::user()->profile_photo_url }}" alt="#">
 
          <div class="post-input-container w-100">
-             <button type="button" class="btn btn-light w-100 radius" id="showmodalpost" data-toggle="modal" data-target="#postmessage">คุณกำลังคิดอะไรอยู่</button>
+             <button type="button" class="btn btn-light w-100 radius" id="showmodalpost" data-toggle="modal" data-target="#postmessage">What's on your mind ?</button>
              <div class="modal fade popup " id="postmessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                  <div class="modal-dialog" role="document">
                      <div class="modal-content postmodal">
                          <div class="modal-header d-flex justify-content-center p-2">
-                             <h5 class="modal-title" id="exampleModalLabel">สร้างโพสต์</h5>
+                             <h5 class="modal-title" id="exampleModalLabel">Create Post</h5>
                              <button type="button" class="close m-0 p-0" data-dismiss="modal" aria-label="Close">
                                  <span class="mr-3" aria-hidden="true">&times;</span>
                              </button>
@@ -22,9 +22,9 @@
                              </div>
                              <form action="{{route('write_post')}}" method="post">
                                  @csrf
-                                 <textarea name="whitten_post" id="textarea_post" rows="1" placeholder="คุณกำลังคิดอะไรอยู่" class="pt-3 pl-0 w-100" onfocus="update_textlen(this);" onblur="update_textlen(this);" onkeyup="update_textlen(this);"></textarea>
+                                 <textarea name="whitten_post" id="textarea_post" rows="1" placeholder="What's on your mind ?" class="pt-3 pl-0 w-100" onfocus="update_textlen(this);" onblur="update_textlen(this);" onkeyup="update_textlen(this);"></textarea>
                                  <div class="modal-footer pl-0 pr-0 pb-0">
-                                     <button type="submit" class="btn btn-secondary w-100 disabled" id="myclass" onclick="waitpost()">โพสต์</button>
+                                     <button type="submit" class="btn btn-secondary w-100 disabled" id="myclass" onclick="waitpost()">Post</button>
                                  </div>
                              </form>
                          </div>
