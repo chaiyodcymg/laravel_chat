@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Livewire;
+
 use App\Models\Message;
 use Livewire\Component;
 use App\Models\User;
@@ -12,19 +13,19 @@ use Illuminate\Support\Facades\DB;
 class Messages extends Component
 {
 
-	public $message;
-	public $allmessages;
-	public $sender;
+    public $message;
+    public $allmessages;
+    public $sender;
     public $get_user_to_chat = false;
     public $keydown;
 
     public $limitPerPage = 15;
     public $users;
-    public $users_want_chat =NULL;
+    public $users_want_chat = NULL;
     public $last_message;
     // public $arr_count = array();
     public $count_mount = 0;
-    public $message_seen ;
+    public $message_seen;
     // public $post;
 
 
@@ -32,7 +33,7 @@ class Messages extends Component
     protected $listeners = [
         'load-more' => 'loadMore'
     ];
-   
+
     public function loadMore()
     {
         $this->limitPerPage = $this->limitPerPage + 10;
@@ -41,7 +42,7 @@ class Messages extends Component
     public function render()
     {
 
-      if(!(empty(Message::count()))){
+        if (!(empty(Message::count()))) {
             $users1 = DB::table('messages')->select('user_id', 'created_at')->where('receiver_id', Auth::id());
             // dd(empty(Message::count()));
             $users2 = DB::table('messages')->select('receiver_id', 'created_at')->where('user_id', Auth::id());
@@ -52,49 +53,41 @@ class Messages extends Component
             // $not_seen = Message::WhereIn('id', $a)->orderByRaw("FIELD(id,  $b)")->get();
             // dd($not_seen);
             $this->users = $user;
-      }
-     
-  
-       
+        }
+
+
         return view('livewire.messages');
     }
     public function mountdata()
     {
-        if(isset($this->sender->id))
-        {
-        
-                  $allmessages=Message::where('user_id',auth()->id())->where('receiver_id',$this->sender->id)
-                  ->orWhere('user_id',$this->sender->id)->where('receiver_id',auth()->id())->orderBy('id','desc')
-                  ->paginate($this->limitPerPage)->items();
-       
-            
-                $this->allmessages = $allmessages ;
+        if (isset($this->sender->id)) {
 
-               $not_seen= Message::where('user_id',$this->sender->id)->where('receiver_id',auth()->id());
-               $not_seen->update(['is_seen'=> true]);
-            $this->message_seen = Message::where('user_id', $this->sender->id)->where('receiver_id', Auth::user()->id)->orderBy('id', 'desc')->first();
+            $allmessages = Message::where('user_id', auth()->id())->where('receiver_id', $this->sender->id)
+                ->orWhere('user_id', $this->sender->id)->where('receiver_id', auth()->id())->orderBy('id', 'desc')
+                ->paginate($this->limitPerPage)->items();
+
+
+            $this->allmessages = $allmessages;
+
+           Message::where('user_id', $this->sender->id)->where('receiver_id', auth()->id())->update(['is_seen' => true]);
+          
+           
         }
-
     }
     public function resetForm()
     {
-    	$this->message='';
+        $this->message = '';
     }
 
     public function SendMessage()
     {
-       $mes=  $this->message;
+        $mes =  $this->message;
         $this->resetForm();
-    	$data=new Message;
-    	$data->message= $mes;
-    	$data->user_id=auth()->id();
-    	$data->receiver_id=$this->sender->id;
-    	$data->save();
-
-  
-    
-
-
+        $data = new Message;
+        $data->message = $mes;
+        $data->user_id = auth()->id();
+        $data->receiver_id = $this->sender->id;
+        $data->save();
     }
 
     public function mount(Request $request)
@@ -102,10 +95,10 @@ class Messages extends Component
     {
         try {
             $userId =  $request->id;
-            
+
             if (!empty($userId)) {
                 $userId = Crypt::decryptString($userId);
-               
+
                 $arr = array();
                 $user = User::find($userId);
                 // array_push($this->users, $user);
@@ -113,22 +106,19 @@ class Messages extends Component
 
                 $this->users_want_chat = $user;
                 $this->sender = $user;
-             
-   
-               
+
+
+
                 $this->allmessages = Message::where('user_id', auth()->id())->where('receiver_id', $userId)
-                ->orWhere('user_id', $userId)->where('receiver_id', auth()->id())
-                ->orderBy('id', 'desc')->paginate($this->limitPerPage)->items();
-            
+                    ->orWhere('user_id', $userId)->where('receiver_id', auth()->id())
+                    ->orderBy('id', 'desc')->paginate($this->limitPerPage)->items();
+
                 $this->get_user_to_chat = true;
               
             }
         } catch (\Exception $e) {
-            
+
             return redirect('/chat');
         }
     }
-
-
-
 }

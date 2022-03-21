@@ -29,14 +29,14 @@
                                     <span class="name-text-card-profile"> {{$user->name}}</span>
 
                                     @php
-                                    $mes= App\Models\Message::where('user_id',$user->id)->where('receiver_id',Auth::user()->id)->orderBy('id', 'desc')->first();
+
                                     @endphp
 
                                     <div class="message-card-profile  text-truncate">
 
-                                        @if(filled($mes))
+                                        @if($user->messages->sortByDesc('created_at')->first()->is_seen == 0)
                                         @php @endphp
-                                        @if( $mes->is_seen == 1)
+                                        @if( $user->is_seen == 1)
 
                                         @if($user->is_online==true)
                                         <span class="status-text-card-profile"> กำลังใช้งาน</span>
@@ -46,9 +46,9 @@
                                         <span class="status-text-card-profile">ใช้งานเมื่อ {{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
                                         @endif
                                         @else
-                                        <span class="msg-card-profile ">{{$mes->message}} : </span>
+                                        <span class="msg-card-profile ">{{$user->messages->sortByDesc('created_at')->first()->message}} : </span>
                                         @if($user->is_online==true)
-                                        <span class="status-text-card-profile">{{\Carbon\Carbon::parse($mes->created_at)->diffForHumans()}}</span>
+                                        <span class="status-text-card-profile">{{\Carbon\Carbon::parse($user->created_at)->diffForHumans()}}</span>
                                         @else
                                         <span class="status-text-card-profile">ใช้งานเมื่อ {{\Carbon\Carbon::parse($user->last_activity)->diffForHumans()}}</span>
                                         @endif
@@ -88,10 +88,8 @@
 
                             @php $count = 0 @endphp
                             @foreach($allmessages as $mgs)
-                            @php
-                            $msg= App\Models\Message::where('user_id',auth()->id())->where('receiver_id',$mgs['receiver_id'])->orderBy('id', 'desc')->first();
-                            @endphp
 
+                        
 
                             @if($mgs['user_id'] == Auth::user()->id)
                             <div class="box_img_right">
@@ -102,7 +100,7 @@
 
                                 </div>
                                 @php @endphp
-                                @if($msg->is_seen == 1)
+                                @if($mgs['is_seen'] == 1)
 
                                 @if($count == 0)
                                 <span class="seen">
