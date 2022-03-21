@@ -12,6 +12,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Livewire\Messages;
 use App\Http\Livewire\LikePost;
 
+use App\Http\Controllers\EditController;
 
 // Route::prefix('login')->group(function () {
 
@@ -57,4 +58,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/postshow{id}',LikePost::class)->name('postshow');
 
+    Route::post('/edit{id}',[EditController::class,'editpost'])->name('edit');
 });

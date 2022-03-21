@@ -299,6 +299,7 @@ textarea:focus {
     font-weight: bold;
     color: rgb(211, 115, 59);
 }
+
 #textarea_post2 {
     resize: none;
     max-height: 800px;
@@ -311,6 +312,16 @@ textarea:focus {
     box-sizing: border-box;
     margin-top: 10px;
     border-radius: 10px;
+}
+#textarea_post{
+    width: 100%;
+    padding: 8px 14px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    resize: none;
+    max-height: 800px;
+    min-height: 3em;
+    border:none;
 }
 
 .all-comment {

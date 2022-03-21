@@ -20,6 +20,7 @@
                     <i class="fa-solid fa-ellipsis" style="font-size: 20px !important;"></i>
                 </a>
                 <div class="dropdown-menu ">
+                    <a class="dropdown-item" class="btn btn-primary" data-toggle="modal" data-target="#editModal">แก้ไขโพสต์</a>
                     <a class="dropdown-item text-danger" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">ลบโพสต์</a>
                 </div>
 
@@ -45,6 +46,8 @@
                     </div>
                 </div>
 
+                </div>
+
             </div>
         </div>
         <div class="mt-2">
@@ -56,7 +59,7 @@
         <div class="d-flex justify-content-between mt-1 liked-comment">
             <a class="liked cursor-pointer" data-toggle="modal" data-target="#likedModal">
                 @php dd($post) @endphp
-                 liked
+                liked
             </a>
 
             <a class="comment">1k comment</a>
@@ -72,10 +75,10 @@
                         </button>
                     </div>
                     <div class="modal-body like-body">
-                     
 
 
-                    
+
+
                     </div>
                 </div>
             </div>

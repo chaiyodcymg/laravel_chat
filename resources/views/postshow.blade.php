@@ -1,7 +1,7 @@
 <x-app-layout>
    
 </x-app-layout>
-<<div class="mt-2">
+<div class="mt-2">
                 <div class="card-body">
                     555555
 

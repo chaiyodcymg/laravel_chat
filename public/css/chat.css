@@ -12,8 +12,13 @@ a{
     height: 90vh;
 
 }
+.act{
+    height: auto;
+    display: block;
+    transition: 0.5s;
+}
 
-.box-card-all {
+.box-card-all{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -294,6 +299,9 @@ a{
     background: #a1a1a1 !important; 
 }
 
+.container-before-mes{
+    height: 100%;
+}
 @media only screen and (max-width: 576px) {
 
     #chat {
