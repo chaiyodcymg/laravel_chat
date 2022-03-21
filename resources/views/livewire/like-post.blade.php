@@ -88,7 +88,7 @@
                             </div>
                         </div>
                     </div>
-                  
+
                 </div>
                 @endif
             </div>
@@ -189,7 +189,7 @@
                     @endforeach
                 </div>
 
-                    <!-- <div class="dropdown-menu ">
+                <!-- <div class="dropdown-menu ">
                         <a class="dropdown-item" class="btn btn-primary" data-toggle="modal" data-target="#editModal{{++$i}}">แก้ไขโพสต์</a>
                         <a class="dropdown-item text-danger" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal{{++$i}}">ลบโพสต์</a>
                     </div>
@@ -376,7 +376,7 @@
                             <span class="sr-only">Loading...</span>
                         </div>
 
-                        <textarea wire:keydown.enter="comment({{$postshow->id}})" wire:model="text_comment.{{$postshow->id}}" class="card" id="text-comment" rows="1" name="write_comment" form="usrform" placeholder="เขียนความคิดเห็น..."></textarea>
+                        <textarea wire:keydown.enter="comment({{$postshow->id}})" wire:model="text_comment.{{$postshow->id}}" class="card commententer" id="text-comment" rows="1" name="write_comment" placeholder="เขียนความคิดเห็น..."></textarea>
 
                     </div>
 
@@ -413,8 +413,13 @@
     @endif
 </div>
 <script>
- 
-
+    $("textarea").keydown(function(e) {
+        // Enter pressed
+        if (e.keyCode == 13) {
+            //method to prevent from default behaviour
+            e.preventDefault();
+        }
+    });
 
     function adjust() {
         var style = this.currentStyle || window.getComputedStyle(this);
@@ -436,7 +441,7 @@
 
 
 
-  
+
     $('#myModal').on('shown.bs.modal', function() {
         $('#myInput').trigger('focus')
     })
@@ -481,5 +486,4 @@
         var pop = document.getElementById(id);
         pop.classList.toggle("active");
     }
-
 </script>

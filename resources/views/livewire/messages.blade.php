@@ -182,7 +182,6 @@
         </div>
     </div>
 </div>
-
 <script type="text/javascript">
     function adjust() {
         var style = this.currentStyle || window.getComputedStyle(this);

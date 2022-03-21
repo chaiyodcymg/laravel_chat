@@ -431,7 +431,7 @@ img.card-img-profile-search {
 
 .nameshow {
     display: inline-block;
-    max-width: 12rem;
+    max-width: 6rem;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
