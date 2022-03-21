@@ -22,10 +22,7 @@ class CreatePostsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
         });
      
-<<<<<<< HEAD
-=======
   
->>>>>>> 40cfbc53c80de6f2e369b1f0eadb15b197710073
     }
 
     /**

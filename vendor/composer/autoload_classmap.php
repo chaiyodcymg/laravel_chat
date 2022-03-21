@@ -16,6 +16,7 @@ return array(
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\DeletePostController' => $baseDir . '/app/Http/Controllers/DeletePostController.php',
+    'App\\Http\\Controllers\\EditController' => $baseDir . '/app/Http/Controllers/EditController.php',
     'App\\Http\\Controllers\\FeedNewsController' => $baseDir . '/app/Http/Controllers/FeedNewsController.php',
     'App\\Http\\Controllers\\ListFollowController' => $baseDir . '/app/Http/Controllers/ListFollowController.php',
     'App\\Http\\Controllers\\OtherUserController' => $baseDir . '/app/Http/Controllers/OtherUserController.php',
