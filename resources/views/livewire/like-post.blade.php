@@ -185,27 +185,47 @@
                     @foreach($post->comments as $comment)
                     <div class="all-comment">
                         <div class="d-flex align-items-center">
-
-
                             <img class="profile-img-comment mr-1" src="{{$comment->user->profile_photo_url}}" alt="profile">
                             <div class="card user-comment mt-0 pr-2 pt-1 pb-1 commentshow">
-
-
                                 @if($comment->user->id == Auth::user()->id)
                                 <a href="{{route('profile')}}" class="ml-2 mb-0 username">{{ $comment->user->name}}</a>
                                 @else
                                 <a href="{{route('otheruser', ['user_id' => Crypt::encryptString($comment->user->id)]) ;}}" class="ml-2 mb-0 username">{{ $comment->user->name}}</a>
                                 @endif
                                 <p class="comment-text ml-2 mr-2 mb-0">{{$comment->write_comment}}</p>
-
-
                             </div>
-
                         </div>
                         <p class="comment-time ">{{\Carbon\Carbon::parse( $comment->created_at)->diffForHumans()}}</p>
                     </div>
                     @endforeach
                 </div>
+
+                    <!-- <div class="dropdown-menu ">
+                        <a class="dropdown-item" class="btn btn-primary" data-toggle="modal" data-target="#editModal{{++$i}}">แก้ไขโพสต์</a>
+                        <a class="dropdown-item text-danger" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal{{++$i}}">ลบโพสต์</a>
+                    </div>
+
+                    <div class="modal-delete-post w-100">
+                        <div class="modal" tabindex="-1" role="dialog" id="deleteModal{{$i}}">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" wire:ignore.self>
+                                    <div class="modal-header p-2 d-flex justify-content-center">
+                                        <h5 class="modal-title">ลบโพสต์</h5>
+                                        <button type="button" class="close m-0 p-0" data-dismiss="modal" aria-label="Close">
+                                            <span class="mr-3" aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body pt-4 pb-4">
+                                        <p class="m-0 text-center">คุณต้องการลบโพสต์หรือไม่ หากลบแล้วคุณจะไม่สามารถกู้คืนได้</p>
+                                    </div>
+                                    <div class="modal-footer p-1">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                                        <a href="{{route('delete', ['id'=> Crypt::encryptString($post->id)]);}}"><button type="button" class="btn btn-danger w-100">ลบโพสต์</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
 
             </div>
         </div>

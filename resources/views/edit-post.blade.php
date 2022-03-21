@@ -17,9 +17,9 @@
                     </div>
                     <form action="{{route('edit',$post->id)}}" method="post">
                         @csrf
-                        <textarea name="whitten_post" id="textarea_post" rows="3" placeholder="คุณกำลังคิดอะไรอยู่" value="{{$post->whitten_post}}" class="pt-3 pl-0 w-100" onfocus="update_textlen(this);" onblur="update_textlen(this);" onkeyup="update_textlen(this);">{{$post->whitten_post}}</textarea>
+                        <textarea name="whitten_post" id="textarea_post" rows="3" placeholder="คุณกำลังคิดอะไรอยู่" value="{{$post->whitten_post}}" class="pt-3 pl-0 w-100" onfocus="delete_post(this);" onblur="delete_post(this);" onkeyup="delete_post(this);">{{$post->whitten_post}}</textarea>
                         <div class="modal-footer pl-0 pr-0 pb-0">
-                            <button type="submit" class="btn btn-secondary w-100 disabled" id="editpost">ยืนยันการแก้ไข</button>
+                            <button type="submit" class="btn btn-secondary w-100 disabled" id="editpost">ยืนยันการแก้ไข</button>update_textlen
                         </div>
                     </form>
                 </div>
@@ -29,7 +29,7 @@
     </div>
 </div>
 <script>
-     function update_textlen(field) {
+     function delete_post(field) {
          var maxlen = 0;
          var fval = field.value;
          var flen = fval.length;
@@ -48,7 +48,7 @@
              var button_class = document.getElementById('editpost').disabled = false;
          }
      }
-     update_textlen(document.getElementById('textarea_post'));
+     delete_post(document.getElementById('textarea_post'));
 
      function adjust() {
          var style = this.currentStyle || window.getComputedStyle(this);
