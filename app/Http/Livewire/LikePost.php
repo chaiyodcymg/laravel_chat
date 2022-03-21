@@ -98,29 +98,36 @@ class LikePost extends Component
     }
     public function comment($post)
     {
-        
-        $posts =    Post::find($post);
-        // dd(gettype( $post));
-        // dd($this->text_comment);
-        if (!empty($this->text_comment[$post])) {
-            $comm  = $this->text_comment[$post];
-            unset($this->text_comment);
-            $this->text_comment = array();
-          
-            $Comment = new Comment;
-            $Comment->user_id = Auth::user()->id;
-            $Comment->post_id = $post;
-            $Comment->write_comment = $comm;
-            $Comment->save();
-        }
-        if ($posts->user->id != Auth::user()->id) {
-            $notifi  = new Notification;
-            $notifi->sender_id = Auth::user()->id;
-            $notifi->receiver_id = $posts->user->id;
-            $notifi->post_id = $post;
 
-            $notifi->message_data = "คอมเมนต์โพสต์ของคุณ";
-            $notifi->save();
+        try {
+            $posts =    Post::find($post);
+            // dd(gettype( $post));
+            // dd($this->text_comment);
+            if (!empty($this->text_comment)) {
+                if (trim($this->text_comment[$post]) != "") {
+                    $comm  = $this->text_comment[$post];
+                    $this->text_comment[$post] = "";
+                    // $this->text_comment = array();
+
+                    $Comment = new Comment;
+                    $Comment->user_id = Auth::user()->id;
+                    $Comment->post_id = $post;
+                    $Comment->write_comment = $comm;
+                    $Comment->save();
+                }
+            }
+            if ($posts->user->id != Auth::user()->id) {
+                $notifi  = new Notification;
+                $notifi->sender_id = Auth::user()->id;
+                $notifi->receiver_id = $posts->user->id;
+                $notifi->post_id = $post;
+
+                $notifi->message_data = "คอมเมนต์โพสต์ของคุณ";
+                $notifi->save();
+            }
+        } catch (\Exception $e) {
+
+        
         }
     }
 
