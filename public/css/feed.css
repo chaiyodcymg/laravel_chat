@@ -286,7 +286,10 @@ textarea:focus {
     width: 100%;
 }
 .commentshow{
-    background-color: #fdf3e8 !important;
+    background-color: #fff0e1 !important;
+    /* background-color:  #fffbf7 !important; */
+}.commentshow-other{
+    background-color:  #f8f8f8 !important;
 }
 .comment-time{
     font-size: smaller;
@@ -298,6 +301,10 @@ textarea:focus {
 .username {
     font-weight: bold;
     color: rgb(211, 115, 59);
+}
+.username-other {
+    font-weight: 500;
+    color: rgb(0, 0, 0);
 }
 
 #textarea_post2 {
@@ -473,5 +480,11 @@ textarea:focus {
 
  
 
+ /* .delete_comment{
+     display: none;
+ }
+ .comment-box:hover .delete_comment{
+    display: block !important;
+ } */
  
 

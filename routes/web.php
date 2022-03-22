@@ -14,6 +14,7 @@ use App\Http\Livewire\LikePost;
 
 use App\Http\Controllers\EditController;
 
+
 // Route::prefix('login')->group(function () {
 
 Route::get('/', function () {
@@ -47,7 +48,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // Route::view('chat','users.messages');
     // Route::get('/user_id', 'UserController@index')->name('post.index');
     Route::get('/delete/{id}', [DeletePostController::class,'delete'])->name('delete');
-    
+
+    // Route::get('/delete-comment/{id}', [DeleteCommentController::class,'delete_comment'])->name('delete-comment');
     // {{route('delete', ['id'=> Crypt::encryptString($post->id)]);}}
     Route::get('/chat{id}', Messages::class)->name('userchat');
 

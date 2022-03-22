@@ -31,9 +31,11 @@ class LikePost extends Component
     public $count_post_like;
     public $other_user;
     public $showfollowpost;
-    public $text_comment = array();
+
     public $postshow;
 
+    public $text_comment = [];
+    public $edit_comment =[];
 
     public function render()
     {
@@ -53,6 +55,9 @@ class LikePost extends Component
 
         return view('livewire.like-post');
     }
+
+
+    // protected $listeners = ['like'=>'UserLikePost'];
 
     public function UserLikePost($post)
     {
@@ -140,5 +145,13 @@ class LikePost extends Component
             $post_id =   Crypt::decryptString($request->id);
             $this->postshow = Post::find($post_id);
         }
+    }
+
+    public function deletecomment($id)
+    {
+        $comment =  (int) Crypt::decryptString($id);
+        $delete = Comment::where('id', $comment)->get();
+
+        Comment::destroy($delete);
     }
 }
