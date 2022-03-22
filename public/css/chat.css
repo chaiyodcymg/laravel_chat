@@ -26,9 +26,7 @@ a{
     justify-content: center;
     align-items: center;
    width:74% ;
-   /* height: 100%; */
-  
-    /* padding: 0 !important; */
+
 }
 .box-list-user{
     width: 35%;
@@ -257,10 +255,12 @@ font-size: 16px;
   background-color: rgba(240, 240, 240, 0.705) !important;
 ิ
 }
+
 .fa-paper-plane{
     margin-top: 0 !important;
     color: #d85a3a !important ;
 }
+
 .box_btn_submit{
     padding: 0px 18px;
     /* box-shadow: 2px 2px 2px rgba(221, 221, 221, 0.384),-2px -1px 2px rgb(221, 221, 221,0.384) !important; */
