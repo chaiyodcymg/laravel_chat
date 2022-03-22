@@ -17,9 +17,9 @@
                     </div>
                     <form action="{{route('edit',$post->id)}}" method="post">
                         @csrf
-                        <textarea name="whitten_post" id="textarea_post" rows="3" placeholder="คุณกำลังคิดอะไรอยู่" value="{{$post->whitten_post}}" class="pt-3 pl-0 w-100" onfocus="delete_post(this);" onblur="delete_post(this);" onkeyup="delete_post(this);">{{$post->whitten_post}}</textarea>
+                        <textarea name="whitten_post" id="textarea_post" rows="3" placeholder="คุณกำลังคิดอะไรอยู่" value="{{$post->whitten_post}}" class="pt-3 pl-0 w-100" onfocus="delete_post(this,'{{$i}}');" onblur="delete_post(this,'{{$i}}')" onkeyup="delete_post(this,'{{$i}}');">{{$post->whitten_post}}</textarea>
                         <div class="modal-footer pl-0 pr-0 pb-0">
-                            <button type="submit" class="btn btn-secondary w-100 disabled" id="editpost">ยืนยันการแก้ไข</button>
+                            <button type="submit" class="btn btn-secondary w-100 disabled" id="editpost{{$i}}">ยืนยันการแก้ไข</button>
                         </div>
                     </form>
                 </div>
@@ -29,7 +29,7 @@
     </div>
 </div>
 <script>
-     function delete_post(field) {
+     function delete_post(field,id) {
          var maxlen = 0;
          var fval = field.value;
          var flen = fval.length;
@@ -37,15 +37,15 @@
          var dlen = tlen - flen;
          // console.log(field.value);
          if (!field.value || !field.value.trim()) {
-             var button_class = document.getElementById('editpost').disabled = true;
+             var button_class = document.getElementById('editpost'+id).disabled = true;
 
-             document.getElementById('editpost').className = "btn btn-secondary w-100 disabled";
-             var button_class = document.getElementById('editpost').className;
+             document.getElementById('editpost'+id).className = "btn btn-secondary w-100 disabled";
+             var button_class = document.getElementById('editpost'+id).className;
 
          } else {
-             document.getElementById('editpost').className = "btn btn-custom w-100";
-             var button_class = document.getElementById('editpost').className;
-             var button_class = document.getElementById('editpost').disabled = false;
+             document.getElementById('editpost'+id).className = "btn btn-custom w-100";
+             var button_class = document.getElementById('editpost'+id).className;
+             var button_class = document.getElementById('editpost'+id).disabled = false;
          }
      }
      delete_post(document.getElementById('textarea_post'));
@@ -70,12 +70,12 @@
 
 
    
-     $("#editpost").click(function() {
-        $('.spinner').modal('show');
-        $('.postmodal').css('opacity','0.8')
-         setTimeout(function() {
+    //  $("#editpost").click(function() {
+    //     $('.spinner').modal('show');
+    //     $('.postmodal').css('opacity','0.8')
+    //      setTimeout(function() {
              
-             $('.spinner').modal('hide');
-         }, 1000);
-     });
+    //          $('.spinner').modal('hide');
+    //      }, 1000);
+    //  });
  </script>

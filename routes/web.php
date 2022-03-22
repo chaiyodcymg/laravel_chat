@@ -55,4 +55,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::post('/comment_post',[WritePostController::class,'comment_post'])->name('comment_post');
     Route::post('/edit{id}',[EditController::class,'editpost'])->name('edit');
+
 });

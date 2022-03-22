@@ -174,11 +174,11 @@ class LikePost extends Component
         $Comment->save();
     }
 
+    
     public function deletecomment($id)
     {
         $comment =  (int) Crypt::decryptString($id);
         $delete = Comment::where('id', $comment)->get();
-
         Comment::destroy($delete);
     }
 }

@@ -1,6 +1,7 @@
 <div>
     @php $i = 0 @endphp
-
+    @php $e = 0 @endphp
+    @php $count_edit = 0 @endphp
     @php $arr_check_like = array() @endphp
 
     @php
@@ -199,17 +200,18 @@
                             @endif
                             @if( $comment->user->id == Auth::user()->id)
                             <div class="delete_comment ml-2" wire:ignore.self>
-                                <a class="drop dt" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa-solid fa-ellipsis mb-4" style="font-size: 15px !important;" ></i>
-                                </a>
+                                <div class="drop dt" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa-solid fa-ellipsis mb-4 point-comment" style="font-size: 15px !important;" ></i>
+                                </div>
                                 <div class="dropdown-menu " wire:ignore>
+                                    <a class="dropdown-item" class="btn btn-primary" data-toggle="modal" data-target="#editcomment{{++$count_edit}}">แก้ไขคอมเมนต์</a>
                                     <a class="dropdown-item text-danger" class="btn btn-primary" data-toggle="modal" data-target="#deletecomment{{++$i}}">ลบคอมเมนต์</a>
                                 </div>
-    
+
                                 <div class="modal-delete-comment w-100">
                                     <div class="modal" tabindex="-1" role="dialog" id="deletecomment{{$i}}" wire:ignore.self>
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
+                                        <div class="modal-dialog" role="document" >
+                                            <div class="modal-content" wire:ignore.self>
                                                 <div class="modal-header p-2 d-flex justify-content-center">
                                                     <h5 class="modal-title">ลบคอมเมนต์</h5>
                                                     <button type="button" class="close m-0 p-0" data-dismiss="modal" aria-label="Close">
@@ -217,7 +219,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body pt-4 pb-4">
-                                                    <p class="m-0 text-center">คุณต้องการลบคอมเมนต์</p>
+                                                    <p class="m-0 text-center">คุณต้องการลบ {{$comment->write_comment}}</p>
                                                 </div>
                                                 <div class="modal-footer p-1">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
@@ -228,7 +230,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            
                             </div>
                             @endif
                         </div>

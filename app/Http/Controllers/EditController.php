@@ -14,6 +14,6 @@ class EditController extends Controller
         $editpost = post::find($id);
         $editpost->whitten_post = $request->whitten_post;
         $editpost->save();
-        return redirect()->route('feed');
+        return redirect()->back();
     }
 }

@@ -287,7 +287,6 @@ textarea:focus {
 }
 .commentshow{
     background-color: #fff0e1 !important;
-    /* background-color:  #fffbf7 !important; */
 }.commentshow-other{
     background-color:  #f8f8f8 !important;
 }
@@ -448,11 +447,5 @@ textarea:focus {
     border: none;
     
   }
- /* .delete_comment{
-     display: none;
- }
- .comment-box:hover .delete_comment{
-    display: block !important;
- } */
  
 
