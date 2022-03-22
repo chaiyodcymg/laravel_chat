@@ -141,6 +141,7 @@ svg {
 .nav-profile-photo {
     border-radius: 22px;
     padding: 5px 15px 5px 5px;
+    
 }
 
 .nav-profile-photo:hover {
@@ -246,7 +247,7 @@ svg {
     width: 350px;
     background-color: white;
     box-shadow: 2px 2px 10px rgb(179, 179, 179);
-    margin-left: 15px;
+    margin-left: 0;
 }
 
 .menu-sidebar {
@@ -337,11 +338,12 @@ svg {
 .usertab {
     display: flex;
     justify-content: center;
+    
 }
 
 .usertab .name {
     padding-top: 10%;
-    margin-left: 5px;
+   
 }
 
 /* -- */
@@ -546,6 +548,7 @@ img.card-img-profile-search {
     }
 
     .normal-search {
+       
         display: none;
     }
 
@@ -583,4 +586,8 @@ img.card-img-profile-search {
         width: 80% !important; 
     }
     
+}
+.navbar-container{
+    margin-left: 6rem;
+  
 }
