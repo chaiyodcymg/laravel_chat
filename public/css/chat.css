@@ -255,11 +255,11 @@ font-size: 16px;
 }
 .form-control{
   background-color: rgba(240, 240, 240, 0.705) !important;
-
+ิ
 }
 .fa-paper-plane{
-margin-top: 0!important;
-  color: #d85a3a !important;
+    margin-top: 0 !important;
+    color: #d85a3a !important ;
 }
 .box_btn_submit{
     padding: 0px 18px;

@@ -10,25 +10,14 @@ class SearchUser extends Component
     public $users;
     public function render()
     {
-        // $users ="";
+    
         if(!empty($this->search)){
 
-            // dd($this->search);
-            // $search = '%' . $this->search . '%';
             $this->users =  User::where('name', 'LIKE', $this->search."%")->get();
-            // dd($search_user);
 
-         
-   
-        
-            // dd($users);
         }
-       
-        // else{
-        //     $this->users = User::all();
-        // }
-     
-       
+   
+      
         return view('livewire.search-user');
     }
 
@@ -36,10 +25,5 @@ class SearchUser extends Component
         $this->search = "";
          $this->users =[];
     }
-    // public function Search_User(){
-        // $search_user =  "หิว";
-        // $this->users =  User::all();
-        // $this->users=  User::where('name', 'LIKE', "%". $this->search."%")->get();
-        // dd($this->users);
-    // }
+
 }

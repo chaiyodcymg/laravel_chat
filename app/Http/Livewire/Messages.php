@@ -43,6 +43,7 @@ class Messages extends Component
     {
 
         if (!(empty(Message::Where('user_id', Auth::id())->orWhere('receiver_id', Auth::id())->count()))) {
+
             $users1 = DB::table('messages')->select('user_id', 'created_at')->where('receiver_id', Auth::id());
             $users2 = DB::table('messages')->select('receiver_id', 'created_at')->where('user_id', Auth::id());
 
@@ -72,20 +73,28 @@ class Messages extends Component
            
         }
     }
-    public function resetForm()
-    {
-        $this->message = '';
-    }
+  
 
     public function SendMessage()
     {
-        $mes =  $this->message;
-        $this->resetForm();
-        $data = new Message;
-        $data->message = $mes;
-        $data->user_id = Auth::id();
-        $data->receiver_id = $this->sender->id;
-        $data->save();
+           try {
+             if (!empty($this->message)) {
+                if (trim($this->message) != "") {
+
+                    $mes =  $this->message;
+                    $this->message = '';
+                    $data = new Message;
+                    $data->message = $mes;
+                    $data->user_id = Auth::id();
+                    $data->receiver_id = $this->sender->id;
+                    $data->save();
+
+                }
+            }
+             } catch (\Exception $e) {
+
+            return back();
+        }
     }
 
     public function mount(Request $request)
