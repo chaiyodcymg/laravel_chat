@@ -171,7 +171,7 @@
                             @csrf
                             <div class="d-flex">
                                 <div class="w-100">
-                                    <input wire:model="message" class="form-control input" placeholder="Aa" style="border:none">
+                                    <input wire:model="message" class="form-control input-send-message" placeholder="Aa" style="border:none">
                                 </div>
 
                                 <div class="box_btn_submit ml-3 w-5 d-flex justify-content-center align-items-center">

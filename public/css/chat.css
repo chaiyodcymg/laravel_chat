@@ -31,9 +31,7 @@ a{
 .box-list-user{
     width: 35%;
     height: 100%;
-     /* margin-left:10rem; */
-    /* display: flex;
-    justify-content: flex-end; */
+
        display: flex;
     justify-content: center;
     align-items: center;
@@ -41,9 +39,6 @@ a{
 .box-chat{
     width:65%;
      height: 100%;
-
-     /* margin: auto; */
-    /* margin-right:10rem; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -193,10 +188,9 @@ a{
 }
 .message-card-profile{
     width: 100%;
-    /* display:inline-block; */
+  
     max-width: 100%;
-    /* display: flex;
-    flex-direction: row; */
+
 }
 .name-text-card-profile{
  
@@ -251,14 +245,12 @@ font-size: 16px;
     background-color: white !important;
   
 }
-.form-control{
-  background-color: rgba(240, 240, 240, 0.705) !important;
-ิ
-}
+
 
 .fa-paper-plane{
     margin-top: 0 !important;
     color: #d85a3a !important ;
+    
 }
 
 .box_btn_submit{
@@ -268,7 +260,7 @@ font-size: 16px;
 }
 .box_btn_submit:hover{
     cursor: pointer;
- background-color: rgba(240, 240, 240, 0.705) !important;
+ background-color: rgb(240, 240, 240, 0.705) !important;
 }
 .input-send-message{
     resize: none;
@@ -281,8 +273,9 @@ font-size: 16px;
     width: 100%;
     padding: 8px 14px;
     box-sizing: border-box;
-    border: 0.2px solid black !important;
-    background: transparent;
+    border: unset !important;
+    border-radius: 30px !important;
+    background-color: rgb(238, 238, 238) !important;
 }
 
 .container-before-mes{

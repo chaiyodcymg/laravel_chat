@@ -196,7 +196,7 @@ button.disabled {
 }
 
 .comment-img-post {
-    width: 100%;
+    width: 30px;
     max-width: 30px;
     height: 30px;
     object-fit: cover;
