@@ -33,7 +33,8 @@ class OnlineMiddleware
             $user->last_activity = now()->addMinutes(1);
             $user->is_online = true;
             $user->save();
-        } elseif(!auth()->check() and filled(Cache::get('user-is-online'))) {
+        } 
+        elseif(!auth()->check() and filled(Cache::get('user-is-online'))) {
             $user = User::find(Cache::get('user-is-online'));
             if (isset($user)) {
                 $user->is_online = false;

@@ -95,17 +95,22 @@
                                 <div class="send-name ml-3 ">
 
                                     @if(isset($sender)) {{$sender->name}} @endif
-                                     @if($user->is_online==true)
-                                    <p class="status-text-card-profile mb-0 ml-0">Active</p>
-                                    @else
-                                   <p class="status-text-card-profile mb-0 ml-0">Last active {{\Carbon\Carbon::parse($sender->last_activity)->diffForHumans()}}</p>
+
+                                     @if(!(empty($sender)))
+                                        @if($sender->is_online==true)
+                                        <p class="status-text-card-profile mb-0 ml-0">Active</p>
+                                        @else
+                                            <p class="status-text-card-profile mb-0 ml-0">Last active {{\Carbon\Carbon::parse($sender->last_activity)->diffForHumans()}}</p>
+                                        @endif
                                     @endif
                                 </div>
-                                   @if($user->is_online==true)
-                                <div class="dot-sender">
-                                    <div class="dot-chat"></div>
-                                </div>
-                                   @endif
+                                 @if(!(empty($sender)))
+                                    @if($sender->is_online==true)
+                                    <div class="dot-sender">
+                                        <div class="dot-chat"></div>
+                                    </div>
+                                    @endif
+                                @endif
                         </a>
                     </div>
 
@@ -167,16 +172,17 @@
                     </div>
 
                     <div class="card-footer chat-card-footer">
-                        <form wire:submit.prevent="SendMessage">
+                        <form wire:submit.prevent="SendMessage" wire:ignore.self>
                             @csrf
                             <div class="d-flex">
-                                <div class="w-100">
-                                    <textarea wire:model="message" class="form-control input-send-message" placeholder="Aa" style="border:none"> </textarea>
+                                <div class="w-100" >
+                                    <textarea wire:ignore wire:keydown.enter="SendMessage"  wire:model="message" class=" textarea-send-message"  id="textarea-send-message" placeholder="Aa" style="border:none"> </textarea>
                                 </div>
-
-                                <div class="box_btn_submit ml-3 w-5 d-flex justify-content-center align-items-center">
-                                    <button type="submit" class=""><i class="fas fa-paper-plane butt"></i></button>
+                        
+                                 <div class="box_btn_submit ml-3 w-5 d-flex justify-content-center align-items-center">
+                                    <button type="submit" ><i class="fas fa-paper-plane butt btn-submit-chat"></i></button>
                                 </div>
+                              
                             </div>
                         </form>
                     </div>
@@ -207,6 +213,24 @@
 </div>
 </div>
 <script type="text/javascript">
+       $(".textarea-send-message").keydown(function(e) {
+        if (e.keyCode == 13) {
+        
+     
+                e.preventDefault();
+            textarea = document.getElementById("textarea-send-message");
+            textarea.value="";
+            textarea.style.height = '34px';
+            // return false;
+        }
+    });
+     $(".btn-submit-chat").click(function(e) {
+            textarea = document.getElementById("textarea-send-message");
+            textarea.value="";
+            textarea.style.height = '34px';
+            // return false;
+        
+    })
     function adjust() {
         var style = this.currentStyle || window.getComputedStyle(this);
         var boxSizing = style.boxSizing === 'border-box' ?
@@ -217,11 +241,13 @@
         this.style.height = (this.scrollHeight + boxSizing) + 'px';
     };
     var textarea = document.getElementById("textarea-send-message");
-    if ('onpropertychange' in textarea) { // IE
+    if ('onpropertychange' in textarea) { 
+     
         textarea.onpropertychange = adjust;
     } else if ('oninput' in textarea) {
         textarea.oninput = adjust;
     }
+    
     setTimeout(adjust.bind(textarea));
     $('#message-box').on('scroll', function() {
         height = (Math.abs($(this).scrollTop()) + $(this).innerHeight()) + 2

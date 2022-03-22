@@ -36,5 +36,6 @@ class CreateNotificationsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('notifications');
+          $table->dropSoftDeletes();
     }
 }

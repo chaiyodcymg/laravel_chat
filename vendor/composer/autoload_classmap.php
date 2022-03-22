@@ -23,7 +23,6 @@ return array(
     'App\\Http\\Controllers\\ProfilePostsController' => $baseDir . '/app/Http/Controllers/ProfilePostsController.php',
     'App\\Http\\Controllers\\UploadProfileController' => $baseDir . '/app/Http/Controllers/UploadProfileController.php',
     'App\\Http\\Controllers\\WritePostController' => $baseDir . '/app/Http/Controllers/WritePostController.php',
-    'App\\Http\\Controllers\\commentController' => $baseDir . '/app/Http/Controllers/commentController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Livewire\\Comment' => $baseDir . '/app/Http/Livewire/Comment.php',
     'App\\Http\\Livewire\\CountLike' => $baseDir . '/app/Http/Livewire/CountLike.php',

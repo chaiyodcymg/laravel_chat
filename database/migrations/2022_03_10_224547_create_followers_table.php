@@ -32,5 +32,6 @@ class CreateFollowersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('followers');
+          $table->dropSoftDeletes();
     }
 }

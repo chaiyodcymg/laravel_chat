@@ -26,7 +26,7 @@ class Messages extends Component
     // public $arr_count = array();
     public $count_mount = 0;
     public $message_seen;
-    // public $post;
+
 
 
 
@@ -81,6 +81,8 @@ class Messages extends Component
              if (!empty($this->message)) {
                 if (trim($this->message) != "") {
 
+                
+
                     $mes =  $this->message;
                     $this->message = '';
                     $data = new Message;
@@ -88,7 +90,8 @@ class Messages extends Component
                     $data->user_id = Auth::id();
                     $data->receiver_id = $this->sender->id;
                     $data->save();
-
+              
+                  
                 }
             }
              } catch (\Exception $e) {

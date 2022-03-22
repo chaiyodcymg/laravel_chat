@@ -262,13 +262,13 @@ font-size: 16px;
     cursor: pointer;
  background-color: rgb(240, 240, 240, 0.705) !important;
 }
-.input-send-message{
+.textarea-send-message{
     resize: none;
-    max-height: 300px !important;
-    height: 40px !important;
-    min-height: 40px !important;
+    max-height: 150px !important;
+    height: 34px ;
+    min-height: 34px ;
     outline: none;
-    font: 18px sans-serif;
+    font: 15px sans-serif;
     color: #333;
     width: 100%;
     padding: 8px 14px;
@@ -277,7 +277,7 @@ font-size: 16px;
     border-radius: 30px !important;
     background-color: rgb(238, 238, 238) !important;
 }
-.input-send-message:focus{
+.textarea-send-message:focus{
     box-shadow: none !important;
 }
 .container-before-mes{

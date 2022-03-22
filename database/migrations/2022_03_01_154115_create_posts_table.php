@@ -34,8 +34,7 @@ class CreatePostsTable extends Migration
     {
         Schema::dropIfExists('posts');
         Schema::dropIfExists('post_post_like');
-        // Schema::table('posts', function (Blueprint $table) {
-        //     $table->dropSoftDeletes();
-        // });
+          $table->dropSoftDeletes();
+      
     }
 }

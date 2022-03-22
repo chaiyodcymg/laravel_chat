@@ -175,7 +175,7 @@ button.disabled {
     background-color: #ffa36e !important;
 }
 
-#text-comment{
+.text-comment{
     resize: none;
     height: auto !important;
     max-height: 500px ;
@@ -204,19 +204,7 @@ button.disabled {
     margin: 20px 10px;
 }
 
-.post-input-container textarea {
-    resize: none;
-    max-height: 300px !important;
-    min-height: 100px !important;
-    outline: none;
-    font: 18px sans-serif;
-    color: #333;
-    width: 100%;
-    padding: 8px 14px;
-    box-sizing: border-box;
-    border: unset !important;
-    background: transparent;
-}
+
 textarea:focus {
     box-shadow: none !important;
 }

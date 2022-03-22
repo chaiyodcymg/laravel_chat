@@ -605,7 +605,6 @@ class ComposerStaticInitf8595f348d1414fa191b7e05ce53ee27
         'App\\Http\\Controllers\\ProfilePostsController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfilePostsController.php',
         'App\\Http\\Controllers\\UploadProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/UploadProfileController.php',
         'App\\Http\\Controllers\\WritePostController' => __DIR__ . '/../..' . '/app/Http/Controllers/WritePostController.php',
-        'App\\Http\\Controllers\\commentController' => __DIR__ . '/../..' . '/app/Http/Controllers/commentController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Livewire\\Comment' => __DIR__ . '/../..' . '/app/Http/Livewire/Comment.php',
         'App\\Http\\Livewire\\CountLike' => __DIR__ . '/../..' . '/app/Http/Livewire/CountLike.php',

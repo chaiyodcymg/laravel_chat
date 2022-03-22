@@ -25,6 +25,7 @@ return new class extends Migration
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 10240)->nullable();
             $table->timestamps();
+           $table->softDeletes();
         });
     }
 
@@ -36,5 +37,6 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('users');
+        $table->dropSoftDeletes();
     }
 };
