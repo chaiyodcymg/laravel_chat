@@ -1,35 +1,11 @@
 <nav x-data="{ open: false }" class="navbar navbar-expand navbar-light bg-white ">
     <!-- Primary Navigation Menu -->
-    <div class="container navbar-container">
+    <div class="d-flex flex-row navbar-container">
         <!-- Logo -->
-        <a class="navbar-brand" href="{{ route('feed') }}"><img class="logo" src="{{asset('img/tomatoe.png')}}" alt="logo tometalk"></a>
-        <div class="normal-search">@livewire('search-user')</div>
+        <a class="navbar-brand mr-0" href="{{ route('feed') }}"><img class="logo" src="{{asset('img/tomatoe.png')}}" alt="logo tometalk"></a>
+        <div class="normal-search align-self-center">@livewire('search-user')</div>
 
 
-
-        <script>
-            //  const icon = document.querySelector('.icon');
-            //  const search = document.querySelector('.search');
-            //  icon.onclick = function() {
-            //      search.classList.toggle('open')
-            //  }
-            //  $(".icon").click(function() {
-            //      $(".nav-icon").toggleClass("hide");
-            //  });
-            //  $("#search").keyup(function() {
-            //      $("#box-search").toggleClass("show-box");
-            //      var value = $(this).val().toLowerCase();
-            //      $("#box-search #box-name").filter(function() {
-            //          var search = $(this).text().toLowerCase();
-            //          if (search.indexOf(value) > -1) {
-            //              $(this).show();
-            //          } else {
-            //              $(this).hide();
-            //          }
-            //      });
-            //  });
-            //  
-        </script>
 
         <!-- Navigation Links -->
         <ul class="nav-icon">
@@ -66,7 +42,7 @@
 
 
 
-        <div class=" sm:flex sm:items-center">
+        <div class=" sm:flex sm:items-center mr-3">
             <!-- Teams Dropdown -->
             @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
             <div class="ml-3 relative">
@@ -224,7 +200,7 @@
                 </div>
             </div>
 
-            <div class="mt-3 space-y-1 border-t border-gray-200 respon-option">
+            <div class="mt-3 space-y-1 border-t border-gray-200 respon-option" >
                 <!-- Account Management -->
                 <ul class="respon-dropdown">
                     <li><a class="dropdown-item" href="{{ route('profile') }}">{{ __('Profile') }}</a></li>
