@@ -15,7 +15,7 @@ class OtherUserController extends Controller
       $posts= Post::where('user_id',$user_id)->orderBy('created_at','desc')->get();
   
       $user_target=User::where('id',$user_id)->get();
-        // dd($user_target[0]);
+
       $users = $user_target[0];
      
         return view('otheruser',compact('users','posts'));

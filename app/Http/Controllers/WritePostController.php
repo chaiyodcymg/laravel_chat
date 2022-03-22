@@ -10,8 +10,6 @@ class WritePostController extends Controller
 {
     //
     public function submit_post(Request $request){
-
-        // dd($request->whitten_post);
     $post = new post;
     $post->whitten_post=$request->whitten_post;
     $post->user_id=Auth::user()->id;

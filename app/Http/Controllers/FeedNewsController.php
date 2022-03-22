@@ -18,22 +18,11 @@ class FeedNewsController extends Controller
 
     public function index()
     {
-
-        // $users=User::all();
-        // $posts= Post::orderBy('created_at','desc')->get();
-
         $followings =  Following::where('user_id', Auth::user()->id)->get();
 
 
         return view('feed_news',compact('followings'));
     }
-    //     public function index()
-    // {
-    //     $followings =  DB::table('follows')
-    //         ->join('users', 'users.id', '=', 'follows.user_id')
-    //         ->select('users.name')
-    //         ->where('follows.user_id', Auth::user()->id)->get();
-    //     return view('list-name-follow', compact('followings'));
-    // }
+
 
 }

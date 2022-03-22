@@ -6,7 +6,7 @@
 
     <!---- post ---->
 
-    @livewire('like-post',[ 'other_user' => $users->id])
+    @livewire('feed-news',[ 'other_user' => $users->id])
 
 </div>
 

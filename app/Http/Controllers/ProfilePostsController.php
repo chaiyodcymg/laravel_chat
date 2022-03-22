@@ -8,7 +8,7 @@ use App\Models\User;
 
 class ProfilePostsController extends Controller
 {
-    //
+ 
     
     public function profile_post(){
 

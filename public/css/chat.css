@@ -132,14 +132,17 @@ a{
     padding-right: 2px;
 }
 .card_img_profile{
+    border-radius: 0 !important;
     max-width: 100% ;
     min-height: 10vh !important ;
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
     padding-left: 1rem !important;
+    margin-bottom:  0!important;
     /* justify-content: center ; */
 }
+
 .card_img_profile:hover{
     background-color: rgb(223, 223, 223);
     cursor: pointer;
@@ -263,7 +266,7 @@ font-size: 16px;
 }
 .box_btn_submit:hover{
     cursor: pointer;
- background-color: rgb(240, 240, 240, 0.705) !important;
+ /* background-color: rgb(240, 240, 240, 0.705) !important; */
 }
 .textarea-send-message{
     resize: none;

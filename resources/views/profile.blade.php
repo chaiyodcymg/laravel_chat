@@ -7,7 +7,7 @@
   @include('write-post')
   <!---- post ---->
 
-  @livewire('like-post',[ 'other_user' => Auth::user()->id])
+  @livewire('feed-news',[ 'other_user' => Auth::user()->id])
 
 
 </div>
@@ -29,7 +29,7 @@
       var button_class = document.getElementById('myclass').className;
 
     } else {
-      document.getElementById('myclass').className = "btn btn-primary w-100";
+      document.getElementById('myclass').className = "btn btn-custom w-100";
       var button_class = document.getElementById('myclass').className;
       var button_class = document.getElementById('myclass').disabled = false;
     }

@@ -52,7 +52,7 @@
         <div class="col-span-6 sm:col-span-4 m-2">
             <x-jet-label for="name" value="{{ __('Name') }}" />
             <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" autocomplete="name" maxlength="20"/>
-            <p style="color: red;">*จำกัดตัวอักษร 20 ตัว</p>
+            <p style="color: red;">*Must have 20 Characters</p>
             <x-jet-input-error for="name" class="mt-2" />
         </div>
 

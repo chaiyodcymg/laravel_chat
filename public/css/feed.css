@@ -179,16 +179,18 @@ button.disabled {
     resize: none;
     height: auto !important;
     max-height: 500px ;
-    min-height: 50px ;
+    min-height: 30px ;
     outline: none;
     /* font: 18px sans-serif; */
     color: #333;
     width: 100% !important;
-    padding: 8px 14px;
-    margin: 10px auto;
+    padding: 10px 14px 5px 14px;
+    margin: 5px auto;
     box-sizing: border-box;
     border: unset !important;
-    background: #f8f8f8;
+    /* background: #f8f8f8; */
+    border-radius:25px !important ;
+    background-color: rgb(238, 238, 238) !important;
 }
 
 .comment-textarea {
@@ -252,6 +254,7 @@ textarea:focus {
     /* background-color: rgb(226, 226, 226) !important; */
 }
 .btn-comment {
+    margin-bottom: 0 !important;
     margin-left: 0.1em;
     width: 100%;
 }
@@ -331,7 +334,7 @@ textarea:focus {
     transition: 0.5s;
 }
 .card {
-    border-radius: 6px !important;
+    /* border-radius: 6px !important; */
     border: unset !important;
     margin-bottom: 1rem;
 }
@@ -461,3 +464,8 @@ textarea:focus {
 .dropdown-item{
     cursor: pointer;
 }
+
+
+/* .showpost{
+    margin: 1rem 20rem !important;
+} */

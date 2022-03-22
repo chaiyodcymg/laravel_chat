@@ -20,23 +20,8 @@ class Follow extends Component
 
     public function render()
     {
-        // dd($this->user_id);
         $user_target = User::where('id', $this->user_id)->get();
- 
-        // // $follow =  Follow::where('follow_id', $this->user_id)->get();
-        // $follower =  DB::table('follows')
-        //     ->join('users', 'users.id', '=', 'follows.user_id')
-        //     ->select('users.*')
-        //     ->where('follows.follow_id', $this->user_id)->get();
-        // $following =  DB::table('follows')
-        //     ->join( 'users','users.id','=','follows.user_id')
-        //     ->select('users.*')
-        //     ->where('follows.user_id', $this->user_id)->get();
-
-        // $this->count_folllower = count($follower);
-        // $this->count_folllowing = count($following);
         $this->users = $user_target;
-        // dd($user_target[0]->followers);
         return view('livewire.follow');
     }
     public function following()

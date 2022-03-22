@@ -9,18 +9,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Illuminate\Support\Carbon;
-// use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Collection;
 use App\Models\Following;
 use App\Models\Follower;
-use Illuminate\Support\Arr;
+
 use App\Models\Comment;
-use Illuminate\Support\Str;
+
 use App\Models\Notification;
 use Illuminate\Http\Request;
-
-class LikePost extends Component
+class FeedNews extends Component
 {
     public $LikePost;
     public $UserLikePost;
@@ -53,7 +51,7 @@ class LikePost extends Component
             $this->posts = $posts;
         }
 
-        return view('livewire.like-post');
+        return view('livewire.feed-news');
     }
 
 
@@ -103,16 +101,13 @@ class LikePost extends Component
     }
     public function comment($post)
     {
-
         try {
             $posts =    Post::find($post);
-            // dd(gettype( $post));
-            // dd($this->text_comment);
+
             if (!empty($this->text_comment)) {
                 if (trim($this->text_comment[$post]) != "") {
                     $comm  = $this->text_comment[$post];
                     $this->text_comment[$post] = "";
-                    // $this->text_comment = array();
 
                     $Comment = new Comment;
                     $Comment->user_id = Auth::user()->id;
