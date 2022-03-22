@@ -19,11 +19,7 @@
                         @csrf
                         <textarea name="whitten_post" id="textarea_post" rows="3" placeholder="{{$post->whitten_post}}" value="{{$post->whitten_post}}" class="pt-3 pl-0 w-100" onfocus="delete_post(this);" onblur="delete_post(this);" onkeyup="delete_post(this);">{{$post->whitten_post}}</textarea>
                         <div class="modal-footer pl-0 pr-0 pb-0">
-<<<<<<< HEAD
                             <button type="submit" class="btn btn-secondary w-100 disabled" id="editpost">Edit</button>
-=======
-                            <button type="submit" class="btn btn-secondary w-100 disabled" id="editpost">ยืนยันการแก้ไข</button>
->>>>>>> 6e812885edd0ec7f8422f6f9af1f2241b82a1923
                         </div>
                     </form>
                 </div>

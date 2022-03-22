@@ -178,7 +178,7 @@
                                 <div class="w-100" >
                                     <textarea wire:ignore wire:keydown.enter="SendMessage"  wire:model="message" class=" textarea-send-message"  id="textarea-send-message" placeholder="Aa" style="border:none"> </textarea>
                                 </div>
-                        
+                           
                                  <div class="box_btn_submit ml-3 w-5 d-flex justify-content-center align-items-center">
                                     <button type="submit" ><i class="fas fa-paper-plane butt btn-submit-chat"></i></button>
                                 </div>
@@ -217,16 +217,15 @@
         if (e.keyCode == 13) {
         
      
-                e.preventDefault();
+            e.preventDefault();
             textarea = document.getElementById("textarea-send-message");
-            textarea.value="";
+        
             textarea.style.height = '34px';
             // return false;
         }
     });
      $(".btn-submit-chat").click(function(e) {
             textarea = document.getElementById("textarea-send-message");
-            textarea.value="";
             textarea.style.height = '34px';
             // return false;
         
