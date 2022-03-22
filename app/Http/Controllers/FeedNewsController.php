@@ -25,19 +25,6 @@ class FeedNewsController extends Controller
         $followings =  Following::where('user_id', Auth::user()->id)->get();
 
 
-        // dd($users);
-        // return view('list-name-follow', compact('followings'));
-        //   $post =  PostLike::where('post_id',1)->get();
-        // $users = User::all();
-
-        // $l =  PostLike::find(2);
-        //   var_dump($post->postlike);
-        // $count_like = Post::
-        // foreach($posts as $post){
-        // $posts = Post::with(['posts', 'postlike'])->get();
-        // $PostLike = PostLike::first();
-        // dd($posts);
-        // }
         return view('feed_news',compact('followings'));
     }
     //     public function index()

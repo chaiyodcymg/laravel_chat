@@ -1,7 +1,7 @@
 <div>
     @php $i = 0 @endphp
 
-    @php $arr_check_like = array() @endphp
+    @php $count_edit = 0 @endphp
 
     @php
     $count_arr = 0;
@@ -171,18 +171,55 @@
                     </div>
 
 
-                    @foreach($post->comments as $comment)
-                    <div class="all-comment" wire:poll.keep-alive>
-                        <div class="d-flex align-items-center">
-                            <img class="profile-img-comment mr-1" src="{{$comment->user->profile_photo_url}}" alt="profile">
+                      @foreach($post->comments as $comment)
+                    <div class="all-comment">
+                        <div class="d-flex align-items-center comment-box">
+                            <img class="profile-img-comment mb-3 mr-1" src="{{$comment->user->profile_photo_url}}" alt="profile">
+                            @if($comment->user->id == Auth::user()->id)
                             <div class="card user-comment mt-0 pr-2 pt-1 pb-1 commentshow">
-                                @if($comment->user->id == Auth::user()->id)
                                 <a href="{{route('profile')}}" class="ml-2 mb-0 username">{{ $comment->user->name}}</a>
-                                @else
-                                <a href="{{route('otheruser', ['user_id' => Crypt::encryptString($comment->user->id)]) ;}}" class="ml-2 mb-0 username">{{ $comment->user->name}}</a>
-                                @endif
                                 <p class="comment-text ml-2 mr-2 mb-0">{{$comment->write_comment}}</p>
                             </div>
+                            @else
+                            <div class="card user-comment mt-0 pr-2 pt-1 pb-1 commentshow-other">
+                                <a href="{{route('otheruser', ['user_id' => Crypt::encryptString($comment->user->id)]) ;}}" class="ml-2 mb-0 username-other">{{ $comment->user->name}}</a>
+                                <p class="comment-text ml-2 mr-2 mb-0">{{$comment->write_comment}}</p>
+                            </div>
+                            @endif
+                            @if( $comment->user->id == Auth::user()->id)
+                            <div class="delete_comment ml-2" wire:ignore.self>
+                                <div class="drop dt" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa-solid fa-ellipsis mb-4 point-comment" style="font-size: 15px !important;" ></i>
+                                </div>
+                                <div class="dropdown-menu " wire:ignore>
+
+                                    <a class="dropdown-item text-danger" class="btn btn-primary" data-toggle="modal" data-target="#deletecomment{{++$i}}">Delete Comment</a>
+                                </div>
+
+                                <div class="modal-delete-comment w-100">
+                                    <div class="modal" tabindex="-1" role="dialog" id="deletecomment{{$i}}" wire:ignore.self>
+                                        <div class="modal-dialog" role="document" >
+                                            <div class="modal-content" wire:ignore.self>
+                                                <div class="modal-header p-2 d-flex justify-content-center">
+                                                    <h5 class="modal-title">ลบคอมเมนต์</h5>
+                                                    <button type="button" class="close m-0 p-0" data-dismiss="modal" aria-label="Close">
+                                                        <span class="mr-3" aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body pt-4 pb-4">
+                                                    <p class="m-0 text-center">คุณต้องการลบ {{$comment->write_comment}}</p>
+                                                </div>
+                                                <div class="modal-footer p-1">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                                               
+                                                 <a wire:click="deletecomment('{{Crypt::encryptString($comment->id)}}')" data-dismiss="modal"><button type="button" class="btn btn-danger w-100">ลบคอมเมนต์</button></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
                         </div>
                         <p class="comment-time ">{{\Carbon\Carbon::parse( $comment->created_at)->diffForHumans()}}</p>
                     </div>
@@ -423,7 +460,7 @@
     $("textarea").keydown(function(e) {
         // Enter pressed
         if (e.keyCode == 13) {
-   
+            //method to prevent from default behaviour
             e.preventDefault();
         }
     });

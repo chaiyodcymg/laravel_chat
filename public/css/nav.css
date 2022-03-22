@@ -58,6 +58,7 @@ i {
 }
 
 .nav-link:hover {
+    cursor: pointer;
     /* border-bottom: 5px #b3412d solid; */
     background-color: #e0e0e0;
     border-radius: 40px;
@@ -582,18 +583,4 @@ img.card-img-profile-search {
         width: 80% !important; 
     }
     
-    
-
-    
-   
-
-  
-
-
-
-    
- 
-    
-
-
 }

@@ -36,26 +36,26 @@
     </div>
 </div>
 <script>
-    function delete_post(field) {
-        var maxlen = 0;
-        var fval = field.value;
-        var flen = fval.length;
-        var tlen = fval.replace(/\n/g, "\r\n").length;
-        var dlen = tlen - flen;
-        // console.log(field.value);
-        if (!field.value || !field.value.trim()) {
-            var button_class = document.getElementById('editpost').disabled = true;
+     function delete_post(field,id) {
+         var maxlen = 0;
+         var fval = field.value;
+         var flen = fval.length;
+         var tlen = fval.replace(/\n/g, "\r\n").length;
+         var dlen = tlen - flen;
+         // console.log(field.value);
+         if (!field.value || !field.value.trim()) {
+             var button_class = document.getElementById('editpost'+id).disabled = true;
 
-            document.getElementById('editpost').className = "btn btn-secondary w-100 disabled";
-            var button_class = document.getElementById('editpost').className;
+             document.getElementById('editpost'+id).className = "btn btn-secondary w-100 disabled";
+             var button_class = document.getElementById('editpost'+id).className;
 
-        } else {
-            document.getElementById('editpost').className = "btn btn-custom w-100";
-            var button_class = document.getElementById('editpost').className;
-            var button_class = document.getElementById('editpost').disabled = false;
-        }
-    }
-    delete_post(document.getElementById('textarea_post'));
+         } else {
+             document.getElementById('editpost'+id).className = "btn btn-custom w-100";
+             var button_class = document.getElementById('editpost'+id).className;
+             var button_class = document.getElementById('editpost'+id).disabled = false;
+         }
+     }
+     delete_post(document.getElementById('textarea_post'));
 
     function adjust() {
         var style = this.currentStyle || window.getComputedStyle(this);

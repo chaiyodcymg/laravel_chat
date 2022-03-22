@@ -61,4 +61,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/postshow{id}',LikePost::class)->name('postshow');
 
     Route::post('/edit{id}',[EditController::class,'editpost'])->name('edit');
+
 });
