@@ -1,6 +1,6 @@
 <div>
 
-    <div class="container-fluid">
+    <div class="container-fluid"  >
         <div class="row  row-in-container ">
 
             <div class=" box-card-all">
@@ -95,12 +95,17 @@
                                 <div class="send-name ml-3 ">
 
                                     @if(isset($sender)) {{$sender->name}} @endif
+                                     @if($user->is_online==true)
                                     <p class="status-text-card-profile mb-0 ml-0">Active</p>
-
+                                    @else
+                                   <p class="status-text-card-profile mb-0 ml-0">Last active {{\Carbon\Carbon::parse($sender->last_activity)->diffForHumans()}}</p>
+                                    @endif
                                 </div>
+                                   @if($user->is_online==true)
                                 <div class="dot-sender">
                                     <div class="dot-chat"></div>
                                 </div>
+                                   @endif
                         </a>
                     </div>
 

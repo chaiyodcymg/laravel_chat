@@ -6,6 +6,7 @@ a{
     text-decoration: none !important;
     color: black !important;
 }
+ 
 .row-in-container{
    display: flex;
     flex-direction: row;
@@ -42,6 +43,7 @@ a{
 .box-chat{
     width:65%;
      height: 100%;
+
      /* margin: auto; */
     /* margin-right:10rem; */
     display: flex;
@@ -265,6 +267,7 @@ margin-top: 0!important;
     border-radius: 50%;
 }
 .box_btn_submit:hover{
+    cursor: pointer;
  background-color: rgba(240, 240, 240, 0.705) !important;
 }
 .input-send-message{
