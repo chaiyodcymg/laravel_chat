@@ -141,7 +141,7 @@
                 </button>
 
 
-                <button class="btn btn-comment d-flex  justify-content-center commentpop">
+                <label for="text-comment"class="btn btn-comment d-flex  justify-content-center commentpop">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="mr-2 svg-comment">
                         <!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
                         <path d="M256 32C114.6 32 .0272 125.1 .0272 240c0 49.63 21.35 94.98 56.97 130.7c-12.5 50.37-54.27 95.27-54.77 95.77c-2.25 2.25-2.875 5.734-1.5 8.734C1.979 478.2 4.75 480 8 480c66.25 0 115.1-31.76 140.6-51.39C181.2 440.9 217.6 448 256 448c141.4 0 255.1-93.13 255.1-208S397.4 32 256 32z" />
@@ -150,7 +150,7 @@
                         comment
                     </span>
 
-                </button>
+                </label>
             </div>
             <div class="pop">
                 <div class="popup popup-comment" wire:ignore.self>

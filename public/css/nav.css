@@ -169,7 +169,7 @@ svg {
 }
 
 .search .icon {
-    cursor: pointer;
+    /* cursor: pointer; */
     display: flex;
     justify-content: center;
     align-items: center;

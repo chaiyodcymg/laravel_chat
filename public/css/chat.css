@@ -277,7 +277,9 @@ font-size: 16px;
     border-radius: 30px !important;
     background-color: rgb(238, 238, 238) !important;
 }
-
+.input-send-message:focus{
+    box-shadow: none !important;
+}
 .container-before-mes{
     height: 100%;
 }

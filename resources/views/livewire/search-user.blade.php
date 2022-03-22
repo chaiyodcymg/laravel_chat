@@ -2,7 +2,7 @@
 
        <div class="expand relative">
            <div class="search">
-               <div class="icon fa" aria-hidden="false"></div>
+               <label for="search" class="icon fa" aria-hidden="false"></label>
                <div class="inputspace">
                    <input autocomplete="off" type="text" placeholder="Search..." id="search" wire:model="search">
                </div>
